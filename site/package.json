@@ -1,16 +1,18 @@
 {
-  "name": "moataz-kobry-cyber-ai-portfolio",
-  "version": "10.0.0",
+  "name": "moataz-kobry-portfolio",
+  "version": "11.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0",
+    "check": "tsc --noEmit",
     "build": "tsc --noEmit && vite build",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.3.0",
+    "gsap": "^3.13.0",
     "lucide-react": "^0.468.0",
     "motion": "^12.23.0",
     "react": "^19.2.0",
