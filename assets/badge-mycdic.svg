@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="196" height="53" viewBox="0 0 196 53" role="img" aria-label="MYCDIC">
- <defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="#172334"/><stop offset="1" stop-color="#0C1420"/></linearGradient></defs>
- <rect x="1" y="1" width="194" height="51" rx="11" fill="url(#b)" stroke="#425A72" stroke-width="1.4"/>
- <rect x="8" y="8" width="37" height="37" rx="8" fill="#1F3447"/><text x="26" y="33" fill="#8BD8E5" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" text-anchor="middle" font-weight="bold">M/</text>
- <text x="56" y="32" fill="#EBF2F9" font-family="DejaVu Sans,Arial,sans-serif" font-size="16" font-weight="bold" letter-spacing="1.4">MYCDIC</text>
- </svg>
