@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kobrymoataz.github.io/kobrymoataz/sitemap.xml
