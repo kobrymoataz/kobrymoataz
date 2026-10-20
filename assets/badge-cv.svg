@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="178" height="40" viewBox="0 0 178 40" role="img" aria-label="Request CV">
-  <rect x="0.5" y="0.5" width="177" height="39" rx="8" fill="#0f1a2d" stroke="#28527a"/>
-  <rect x="8" y="8" width="24" height="24" rx="6" fill="#16324d" stroke="#32699f"/>
-  <path d="M14 15h12v10H14z" fill="none" stroke="#dce8f6" stroke-width="1.5"/>
-  <path d="M14 16l6 5 6-5" fill="none" stroke="#dce8f6" stroke-width="1.5"/>
-  <text x="42" y="25" font-family="DejaVu Sans, Arial, sans-serif" font-size="14" font-weight="700" fill="#eef4fb">REQUEST CV</text>
-</svg>
