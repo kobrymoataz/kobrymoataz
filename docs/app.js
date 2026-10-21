@@ -1,137 +1,141 @@
+/* Moataz Kobry Portfolio | Interaction & motion layer
+   This file is intentionally self-contained. The page remains usable even if an optional animation CDN is unavailable. */
+(() => {
+  'use strict';
+  const $ = (s, root = document) => root.querySelector(s);
+  const $$ = (s, root = document) => Array.from(root.querySelectorAll(s));
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
-// Mobile nav
-const nav = document.querySelector('.nav');
-document.querySelector('.menu-toggle')?.addEventListener('click', () => nav.classList.toggle('open'));
-document.querySelectorAll('.nav a').forEach(a => a.addEventListener('click', () => nav.classList.remove('open')));
-
-// GSAP animations
-if (window.gsap) {
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.to('.hero-card', { y: -10, duration: 2.4, repeat: -1, yoyo: true, ease: 'sine.inOut' });
-  gsap.utils.toArray('.reveal').forEach((el, i) => {
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.9,
-      delay: i * 0.03,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: el,
-        start: 'top 88%'
-      }
+  // Navigation
+  const menu = $('#menu-button');
+  const nav = $('#primary-nav');
+  menu?.addEventListener('click', () => {
+    const expanded = menu.getAttribute('aria-expanded') === 'true';
+    menu.setAttribute('aria-expanded', String(!expanded));
+    nav.classList.toggle('is-open', !expanded);
+    menu.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  });
+  $$('.main-nav a').forEach(link => link.addEventListener('click', () => {
+    menu?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('is-open');
+  }));
+  $('#year').textContent = String(new Date().getFullYear());
+  const progress = $('#reading-bar');
+  let scrollTicking = false;
+  window.addEventListener('scroll', () => {
+    if (scrollTicking) return;
+    scrollTicking = true;
+    requestAnimationFrame(() => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = `${max <= 0 ? 0 : Math.min(100, scrollY / max * 100)}%`;
+      scrollTicking = false;
     });
-  });
+  }, { passive: true });
+  const anchorObserver = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting) {
+      $$('.main-nav a').forEach(a => a.classList.toggle('is-current', a.hash === `#${e.target.id}`));
+    }
+  }, {rootMargin:'-20% 0px -60% 0px',threshold:0});
+  ['work','expertise','stack','profile'].forEach(id => { const el = document.getElementById(id); if (el) anchorObserver.observe(el); });
 
-  gsap.to('.connector', {
-    opacity: .65,
-    duration: 1.2,
-    repeat: -1,
-    yoyo: true,
-    stagger: 0.12,
-    ease: 'sine.inOut'
-  });
-
-  gsap.utils.toArray('.logo-card').forEach((card) => {
-    card.addEventListener('mouseenter', () => gsap.to(card, { y: -6, scale: 1.02, duration: .25, ease: 'power2.out' }));
-    card.addEventListener('mouseleave', () => gsap.to(card, { y: 0, scale: 1, duration: .25, ease: 'power2.out' }));
-  });
-}
-
-// Counters
-const counters = document.querySelectorAll('[data-counter]');
-const counterObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (!entry.isIntersecting) return;
-    const el = entry.target;
-    const targetText = el.getAttribute('data-counter') || '0';
-    const target = parseInt(targetText, 10);
-    let current = 0;
-    const suffix = el.textContent.includes('+') ? '+' : '';
-    const timer = setInterval(() => {
-      current += Math.ceil(target / 30);
-      if (current >= target) {
-        el.textContent = target + suffix;
-        clearInterval(timer);
-      } else {
-        el.textContent = current + suffix;
-      }
-    }, 40);
-    counterObserver.unobserve(el);
-  });
-}, {threshold: 0.45});
-counters.forEach(c => counterObserver.observe(c));
-
-// Three.js scene
-(function createScene(){
-  if (!window.THREE) return;
-  const canvas = document.getElementById('scene-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 1000);
-  camera.position.z = 16;
-
-  const group = new THREE.Group();
-  scene.add(group);
-
-  const sphere = new THREE.Mesh(
-    new THREE.IcosahedronGeometry(4.2, 2),
-    new THREE.MeshBasicMaterial({ color: 0x6cb6ff, wireframe: true, transparent: true, opacity: 0.18 })
-  );
-  sphere.position.set(4.6, 0.2, -2);
-  group.add(sphere);
-
-  const ringGeo = new THREE.TorusGeometry(6.8, 0.05, 16, 120);
-  const ringMat = new THREE.MeshBasicMaterial({ color: 0x6cb6ff, transparent: true, opacity: 0.18 });
-  const ring1 = new THREE.Mesh(ringGeo, ringMat);
-  ring1.rotation.x = 1.2;
-  ring1.position.set(4.4, -0.2, -2.2);
-  group.add(ring1);
-  const ring2 = new THREE.Mesh(ringGeo, ringMat.clone());
-  ring2.rotation.y = .8;
-  ring2.position.set(4.4, -0.2, -2.2);
-  group.add(ring2);
-
-  const stars = new THREE.BufferGeometry();
-  const starCount = 180;
-  const positions = new Float32Array(starCount * 3);
-  for (let i = 0; i < starCount * 3; i += 3) {
-    positions[i] = (Math.random() - 0.5) * 40;
-    positions[i + 1] = (Math.random() - 0.5) * 24;
-    positions[i + 2] = (Math.random() - 0.5) * 25;
+  // Local icons, no image CDN requests.
+  const technologies = [
+    ['JavaScript','javascript','languages'], ['TypeScript','typescript','languages'], ['Python','python','languages'], ['Java','java','languages'], ['PHP','php','languages'],
+    ['React','react','frameworks'], ['React Native','reactnative','frameworks'], ['Node.js','nodejs','frameworks'],
+    ['MongoDB','mongodb','data'], ['PostgreSQL','postgresql','data'], ['Git','git','data'], ['GitHub','github','data'], ['Email Infrastructure','mail','data'], ['Cybersecurity','cybersecurity','data'],
+    ['n8n','n8n','automation'], ['Prompt Engineering','prompt','automation'], ['AI-assisted Coding','aicoding','automation'], ['Google Workspace','googleworkspace','automation'], ['Microsoft 365','microsoft365','automation']
+  ];
+  const grid = $('#technology-grid');
+  if (grid) {
+    grid.innerHTML = technologies.map(([name, icon, category]) => `
+      <div class="tech-card" data-category="${category}" role="listitem">
+        <img src="logos/${icon}.svg" alt="" width="44" height="44" loading="lazy" />
+        <span>${name}</span>
+      </div>`).join('');
+    grid.setAttribute('role','list');
   }
-  stars.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  const starField = new THREE.Points(
-    stars,
-    new THREE.PointsMaterial({ color: 0xd1eaff, size: 0.06, transparent: true, opacity: 0.8 })
-  );
-  scene.add(starField);
+  $$('.stack-filter').forEach(btn => btn.addEventListener('click', () => {
+    $$('.stack-filter').forEach(b => { b.classList.toggle('active', b === btn); b.setAttribute('aria-pressed', String(b === btn)); });
+    const f=btn.dataset.filter;
+    $$('.tech-card').forEach(card => { card.hidden = (f !== 'all' && card.dataset.category !== f); });
+  }));
 
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
-  function resize() {
-    const w = window.innerWidth;
-    const h = window.innerHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
+  // Selected systems panel - a functional interaction, not a decorative screenshot.
+  const workModes = {
+    public: {
+      url:'www.mycdic.org', kicker:'OFFICIAL INSTITUTIONAL PORTAL', large:'Public<br>presence.',
+      copy:'A clear public-facing experience for institutional information, initiatives and verified content.',
+      number:'01 / 02',
+      summary:'Website design and development led with MYCDIC and Trendad colleagues.',
+      tiles:['INFO','ACCESS','VERIFY']
+    },
+    management: {
+      url:'MYCDIC / INTERNAL SYSTEMS', kicker:'OPERATIONAL MANAGEMENT ENVIRONMENT', large:'Connected<br>operations.',
+      copy:'A working model for internal processes, structured records, task coordination and automation.',
+      number:'02 / 02',
+      summary:'Collaborative digital operations, managed through team-led delivery and iterative improvement.',
+      tiles:['RECORDS','WORKFLOWS','DOCUMENTS']
+    }
+  };
+  $$('.work-tab').forEach(btn => btn.addEventListener('click', () => {
+    $$('.work-tab').forEach(el => { el.classList.toggle('is-active', el === btn); el.setAttribute('aria-selected', String(el === btn)); });
+    const mode = workModes[btn.dataset.work]; if (!mode) return;
+    $('#mock-url').textContent = mode.url; $('#mock-kicker').textContent=mode.kicker;
+    $('#mock-large').innerHTML=mode.large; $('#mock-copy').textContent=mode.copy;
+    $('#work-number').textContent=mode.number; $('#work-summary').textContent=mode.summary;
+    $('.mock-tiles').innerHTML=mode.tiles.map(s=>`<span>${s}</span>`).join('');
+    const mc = $('.mock-content');
+    if (window.gsap && !reduceMotion.matches) {
+      window.gsap.fromTo(mc,{opacity:.5,y:6},{opacity:1,y:0,duration:.45,ease:'power2.out'});
+    }
+  }));
+
+  // Motion through GSAP if available. Visuals remain visible without the CDN.
+  const reveals=$$('[data-reveal]');
+  function runReveals(){
+    if (reduceMotion.matches) return;
+    if (window.gsap && window.ScrollTrigger) {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      reveals.forEach((el,idx) => window.gsap.fromTo(el,
+        {autoAlpha:0,y:Math.min(28,16+(idx%3)*4)},
+        {autoAlpha:1,y:0,duration:.85,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 91%',once:true}}));
+      window.gsap.fromTo('.hero-name',{y:26,opacity:0},{y:0,opacity:1,duration:.92,stagger:.12,ease:'power3.out'});
+    } else if ('IntersectionObserver' in window) {
+      reveals.forEach(el=>el.classList.add('js-reveal'));
+      const obs = new IntersectionObserver(entries=>{
+        for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+      }, {threshold:.09,rootMargin:'0px 0px -20px 0px'});
+      reveals.forEach(el=>obs.observe(el));
+    }
   }
-  resize();
-  window.addEventListener('resize', resize);
+  // Do not animate before enough DOM paint to avoid blank cards when returning to the page.
+  requestAnimationFrame(runReveals);
 
-  let mouseX = 0, mouseY = 0;
-  window.addEventListener('mousemove', (e) => {
-    mouseX = (e.clientX / window.innerWidth - 0.5) * 0.5;
-    mouseY = (e.clientY / window.innerHeight - 0.5) * 0.5;
-  });
-
-  function animate() {
-    requestAnimationFrame(animate);
-    sphere.rotation.y += 0.0025;
-    sphere.rotation.x += 0.0013;
-    ring1.rotation.z += 0.0016;
-    ring2.rotation.x += 0.0012;
-    group.rotation.y += (mouseX - group.rotation.y) * 0.03;
-    group.rotation.x += (-mouseY - group.rotation.x) * 0.03;
-    renderer.render(scene, camera);
+  // Subtle animated architectural geometry behind the real photograph, projection in 3D space.
+  const stage = $('.portrait-ornament');
+  if (stage && !reduceMotion.matches) {
+    const canvas = document.createElement('canvas'); canvas.setAttribute('aria-hidden','true');
+    canvas.style.cssText='position:absolute;inset:0;width:100%;height:100%;opacity:.58;pointer-events:none;';
+    stage.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    const coords=[];
+    const latCount=10,lonCount=18;
+    for (let lat=0; lat<=latCount; lat++) for(let lon=0;lon<lonCount;lon++) {
+      const t=Math.PI*(lat/latCount), a=2*Math.PI*lon/lonCount;
+      coords.push([Math.sin(t)*Math.cos(a),Math.cos(t),Math.sin(t)*Math.sin(a)]);
+    }
+    function resize(){ const dpr=Math.min(devicePixelRatio||1,2); const r=stage.getBoundingClientRect();canvas.width=Math.max(1,Math.floor(r.width*dpr));canvas.height=Math.max(1,Math.floor(r.height*dpr));ctx.setTransform(dpr,0,0,dpr,0,0); }
+    resize();window.addEventListener('resize',resize,{passive:true});
+    let frame=0, last=0;
+    function render(t){
+      requestAnimationFrame(render); if(t-last<30)return;last=t;
+      const w=canvas.clientWidth,h=canvas.clientHeight;ctx.clearRect(0,0,w,h);
+      const angle=frame*.006;frame++;
+      const points=coords.map(([x,y,z])=>{const xr=x*Math.cos(angle)-z*Math.sin(angle), zr=x*Math.sin(angle)+z*Math.cos(angle);const yr=y*Math.cos(.35)-zr*Math.sin(.35),zp=y*Math.sin(.35)+zr*Math.cos(.35);const f=1/(2-zp*.27);return [w*.52+xr*Math.min(w,h)*.44*f,h*.47+yr*Math.min(w,h)*.44*f];});
+      ctx.strokeStyle='rgba(167,180,168,0.38)';ctx.lineWidth=.75;
+      for(let lat=0;lat<=latCount;lat++){ctx.beginPath();for(let lon=0;lon<=lonCount;lon++){const p=points[lat*lonCount+lon%lonCount];if(lon===0)ctx.moveTo(...p);else ctx.lineTo(...p)}ctx.stroke()}
+      for(let lon=0;lon<lonCount;lon++){ctx.beginPath();for(let lat=0;lat<=latCount;lat++){const p=points[lat*lonCount+lon];if(lat===0)ctx.moveTo(...p);else ctx.lineTo(...p)}ctx.stroke()}
+    }
+    requestAnimationFrame(render);
   }
-  animate();
 })();

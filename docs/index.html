@@ -1,234 +1,106 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#07111d" />
-  <meta name="description" content="Moataz Kobry portfolio: Computing, AI Automation, Cybersecurity and official digital platforms." />
-  <meta property="og:title" content="Moataz Kobry | Cyber & AI Portfolio" />
-  <meta property="og:description" content="Professional portfolio covering computing, AI automation, cybersecurity and institutional digital systems." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0f14" />
+  <meta name="description" content="Moataz Kobry. Computing, AI automation, cybersecurity, systems delivery and institutional digital operations. Active in digital development since 2016." />
   <meta property="og:type" content="website" />
+  <meta property="og:title" content="Moataz Kobry | Computing & Intelligent Systems" />
+  <meta property="og:description" content="An institutional technology portfolio spanning intelligent automation, official platforms, cybersecurity, structured knowledge and digital leadership." />
+  <meta property="og:image" content="assets/portrait.webp" />
+  <title>Moataz Kobry | Computing, Automation & Digital Systems</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <title>Moataz Kobry | Cyber & AI Systems</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <canvas id="scene-canvas" aria-hidden="true"></canvas>
-  <div class="noise"></div>
-
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#hero">MK</a>
-      <nav class="nav">
-        <a href="#about">About</a>
-        <a href="#systems">Systems</a>
-        <a href="#stack">Stack</a>
-        <a href="#cyber">Cybersecurity</a>
-        <a href="#institutional">Institutional</a>
-        <a class="nav-cta" href="mailto:president@mycdic.org?subject=Curriculum%20Vitae%20Request%20-%20Moataz%20Kobry&body=Hello%20Mr%20Kobry%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A%0ARegards%2C">Request CV</a>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="reading-bar" id="reading-bar" aria-hidden="true"></div>
+  <header class="site-header" id="top">
+    <div class="shell header-inner">
+      <a href="#top" class="mark" aria-label="Moataz Kobry homepage"><span class="mark-symbol">MK</span><span class="mark-label">Moataz Kobry<small>Computing / Intelligent systems</small></span></a>
+      <nav class="main-nav" aria-label="Primary navigation" id="primary-nav">
+        <a href="#work">Selected work</a><a href="#expertise">Expertise</a><a href="#stack">Technology</a><a href="#profile">Profile</a>
       </nav>
-      <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+      <a class="header-contact" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AMy%20name%3A%0AOrganization%3A%0APurpose%3A%0A%0AThank%20you.">Request CV <span aria-hidden="true">↗</span></a>
+      <button class="menu-button" id="menu-button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy reveal">
-          <div class="eyebrow">Cyber & AI identity</div>
-          <h1>Moataz Kobry</h1>
-          <p class="hero-lead">Computing, AI Automation, cybersecurity and official digital platforms designed for structure, continuity and operational clarity.</p>
-          <div class="chips">
-            <span>UCLM ESI</span>
-            <span>Since 2016</span>
-            <span>100+ Digital Projects</span>
-            <span>Platforms & Automation</span>
-          </div>
-          <div class="cta-row">
-            <a class="button button-primary" href="mailto:president@mycdic.org?subject=Curriculum%20Vitae%20Request%20-%20Moataz%20Kobry&body=Hello%20Mr%20Kobry%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A%0ARegards%2C">Request CV</a>
-            <a class="button" href="https://github.com/kobrymoataz" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="button" href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a class="button" href="mailto:president@mycdic.org">Email</a>
-          </div>
+  <main id="main">
+    <section class="hero shell" id="home">
+      <div class="hero-main">
+        <div class="hero-copy" data-reveal>
+          <div class="eyebrow"><i></i> Computing / Artificial intelligence / Digital operations</div>
+          <p class="hero-index">Independent technical identity · Spain / International</p>
+          <h1><span class="hero-name">Moataz</span><span class="hero-name last">Kobry<span class="hero-period">.</span></span></h1>
+          <p class="hero-statement">I build digital systems<br />with <em>institutional purpose.</em></p>
+          <p class="hero-description">Computing, AI automation and cyber-aware development. From public platforms to the systems that keep organisations running.</p>
+          <div class="hero-actions"><a class="action action-solid" href="#work">Explore selected work <span>↘</span></a><a class="action action-outline" href="mailto:president@mycdic.org">Get in touch <span>↗</span></a></div>
+          <div class="hero-tags"><span>UCLM / ESI</span><span>AI &amp; AUTOMATION</span><span>SECURITY &amp; DELIVERY</span></div>
         </div>
-        <div class="hero-visual reveal">
-          <div class="hero-card">
-            <div class="hero-card-header">Executive technology identity</div>
-            <img src="assets/moataz-photo.png" alt="Portrait of Moataz Kobry" class="hero-photo" />
-            <div class="hero-card-footer">Computing / AI Automation / Cybersecurity</div>
-          </div>
+        <div class="portrait-stage" data-reveal>
+          <div class="portrait-ornament" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div></div>
+          <div class="portrait-mat"><img src="assets/portrait.webp" alt="Portrait of Moataz Kobry" width="840" height="840" fetchpriority="high" /><div class="portrait-footer"><span>COMPUTING / SYSTEMS</span><span>001</span></div></div>
+          <div class="portrait-side-label" aria-hidden="true">TECHNOLOGY, GOVERNANCE &amp; DELIVERY</div>
         </div>
+      </div>
+      <div class="hero-metrics" data-reveal>
+        <div class="metric"><span class="metric-value">2016</span><span class="metric-label">Working in digital development since</span></div>
+        <div class="metric"><span class="metric-value">100<span class="metric-plus">+</span></span><span class="metric-label">Websites &amp; digital platforms</span></div>
+        <div class="metric"><span class="metric-value">04</span><span class="metric-label">Languages of communication</span></div>
+        <div class="metric metric-text"><span class="metric-kicker">Technical direction</span><span class="metric-label">Leading delivery with teams at <strong>MYCDIC</strong> and <strong>Trendad</strong></span></div>
       </div>
     </section>
 
-    <section class="stats container">
-      <div class="stat-card reveal"><strong data-counter="2016">2016</strong><span>Started building digital projects</span></div>
-      <div class="stat-card reveal"><strong data-counter="100">100+</strong><span>Websites and platforms</span></div>
-      <div class="stat-card reveal"><strong data-counter="2">2</strong><span>Official MYCDIC platforms</span></div>
-      <div class="stat-card reveal"><strong data-counter="24">24</strong><span>Focus across automation, cyber and systems</span></div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container section-grid">
-        <div class="section-copy reveal">
-          <div class="eyebrow">About</div>
-          <h2>A systems-oriented technical profile.</h2>
-          <p>I am Abdelmouiz (Moataz) Kobry, a Computing student at UCLM ESI working across AI automation, digital infrastructure and cybersecurity-aware operations.</p>
-          <p>My work includes more than 100 digital projects since 2016, alongside the design and development of the official MYCDIC website and its internal management platform.</p>
-        </div>
-        <div class="feature-panel reveal">
-          <div class="bullet-card"><span></span>Builds public-facing websites and official digital experiences</div>
-          <div class="bullet-card"><span></span>Designs automation workflows and API-connected systems</div>
-          <div class="bullet-card"><span></span>Works across deliverability, structured operations and secure communications</div>
-          <div class="bullet-card"><span></span>Combines technology with institutional visibility and media-facing structure</div>
-        </div>
+    <section class="section shell intro-section" id="expertise">
+      <div class="section-top" data-reveal><span class="section-index">01 / Focus</span><div><p class="overline">A PRACTICAL APPROACH</p><h2>Technical depth.<br /><em>Operational awareness.</em></h2></div><p class="section-lead">Software is useful when it fits the organisation behind it. My work brings together platforms, automation, infrastructure, and the people responsible for delivering them.</p></div>
+      <div class="expertise-grid">
+        <article class="expertise-card card-platform" data-reveal><div class="card-top"><span>01.01 / PLATFORM SYSTEMS</span><span class="circle-arrow">↗</span></div><h3>Built for the<br />real world.</h3><p>Web platforms, administrative systems, APIs, databases and structured workflows. From a public interface to the operating logic behind it.</p><div class="mini-flow" aria-label="Illustrative platform architecture"><span>PUBLIC</span><b>→</b><span>LOGIC</span><b>→</b><span>DATA</span><b>→</b><span>OUTPUT</span></div></article>
+        <article class="expertise-card card-automation" data-reveal><div class="card-top"><span>01.02 / INTELLIGENT AUTOMATION</span><span class="circle-arrow">↗</span></div><div class="automation-art" aria-hidden="true"><div class="pathline"><span class="flowdot"></span></div><span class="an node1">01</span><span class="an node2">n8n</span><span class="an node3">03</span></div><h3>Automation with control.</h3><p>n8n, Google Apps Script, service integrations, prompt engineering and reliable AI-assisted workflows.</p></article>
+        <article class="expertise-card card-security" data-reveal><div class="card-top"><span>01.03 / SECURITY &amp; TRUST</span><span class="circle-arrow">↗</span></div><div class="security-mark" aria-hidden="true"><span>SPF</span><span>DKIM</span><span>DMARC</span></div><h3>Trust is infrastructure.</h3><p>Cybersecurity-aware systems, email authentication, DNS, SMTP, sender reputation and deliverability.</p></article>
+        <article class="expertise-card card-context" data-reveal><div class="card-top"><span>01.04 / DIGITAL PRESENCE</span><span class="circle-arrow">↗</span></div><h3>Beyond the interface.</h3><p>Wikipedia, Wikimedia, Wikidata, institutional presence, PR and media-oriented communication. Structured information that can be understood and trusted.</p><div class="context-bands"><span>KNOWLEDGE</span><span>MEDIA</span><span>POSITIONING</span></div></article>
       </div>
     </section>
 
-    <section class="section" id="systems">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Systems architecture</div>
-          <h2>Operational systems, not isolated interfaces.</h2>
-          <p>Architecture is approached as a chain of public presence, workflows, data, automation, documents, verification and trusted output.</p>
-        </div>
-        <div class="systems-flow reveal">
-          <div class="node">Public Website<small>Institutional presence</small></div>
-          <div class="connector"></div>
-          <div class="node">Admin Platform<small>Internal operations</small></div>
-          <div class="connector"></div>
-          <div class="node">Data & Records<small>Structured information</small></div>
-          <div class="connector"></div>
-          <div class="node">Automation Engine<small>Apps Script and workflows</small></div>
-          <div class="connector"></div>
-          <div class="node">Verification & Output<small>Documents and public response</small></div>
-        </div>
-        <div class="system-cards">
-          <article class="glass-card reveal">
-            <h3>Official website development</h3>
-            <p>Public-facing architecture, communication structure, user flows and institutional clarity.</p>
-          </article>
-          <article class="glass-card reveal">
-            <h3>Management platform</h3>
-            <p>Internal digital workflows, records, status tracking, automated documents and operational actions.</p>
-          </article>
-          <article class="glass-card reveal">
-            <h3>Automation and integration</h3>
-            <p>Google Apps Script, spreadsheets, mail operations and API-connected workflow execution.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-alt" id="stack">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Technology stack</div>
-          <h2>Programming, tools and operational technologies.</h2>
-          <p>Core technologies used across development, automation and platform delivery.</p>
-        </div>
-        <div class="logo-grid reveal">
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" /><span>JavaScript</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" /><span>Python</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" /><span>React</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" /><span>Node.js</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" /><span>Java</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" /><span>MongoDB</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" /><span>PostgreSQL</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" /><span>GitHub</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" /><span>Git</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" /><span>PHP</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript" /><span>TypeScript</span></div>
-          <div class="logo-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" /><span>VS Code</span></div>
-        </div>
-        <div class="workspace-panel reveal">
-          <h3>Google automation & workspace</h3>
-          <div class="chips chips-wide">
-            <span>Google Apps Script</span>
-            <span>Google Sheets</span>
-            <span>Google Drive</span>
-            <span>Gmail</span>
-            <span>Google Docs</span>
-            <span>Google Forms</span>
-            <span>Workspace APIs</span>
+    <section class="section work-section" id="work">
+      <div class="shell">
+        <div class="section-top work-heading" data-reveal><span class="section-index">02 / Selected systems</span><div><p class="overline">COLLABORATIVE DIGITAL DELIVERY</p><h2>Technology in<br /><em>institutional service.</em></h2></div><p class="section-lead">I lead digital platform work in collaboration with colleagues across MYCDIC and Trendad. The council’s public and internal systems are examples of this team-led execution.</p></div>
+        <div class="work-layout" data-reveal>
+          <div class="work-selector" role="tablist" aria-label="Selected system views">
+            <button type="button" class="work-tab is-active" role="tab" aria-selected="true" aria-controls="work-detail" data-work="public"><span>01 / DIGITAL PRESENCE</span><strong>Official public website</strong><small>Institutional visibility, services and public access</small><b>↗</b></button>
+            <button type="button" class="work-tab" role="tab" aria-selected="false" aria-controls="work-detail" data-work="management"><span>02 / DIGITAL OPERATIONS</span><strong>Management environment</strong><small>Administration, workflows and operational records</small><b>↗</b></button>
+          </div>
+          <div class="work-detail" id="work-detail" role="tabpanel" aria-live="polite">
+            <div class="mock-window"><div class="mock-top"><span class="mock-dots">● ● ●</span><span id="mock-url">www.mycdic.org</span><span>↗</span></div><div class="mock-body"><div class="mock-aside"><div class="mock-logo">M</div><i></i><i></i><i></i><i></i></div><div class="mock-content"><p class="mock-kicker" id="mock-kicker">OFFICIAL INSTITUTIONAL PORTAL</p><div class="mock-large" id="mock-large">Public<br />presence.</div><p class="mock-paragraph" id="mock-copy">A structured institutional website designed to make information, programmes and services accessible.</p><div class="mock-lines"><i></i><i></i><i></i></div><div class="mock-tiles"><span>INFO</span><span>ACCESS</span><span>VERIFY</span></div></div></div></div>
+            <div class="work-summary"><span class="work-number" id="work-number">01 / 02</span><p id="work-summary">Digital direction and implementation carried out with MYCDIC and Trendad teams.</p><a href="https://www.mycdic.org" target="_blank" rel="noopener noreferrer">Visit MYCDIC <span>↗</span></a></div>
           </div>
         </div>
+        <p class="disclosure">System illustrations are conceptual UI studies, not screenshots of private administrative tools.</p>
       </div>
     </section>
 
-    <section class="section" id="experience">
-      <div class="container">
-        <div class="section-heading reveal">
-          <div class="eyebrow">Track record</div>
-          <h2>Built through continuity and practical execution.</h2>
-          <p>Selected milestones reflecting technical execution and institutional digital work.</p>
-        </div>
-        <div class="timeline reveal">
-          <div class="timeline-item"><div class="dot"></div><h3>2016</h3><p>Started building websites and digital projects.</p></div>
-          <div class="timeline-item"><div class="dot"></div><h3>100+</h3><p>Expanded into websites, systems and digital platforms.</p></div>
-          <div class="timeline-item"><div class="dot"></div><h3>MYCDIC</h3><p>Developed the official public website and institutional management platform.</p></div>
-          <div class="timeline-item"><div class="dot"></div><h3>Today</h3><p>Combining Computing, AI automation, cybersecurity and operational systems.</p></div>
-        </div>
-      </div>
+    <section class="section shell stack-section" id="stack">
+      <div class="section-top stack-heading" data-reveal><span class="section-index">03 / Technologies</span><div><p class="overline">LANGUAGES / TOOLS / SYSTEMS</p><h2>The working<br /><em>toolkit.</em></h2></div><p class="section-lead">Languages, frameworks, infrastructure and automation platforms presented by what they enable, not by arbitrary proficiency percentages.</p></div>
+      <div class="stack-categories" role="group" aria-label="Filter technology categories"><button class="stack-filter active" data-filter="all" aria-pressed="true">All technologies</button><button class="stack-filter" data-filter="languages" aria-pressed="false">Languages</button><button class="stack-filter" data-filter="frameworks" aria-pressed="false">Applications</button><button class="stack-filter" data-filter="data" aria-pressed="false">Data &amp; delivery</button><button class="stack-filter" data-filter="automation" aria-pressed="false">Automation</button></div>
+      <div class="technology-grid" id="technology-grid" data-reveal></div>
+      <div class="platform-banner" data-reveal><div><span class="card-small">WORKSPACE &amp; OPERATIONS</span><h3>Google Workspace <span>expertise</span><br />Microsoft 365 <span>ecosystem</span></h3></div><div><p>Automation, administration, collaboration and coordinated organisational workflows.</p><div class="workspace-stamps"><span>GOOGLE WORKSPACE</span><span>MICROSOFT 365</span><span>n8n</span></div></div></div>
     </section>
 
-    <section class="section section-alt" id="cyber">
-      <div class="container dual-grid">
-        <div class="section-copy reveal">
-          <div class="eyebrow">Cybersecurity & deliverability</div>
-          <h2>Secure operations and trusted communications.</h2>
-          <p>Security-aware systems include infrastructure discipline, identity controls and reliable email authentication.</p>
-          <div class="chips chips-wide">
-            <span>SPF</span><span>DKIM</span><span>DMARC</span><span>DNS</span><span>SMTP</span><span>Authentication Alignment</span>
-          </div>
-        </div>
-        <div class="glass-card shield-card reveal">
-          <div class="shield-icon">✓</div>
-          <p>Focus areas include sender reputation, secure configuration, deliverability patterns and operational reliability.</p>
-        </div>
-      </div>
+    <section class="section methodology-section">
+      <div class="shell method-grid"><div data-reveal><span class="section-index">04 / Methods</span><p class="overline">MODERN DEVELOPMENT PRACTICE</p><h2>Speed,<br /><em>without shortcuts.</em></h2><p>AI assistance can accelerate a build. Architecture, review, security and delivery still require clear technical judgement.</p></div><div class="method-items" data-reveal><article><span>01</span><div><h3>Prompt engineering</h3><p>Structured instructions, constraints, evaluation and iteration for dependable AI-enabled workflows.</p></div></article><article><span>02</span><div><h3>AI-assisted development</h3><p>Professional vibe coding and rapid prototyping with code review, integration and operational testing.</p></div></article><article><span>03</span><div><h3>Workflow orchestration</h3><p>n8n and connected services to coordinate data, records, automated actions and notification flows.</p></div></article></div></div>
     </section>
 
-    <section class="section" id="institutional">
-      <div class="container dual-grid">
-        <div class="section-copy reveal">
-          <div class="eyebrow">Institutional & media dimension</div>
-          <h2>Technology aligned with visibility and structured public presence.</h2>
-          <p>Work extends beyond engineering into how institutions appear, communicate and maintain structured information across public channels.</p>
-        </div>
-        <div class="glass-card reveal">
-          <ul class="clean-list">
-            <li>Official digital systems and institutional execution</li>
-            <li>Wikipedia, Wikimedia and Wikidata work</li>
-            <li>PR support and media-facing communication</li>
-            <li>Public positioning and structured knowledge presence</li>
-          </ul>
-        </div>
-      </div>
+    <section class="section shell profile-section" id="profile"><div class="section-top profile-heading" data-reveal><span class="section-index">05 / Profile</span><div><p class="overline">TECHNOLOGY &amp; CONTEXT</p><h2>More than<br /><em>the code.</em></h2></div><p class="section-lead">Technology informs my work. Institutional responsibilities, communication and collaboration inform what I build and how it is used.</p></div>
+      <div class="profile-grid"><article class="profile-card" data-reveal><span class="profile-number">01 / Leadership</span><h3>MYCDIC</h3><p>Founder and President of the Moroccan Youth Council for Diplomatic and International Cooperation. Combining international work with institutional digital leadership.</p><a href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">Institutional profile ↗</a></article><article class="profile-card" data-reveal><span class="profile-number">02 / Academic focus</span><h3>UCLM · ESI</h3><p>Computing specialisation at Escuela Superior de Informática, Universidad de Castilla-La Mancha, with emphasis on artificial intelligence and automation.</p><a href="https://www.uclm.es" target="_blank" rel="noopener noreferrer">University ↗</a></article><article class="profile-card languages-card" data-reveal><span class="profile-number">03 / Languages</span><h3>Across borders.</h3><div class="languages"><span>العربية <small>Arabic</small></span><span>English</span><span>Français</span><span>Español</span></div></article></div>
     </section>
+
+    <section class="contact-section" id="contact"><div class="shell contact-grid"><div data-reveal><span class="section-index">06 / Contact</span><h2>Let's discuss<br /><em>the next system.</em></h2><p>For technical collaborations, institutional platforms, automation work and professional opportunities.</p></div><div class="contact-actions" data-reveal><a class="contact-primary" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AMy%20name%3A%0AOrganization%3A%0APurpose%3A%0A%0AThank%20you.">Request curriculum vitae <span>↗</span></a><a href="mailto:president@mycdic.org">president@mycdic.org <span>↗</span></a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn <span>↗</span></a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram <span>↗</span></a><p class="contact-note">Request CV opens a prepared email; the requester chooses when to send it.</p></div></div></section>
   </main>
 
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <div class="footer-title">Moataz Kobry</div>
-        <p>Computing, AI Automation, cybersecurity and official digital platforms.</p>
-      </div>
-      <div class="footer-links">
-        <a href="mailto:president@mycdic.org">Email</a>
-        <a href="https://github.com/kobrymoataz" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a href="https://www.mycdic.org/president/" target="_blank" rel="noreferrer">MYCDIC</a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.159.0/build/three.min.js"></script>
-  <script src="app.js"></script>
+  <footer class="footer"><div class="shell footer-row"><span>© <span id="year">2026</span> Moataz Kobry</span><span>Computing / AI automation / Institutional systems</span><a href="#top">Back to top ↑</a></div></footer>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script defer src="app.js"></script>
 </body>
 </html>
