@@ -1,0 +1,215 @@
+[
+  {
+    "page": "home",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 26,
+    "title": "Moataz Kobry \u2014 Computing & Institutional Systems"
+  },
+  {
+    "page": "systems",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 18,
+    "title": "Systems | Moataz Kobry",
+    "stageName": "Automation"
+  },
+  {
+    "page": "work",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 20,
+    "title": "Selected Work | Moataz Kobry"
+  },
+  {
+    "page": "expertise",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 18,
+    "title": "Expertise | Moataz Kobry",
+    "automationVisibleGroups": 1
+  },
+  {
+    "page": "institutional",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 18,
+    "title": "Institutional | Moataz Kobry"
+  },
+  {
+    "page": "about",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 17,
+    "title": "Profile | Moataz Kobry"
+  },
+  {
+    "page": "contact",
+    "width": 1440,
+    "errors": [],
+    "overflow": false,
+    "viewport": 1440,
+    "images": [],
+    "links": 21,
+    "title": "Contact | Moataz Kobry"
+  },
+  {
+    "page": "home",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 26,
+    "title": "Moataz Kobry \u2014 Computing & Institutional Systems"
+  },
+  {
+    "page": "systems",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 18,
+    "title": "Systems | Moataz Kobry"
+  },
+  {
+    "page": "work",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 20,
+    "title": "Selected Work | Moataz Kobry"
+  },
+  {
+    "page": "expertise",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 18,
+    "title": "Expertise | Moataz Kobry"
+  },
+  {
+    "page": "institutional",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 18,
+    "title": "Institutional | Moataz Kobry"
+  },
+  {
+    "page": "about",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 17,
+    "title": "Profile | Moataz Kobry"
+  },
+  {
+    "page": "contact",
+    "width": 820,
+    "errors": [],
+    "overflow": false,
+    "viewport": 820,
+    "images": [],
+    "links": 21,
+    "title": "Contact | Moataz Kobry"
+  },
+  {
+    "page": "home",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 26,
+    "title": "Moataz Kobry \u2014 Computing & Institutional Systems",
+    "mobileNavOpened": true
+  },
+  {
+    "page": "systems",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 18,
+    "title": "Systems | Moataz Kobry"
+  },
+  {
+    "page": "work",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 20,
+    "title": "Selected Work | Moataz Kobry"
+  },
+  {
+    "page": "expertise",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 18,
+    "title": "Expertise | Moataz Kobry"
+  },
+  {
+    "page": "institutional",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 18,
+    "title": "Institutional | Moataz Kobry"
+  },
+  {
+    "page": "about",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 17,
+    "title": "Profile | Moataz Kobry"
+  },
+  {
+    "page": "contact",
+    "width": 390,
+    "errors": [],
+    "overflow": false,
+    "viewport": 390,
+    "images": [],
+    "links": 21,
+    "title": "Contact | Moataz Kobry"
+  }
+]
