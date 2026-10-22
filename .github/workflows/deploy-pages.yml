@@ -1,37 +1,43 @@
-name: Deploy executive landing page
+# GitHub Pages source: Settings > Pages > Deploy from a branch > main /docs.
+# This workflow validates files only. It MUST NOT deploy, to avoid two publishers.
+name: Validate portfolio (branch publishing)
 
 on:
   push:
     branches: [main]
     paths:
       - 'docs/**'
+      - 'assets/**'
+      - 'README.md'
+      - 'scripts/validate_site.py'
       - '.github/workflows/deploy-pages.yml'
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'assets/**'
+      - 'README.md'
+      - 'scripts/validate_site.py'
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: github-pages
-  cancel-in-progress: false
+  group: portfolio-qa-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  deploy:
+  validate:
+    name: Validate assets and links
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
-      - name: Upload landing page
-        uses: actions/upload-pages-artifact@v3
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
-          path: ./docs
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          python-version: '3.12'
+      - name: Validate site and README
+        run: python scripts/validate_site.py
+      - name: Check JavaScript syntax
+        run: node --check docs/script.js

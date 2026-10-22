@@ -33,6 +33,10 @@ I build and improve websites, internal platforms, APIs, database-backed systems 
 
 My workflow includes **n8n**, **Google Workspace**, **Microsoft 365**, **prompt engineering** and **professional AI-assisted development (vibe coding)**. I use automation to accelerate delivery while maintaining deliberate implementation, review and testing.
 
+**Backend &amp; data:** PHP · Firebase · PostgreSQL · MongoDB · SQL
+
+<div align="center"><img src="./assets/logos/firebase.svg" height="34" alt="Firebase" /> &nbsp; <img src="./assets/logos/postgresql.svg" height="34" alt="PostgreSQL" /> &nbsp; <img src="./assets/logos/mongodb.svg" height="34" alt="MongoDB" /> &nbsp; <img src="./assets/logos/php.svg" height="34" alt="PHP" /></div>
+
 ### 03 / Cybersecurity and email infrastructure
 
 `SPF` &nbsp; `DKIM` &nbsp; `DMARC` &nbsp; `DNS` &nbsp; `SMTP` &nbsp; `Sender reputation` &nbsp; `Authentication alignment`

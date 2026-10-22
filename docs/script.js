@@ -15,12 +15,14 @@
     { name: 'TypeScript', icon: 'typescript', groups: ['engineering'] },
     { name: 'Python', icon: 'python', groups: ['engineering', 'automation'] },
     { name: 'Java', icon: 'java', groups: ['engineering'] },
-    { name: 'PHP', icon: 'php', groups: ['engineering'] },
+    { name: 'PHP', icon: 'php', groups: ['engineering', 'data'] },
     { name: 'React', icon: 'react', groups: ['engineering'] },
     { name: 'React Native', icon: 'reactnative', groups: ['engineering'] },
     { name: 'Node.js', icon: 'nodejs', groups: ['engineering'] },
     { name: 'MongoDB', icon: 'mongodb', groups: ['data'] },
     { name: 'PostgreSQL', icon: 'postgresql', groups: ['data'] },
+    { name: 'Firebase', icon: 'firebase', groups: ['data', 'automation'] },
+    { name: 'SQL', icon: 'sql', groups: ['data'] },
     { name: 'GitHub', icon: 'github', groups: ['engineering'] },
     { name: 'Git', icon: 'git', groups: ['engineering'] },
     { name: 'n8n', icon: 'n8n', groups: ['automation'] },
@@ -89,7 +91,7 @@
     document.addEventListener('click', event => {
       if (!nav.hidden && !nav.contains(event.target) && !button.contains(event.target)) closeMenu();
     });
-    window.matchMedia('(min-width: 801px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
+    window.matchMedia('(min-width: 1181px)').addEventListener('change', e => { if (e.matches) closeMenu(); });
   }
 
   function renderTechnologies(filter = 'all') {
@@ -184,6 +186,74 @@
     });
   }
 
+  const dataSystems = {
+    firebase: {
+      tag: 'APPLICATION SERVICES',
+      name: 'Application data, connected to the experience.',
+      description: 'Firebase offers managed application services and connected data tools. It is one option when a project needs fast integration with an app-facing workflow.',
+      keywords: ['Application services', 'Connected data', 'Integration'],
+      diagram: 'FIREBASE'
+    },
+    postgresql: {
+      tag: 'RELATIONAL DATABASES',
+      name: 'Structured information that remains understandable.',
+      description: 'PostgreSQL supports relational models, SQL queries and well-defined records. It is a practical foundation when operational consistency matters.',
+      keywords: ['Relational data', 'SQL', 'Structured records'],
+      diagram: 'POSTGRESQL'
+    },
+    mongodb: {
+      tag: 'DOCUMENT DATA',
+      name: 'Flexible records for changing requirements.',
+      description: 'MongoDB uses a document model that fits some evolving workflows, integration payloads and applications with varied data structures.',
+      keywords: ['Documents', 'Data models', 'APIs'],
+      diagram: 'MONGODB'
+    }
+  };
+
+  function initDataExplorer() {
+    const tabs = [...document.querySelectorAll('.data-tab')];
+    const tag = document.getElementById('dataTag');
+    const name = document.getElementById('dataName');
+    const description = document.getElementById('dataDescription');
+    const keywords = document.getElementById('dataKeywords');
+    const diagram = document.getElementById('dataDiagramLabel');
+    if (!tabs.length || !tag || !name || !description || !keywords || !diagram) return;
+
+    function activate(key) {
+      const entry = dataSystems[key];
+      if (!entry) return;
+      tabs.forEach(tab => {
+        const active = tab.dataset.database === key;
+        tab.classList.toggle('is-active',active);
+        tab.setAttribute('aria-selected',String(active));
+        tab.tabIndex = active ? 0 : -1;
+      });
+      tag.textContent = entry.tag;
+      name.textContent = entry.name;
+      description.textContent = entry.description;
+      diagram.textContent = entry.diagram;
+      keywords.replaceChildren(...entry.keywords.map(word => {
+        const span = document.createElement('span');
+        span.textContent = word;
+        return span;
+      }));
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activate(tab.dataset.database));
+      tab.addEventListener('keydown', (event) => {
+        let next = null;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = tabs[(index+1)%tabs.length];
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = tabs[(index-1+tabs.length)%tabs.length];
+        if (event.key === 'Home') next = tabs[0];
+        if (event.key === 'End') next = tabs[tabs.length-1];
+        if (!next) return;
+        event.preventDefault();
+        next.focus();
+        activate(next.dataset.database);
+      });
+    });
+  }
+
   function initScrollUI() {
     const progress = document.getElementById('scrollProgress');
     const header = document.getElementById('siteHeader');
@@ -268,6 +338,7 @@
     initMobileMenu();
     initTechnologyFilter();
     initSystemTabs();
+    initDataExplorer();
     initScrollUI();
     initReveal();
     initProfessionalMotion();
