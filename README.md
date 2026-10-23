@@ -12,6 +12,8 @@ I'm **Abdelmouiz (Moataz) Kobry**, focused on **Computing, Artificial Intelligen
 
 I lead digital platform work with colleagues from **MYCDIC** and **Trendad**, including work on MYCDIC's official website and its internal institutional management platform. My work connects software with operational requirements, communication, structured data and reliable delivery.
 
+**Selected institutional work:** [Explore the public MYCDIC platform](https://www.mycdic.org/) · [Read the collaborative case studies](https://kobrymoataz.github.io/kobrymoataz/#systems)
+
 ### 01 / Systems and architecture
 
 <div align="center"><img src="./assets/banners/architecture.gif" width="100%" alt="Animated connected systems architecture diagram" /></div>

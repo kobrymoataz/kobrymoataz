@@ -40,4 +40,7 @@ jobs:
       - name: Validate site and README
         run: python scripts/validate_site.py
       - name: Check JavaScript syntax
-        run: node --check docs/script.js
+        run: |
+          node --check docs/script.js
+          node --check docs/v19.js
+          node --input-type=module --check < docs/globe.js
