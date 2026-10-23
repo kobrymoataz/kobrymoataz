@@ -4,7 +4,7 @@
 
 **Computing · AI Automation · Cybersecurity · Digital Platforms**
 
-[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
+[Interactive portfolio & 3D globe](https://kobrymoataz.github.io/kobrymoataz/#perspective) · [Selected code](https://kobrymoataz.github.io/kobrymoataz/#open-source) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
 
 </div>
 
@@ -16,7 +16,9 @@ I study **Computing at the Escuela Superior de Informática (ESI), UCLM**, while
 
 ### Selected engineering work
 
-The repositories below offer a closer view of the code, approach and limitations behind my public engineering work.
+My public repositories are linked below so their implementation, documentation and limitations can be inspected directly.
+
+These projects cover developer tooling, backend reliability and controlled fault testing. They are not substitutes for the private institutional systems described on the portfolio.
 
 | Public repository | What it explores |
 |:---|:---|
@@ -61,6 +63,6 @@ My interests also include **Wikipedia, Wikimedia and Wikidata**, public informat
 
 <div align="center">
 
-[**Explore the interactive portfolio →**](https://kobrymoataz.github.io/kobrymoataz/) · [**Institutional profile →**](https://www.mycdic.org/president/) · [**Contact →**](mailto:president@mycdic.org)
+[**Explore the interactive 3D portfolio →**](https://kobrymoataz.github.io/kobrymoataz/#perspective) · [**Institutional profile →**](https://www.mycdic.org/president/) · [**Contact →**](mailto:president@mycdic.org)
 
 </div>

@@ -1,7 +1,5 @@
-# GitHub Pages source: Settings > Pages > Deploy from a branch > main /docs.
-# This workflow validates files only. It MUST NOT deploy, to avoid two publishers.
+# GitHub Pages remains configured to deploy from main /docs (no competing deploy job).
 name: Validate portfolio (branch publishing)
-
 on:
   push:
     branches: [main]
@@ -18,31 +16,23 @@ on:
       - 'README.md'
       - 'scripts/validate_site.py'
   workflow_dispatch:
-
 permissions:
   contents: read
-
 concurrency:
-  group: portfolio-qa-${{ github.ref }}
+  group: portfolio-check-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   validate:
-    name: Validate assets and links
     runs-on: ubuntu-latest
+    name: Validate portfolio assets
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Validate site and README
         run: python scripts/validate_site.py
       - name: Check JavaScript syntax
         run: |
-          node --check docs/script.js
-          node --check docs/v19.js
-          node --check docs/v20.js
-          node --check docs/globe-fallback.js
-          node --input-type=module --check < docs/globe.js
+          node --check docs/app.js
+          node --check docs/globe-v21.js
