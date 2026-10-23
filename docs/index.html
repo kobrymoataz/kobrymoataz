@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#090d12">
-  <meta name="description" content="Moataz Kobry — Computing, official digital systems, automation, cybersecurity, institutional technology and cross-disciplinary work since 2016.">
+  <meta name="description" content="Moataz Kobry develops practical software, institutional platforms and AI automation. Explore selected systems, open-source work and engineering experience since 2016.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Moataz Kobry | Computing & Digital Systems">
-  <meta property="og:description" content="Digital platforms, automation and dependable operational systems. A personal portfolio."
+  <meta property="og:description" content="Computing, AI automation, official platforms and selected open-source engineering work."
   >
   <meta property="og:image" content="https://kobrymoataz.github.io/kobrymoataz/assets/img/share-card.png">
   <meta property="og:url" content="https://kobrymoataz.github.io/kobrymoataz/">
@@ -18,16 +18,19 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./v19.css">
+  <link rel="stylesheet" href="./v20.css">
   <link rel="preload" href="./assets/img/portrait.webp" as="image" type="image/webp" fetchpriority="high">
+  <link rel="preload" href="./assets/img/earth-texture.webp" as="image" type="image/webp">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Moataz Kobry | Computing & Digital Systems">
   <meta name="twitter:image" content="https://kobrymoataz.github.io/kobrymoataz/assets/img/share-card.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsAbout":["Computing","Software Development","AI Automation","Web Platforms","Cybersecurity","Email Deliverability","Wikipedia","Wikidata"],"knowsLanguage":["ar","en","fr","es"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsAbout":["Computing","AI Automation","Web Platforms","Cybersecurity","Email Deliverability","Wikipedia","Wikidata","JavaScript","Python","PHP","n8n"],"knowsLanguage":["ar","en","fr","es"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
   <script defer src="./script.js"></script>
   <script defer src="./v19.js"></script>
+  <script defer src="./v20.js"></script>
   <title>Moataz Kobry | Digital Systems & Institutional Technology</title>
 </head>
 <body>
@@ -37,7 +40,7 @@
     <div class="wrap header-inner">
       <a class="brand" href="#top" aria-label="Back to top"><img src="./assets/logo-mark.svg" alt="" width="48" height="48"><span><b>MOATAZ KOBRY</b><small>COMPUTING · SYSTEMS</small></span></a>
       <nav class="nav" id="primaryNav" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#systems">Systems</a><a href="#capabilities">Capabilities</a><a href="#tools">Toolkit</a><a href="#architecture">Architecture</a><a href="#perspective">Perspective</a>
+        <a href="#about">About</a><a href="#systems">Selected work</a><a href="#capabilities">Capabilities</a><a href="#tools">Toolkit</a><a href="#architecture">Architecture</a><a href="#perspective">Perspective</a>
       </nav>
       <a href="#contact" class="header-cta">Let's connect <span aria-hidden="true">↗</span></a>
       <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -120,6 +123,40 @@
             </div>
           </article>
         </div>
+
+        <div class="engineering-evidence" id="open-source" aria-labelledby="engineering-evidence-title">
+          <div class="evidence-top">
+            <div>
+              <p class="eyebrow">ENGINEERING / PUBLIC SOURCE</p>
+              <h3 id="engineering-evidence-title">Work you can <em>inspect.</em></h3>
+            </div>
+            <p>These public repositories provide a closer look at how I approach reliability, developer experience and system behavior. Each links to code and technical documentation.</p>
+          </div>
+          <div class="evidence-grid">
+            <article class="evidence-card">
+              <div class="evidence-meta"><span>01 / DEVELOPER TOOLING</span><span aria-hidden="true">↗</span></div>
+              <h4>RepoVerity</h4>
+              <p>Public GitHub repository research, maintainability checks and an evidence-based audit workspace.</p>
+              <div class="evidence-keywords"><span>GitHub APIs</span><span>Read-only research</span><span>Analysis</span></div>
+              <div class="evidence-links"><a href="https://github.com/kobrymoataz/repoverity" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://kobrymoataz.github.io/repoverity/" target="_blank" rel="noopener noreferrer">Open demo ↗</a></div>
+            </article>
+            <article class="evidence-card">
+              <div class="evidence-meta"><span>02 / BACKEND RELIABILITY</span><span aria-hidden="true">↗</span></div>
+              <h4>SubmissionLedger</h4>
+              <p>A self-hosted JSON intake service with idempotent submission handling, durable outbox jobs and signed webhook delivery.</p>
+              <div class="evidence-keywords"><span>Node.js</span><span>SQLite</span><span>Webhooks</span></div>
+              <div class="evidence-links"><a href="https://github.com/kobrymoataz/submissionledger" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://github.com/kobrymoataz/submissionledger#why-this-exists" target="_blank" rel="noopener noreferrer">Read approach ↗</a></div>
+            </article>
+            <article class="evidence-card">
+              <div class="evidence-meta"><span>03 / TESTING &amp; RESILIENCE</span><span aria-hidden="true">↗</span></div>
+              <h4>FlowFault</h4>
+              <p>A local-first toolkit for inspecting forms and running authorized, controlled network failure experiments.</p>
+              <div class="evidence-keywords"><span>Node.js</span><span>CDP</span><span>Diagnostics</span></div>
+              <div class="evidence-links"><a href="https://github.com/kobrymoataz/flowfault" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://github.com/kobrymoataz/flowfault#three-workflows" target="_blank" rel="noopener noreferrer">Explore workflows ↗</a></div>
+            </article>
+          </div>
+          <p class="evidence-foot">Public repositories are linked directly. Institutional case-study visuals above are illustrative, not screenshots of confidential systems.</p>
+        </div>
         <p class="case-method-note"><span class="note-dot" aria-hidden="true"></span> Illustrations explain the structure of the work. Internal administrative screens and personal records are not shown.</p>
       </div>
     </section>
@@ -135,7 +172,7 @@
       </div>
     </section>
     <section class="tools-section section" id="tools"><div class="wrap"><div class="section-head tools-head"><div><p class="eyebrow">04 / ENGINEERING TOOLKIT</p><h2 class="display-heading">Tools chosen <em>for the task.</em></h2></div><p>Different challenges require different instruments. My toolkit spans development, automation, data and operational infrastructure.</p></div>
-    <div class="tools-toolbar"><div class="tool-filters" role="tablist" aria-label="Filter technologies"><button class="filter active" role="tab" aria-selected="true" data-filter="all">All</button><button class="filter" role="tab" aria-selected="false" data-filter="code">Development</button><button class="filter" role="tab" aria-selected="false" data-filter="data">Data</button><button class="filter" role="tab" aria-selected="false" data-filter="automate">Automation</button><button class="filter" role="tab" aria-selected="false" data-filter="ops">Operations</button></div><div class="tools-count" id="toolsCount" aria-live="polite">18 TECHNOLOGIES</div></div>
+    <div class="tools-toolbar"><div class="tool-filters" role="group" aria-label="Filter technologies"><button class="filter active" aria-pressed="true" data-filter="all">All</button><button class="filter" aria-pressed="false" data-filter="code">Development</button><button class="filter" aria-pressed="false" data-filter="data">Data</button><button class="filter" aria-pressed="false" data-filter="automate">Automation</button><button class="filter" aria-pressed="false" data-filter="ops">Operations</button></div><div class="tools-count" id="toolsCount" aria-live="polite">18 TECHNOLOGIES</div></div>
     <div class="tools-grid" id="toolsGrid">
       <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/javascript.svg" alt=""><span>JavaScript</span><small>Language</small></button>
       <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/typescript.svg" alt=""><span>TypeScript</span><small>Language</small></button>
@@ -173,7 +210,7 @@
     </div></section>
     <section class="security-section section"><div class="wrap security-layout"><div><p class="eyebrow">06 / CYBERSECURITY & COMMUNICATION</p><h2 class="display-heading">Reliability is <em>part of the design.</em></h2><p>Technical work extends beyond code to infrastructure, sender authentication and dependable institutional communication.</p></div><div class="security-list"><div><b>SPF / DKIM / DMARC</b><span>Email authentication and alignment</span></div><div><b>DNS / SMTP</b><span>Delivery foundations and configuration</span></div><div><b>SECURITY-AWARE SYSTEMS</b><span>Careful operational and platform design</span></div></div></div></section>
     <section class="perspective-section section" id="perspective"><div class="wrap perspective-grid"><div class="perspective-copy"><p class="eyebrow">07 / PERSPECTIVE</p><h2 class="display-heading">Technology with <em>an international perspective.</em></h2><p>Institutional leadership and technical work have taught me that digital systems must serve people with different roles, needs and contexts.</p><p>As Founder & President of MYCDIC, I work with international collaborators and multidisciplinary teams. This perspective informs the systems I help create.</p><a class="text-link gold-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">Read my institutional profile <span>↗</span></a><div class="perspective-metrics"><div><strong>04</strong><span>Working languages</span></div><div><strong>AR · EN<br>FR · ES</strong><span>Multilingual communication</span></div></div></div>
-      <div class="globe-stage"><div class="globe-rings" aria-hidden="true"><span></span><span></span><span></span></div><img class="globe-fallback globe-fallback-image" src="./assets/img/globe-fallback.webp" alt="" width="760" height="760" loading="lazy" decoding="async" aria-hidden="true"><canvas id="globeCanvas" aria-label="Animated globe representing international connections" role="img"></canvas><span class="globe-caption globe-caption-top">TECHNOLOGY · INSTITUTIONS</span><span class="globe-caption globe-caption-bottom">CONNECTED SYSTEMS / INTERNATIONAL OUTLOOK</span></div>
+      <div class="globe-stage"><div class="globe-rings" aria-hidden="true"><span></span><span></span><span></span></div><img class="globe-fallback globe-fallback-image" src="./assets/img/globe-fallback.webp" alt="" width="760" height="760" loading="lazy" decoding="async" aria-hidden="true"><canvas id="globeFallbackCanvas" aria-hidden="true"></canvas><canvas id="globeCanvas" aria-label="Rotating geographical globe with connections" role="img"></canvas><button id="globeMotionToggle" class="globe-motion" type="button" aria-pressed="true">Pause rotation Ⅱ</button><span class="globe-caption globe-caption-top">TECHNOLOGY · INSTITUTIONS</span><span class="globe-caption globe-caption-bottom">CONNECTED SYSTEMS / INTERNATIONAL OUTLOOK</span></div>
     </div></section>
     <section class="contact-section" id="contact" aria-labelledby="contact-heading">
       <div class="wrap"><div class="contact-top"><span>08 / CONTACT</span><span>LET'S TALK ABOUT THE WORK</span></div>
@@ -196,6 +233,7 @@
   </main>
   <footer class="footer"><div class="wrap footer-main"><div class="footer-identity"><img src="./assets/logo-mark.svg" width="56" height="56" alt=""><div><strong>MOATAZ KOBRY</strong><small>COMPUTING · SYSTEMS</small></div></div><p>Digital systems designed with purpose, built for the people and teams behind them.</p><div class="footer-links"><a href="https://github.com/kobrymoataz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">MYCDIC ↗</a></div></div><div class="wrap footer-last"><span>© 2026 MOATAZ KOBRY</span><span>BUILT FOR THE WEB · HOSTED ON GITHUB PAGES</span></div></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script defer src="./globe-fallback.js"></script>
   <script type="module" src="./globe.js"></script>
 </body>
 </html>

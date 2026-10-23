@@ -53,8 +53,8 @@
     filters.forEach(btn => {
       const active = btn.dataset.filter === filter;
       btn.classList.toggle('active', active);
-      btn.setAttribute('aria-selected', String(active));
-      btn.tabIndex = active ? 0 : -1;
+      btn.setAttribute('aria-pressed', String(active));
+      btn.tabIndex = 0;
     });
     const count = $('#toolsCount');
     if (count) count.textContent = `${String(visible).padStart(2, '0')} TECHNOLOGIES`;

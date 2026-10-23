@@ -42,7 +42,7 @@ def resolve(source, url):
     return target
 
 errors=[]
-for f in [DOCS/'index.html', DOCS/'styles.css', DOCS/'v19.css', DOCS/'script.js', DOCS/'v19.js', DOCS/'globe.js', DOCS/'assets/img/earth-texture.webp', DOCS/'assets/img/globe-fallback.webp', DOCS/'.nojekyll', README]:
+for f in [DOCS/'index.html', DOCS/'styles.css', DOCS/'v19.css', DOCS/'v20.css', DOCS/'script.js', DOCS/'v19.js', DOCS/'v20.js', DOCS/'globe-fallback.js', DOCS/'globe.js', DOCS/'assets/img/earth-texture.webp', DOCS/'assets/img/globe-fallback.webp', DOCS/'.nojekyll', README]:
     if not f.is_file(): errors.append(f'missing essential file: {f.relative_to(ROOT)}')
 
 if not errors:
@@ -56,7 +56,7 @@ if not errors:
         if ref.startswith('#') and ref != '#' and ref[1:] not in p.ids:
             errors.append(f'broken page anchor: {ref}')
 
-    css = (DOCS/'styles.css').read_text(encoding='utf-8') + '\n' + (DOCS/'v19.css').read_text(encoding='utf-8')
+    css = (DOCS/'styles.css').read_text(encoding='utf-8') + '\n' + (DOCS/'v19.css').read_text(encoding='utf-8') + '\n' + (DOCS/'v20.css').read_text(encoding='utf-8')
     for m in re.finditer(r'url\(\s*["\']?([^"\')]+)',css):
         ref=m.group(1).strip()
         if is_local(ref) and not resolve(DOCS/'styles.css',ref).exists(): errors.append(f'missing CSS asset: {ref}')
@@ -73,11 +73,11 @@ if not errors:
     for icon_file in list((DOCS/'assets/logos').glob('*.svg'))+list((ROOT/'assets/logos').glob('*.svg')):
         try: ET.parse(icon_file)
         except ET.ParseError as exc: errors.append(f'invalid SVG {icon_file.relative_to(ROOT)}: {exc}')
-    for fname in ['Firebase', 'PostgreSQL', 'MongoDB', 'PHP']:
+    for fname in ['Firebase', 'PostgreSQL', 'MongoDB', 'PHP', 'RepoVerity', 'SubmissionLedger', 'FlowFault']:
         if fname not in md: errors.append(f'{fname} missing from README')
 
 if errors:
     print('Portfolio validation FAILED:',file=sys.stderr)
     for error in errors: print(' - '+error,file=sys.stderr)
     raise SystemExit(1)
-print('Portfolio validation PASSED: HTML links, anchors, local assets, README, icons, SVGs and V19 files.')
+print('Portfolio validation PASSED: HTML links, anchors, local assets, README, icons, SVGs and V20 files.')

@@ -1,9 +1,16 @@
 /** A geographically grounded globe with local map texture. The static fallback is always available. */
 const canvas = document.querySelector('#globeCanvas');
 const host = canvas?.closest('.globe-stage');
-const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (canvas && host && !reduced) {
+const state = window.portfolioGlobeMotion || {paused:window.matchMedia('(prefers-reduced-motion: reduce)').matches,visible:false,upgraded:false};
+if (canvas && host && !state.paused) {
   try {
+    // Defer the optional Three.js upgrade until the globe is near the viewport.
+    await new Promise(resolve => {
+      const preload = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) { preload.disconnect(); resolve(); }
+      }, {rootMargin:'240px 0px', threshold:0});
+      preload.observe(host);
+    });
     const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js');
     const map = await new Promise((resolve, reject) => {
       new THREE.TextureLoader().load('./assets/img/earth-texture.webp', resolve, undefined, reject);
@@ -68,10 +75,10 @@ if (canvas && host && !reduced) {
     scene.add(new THREE.Points(pointGeo,new THREE.PointsMaterial({color:0xc8b99d,size:.013,transparent:true,opacity:.35})));
     let paused=true,last=0,frame=0,visible=false;
     let targetX=.23,targetY=.07;
-    host.addEventListener('pointermove',event=>{const rect=host.getBoundingClientRect();targetX=(event.clientX/rect.width-rect.left/rect.width-.5)*.22;targetY=(event.clientY-rect.top)/rect.height-.5;},{passive:true});
-    function resize(){const rect=host.getBoundingClientRect();const w=Math.max(100,rect.width),h=Math.max(100,rect.height);renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.45));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
-    const ro=new ResizeObserver(resize);ro.observe(host);resize();
-    function loop(t=0){if(paused||document.hidden)return;frame=requestAnimationFrame(loop);const dt=Math.min((t-last)/1000||.016,.045);last=t;
+    host.addEventListener('pointermove',event=>{const rect=host.getBoundingClientRect();targetX=((event.clientX-rect.left)/rect.width-.5)*.22;targetY=(event.clientY-rect.top)/rect.height-.5;},{passive:true});
+    function resize(){const rect=canvas.getBoundingClientRect();const w=Math.max(100,rect.width),h=Math.max(100,rect.height);renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.45));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+    const ro=new ResizeObserver(resize);ro.observe(canvas);resize();
+    function loop(t=0){if(paused||state.paused||document.hidden)return;frame=requestAnimationFrame(loop);const dt=Math.min((t-last)/1000||.016,.045);last=t;
       globeGroup.rotation.y+=dt*.072;
       stage.rotation.y+=dt*.014;
       stage.rotation.x+=(targetY*.12-stage.rotation.x)*.018;
@@ -80,11 +87,12 @@ if (canvas && host && !reduced) {
       satellites.forEach((p,i)=>p.position.copy(arcs[i].getPoint(((t*.00006+i*.18)%1))));
       renderer.render(scene,camera);
     }
-    const observer=new IntersectionObserver(entries=>{const shouldRun=!!entries[0]?.isIntersecting;if(shouldRun&&!visible)return;visible=shouldRun;paused=!shouldRun;cancelAnimationFrame(frame);if(shouldRun){last=0;loop()}},{threshold:.01});
+    const observer=new IntersectionObserver(entries=>{const shouldRun=!!entries[0]?.isIntersecting;if(shouldRun===visible)return;visible=shouldRun;state.visible=visible;paused=!shouldRun;cancelAnimationFrame(frame);if(shouldRun){last=0;loop()}},{threshold:.01});
     observer.observe(host);
     // Hide static globe only after first rendered frame and successful asset load.
-    renderer.render(scene,camera);host.classList.add('has-webgl');
-    document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(frame);if(!document.hidden&&visible){paused=false;last=0;loop()}else paused=true});
+    renderer.render(scene,camera);host.classList.add('has-webgl');state.upgraded=true;window.portfolioGlobe2D?.stop();
+    document.addEventListener('visibilitychange',()=>{cancelAnimationFrame(frame);if(!document.hidden&&visible&&!state.paused){paused=false;last=0;loop()}else paused=true});
+    window.addEventListener('portfolio:globeMotion',()=>{cancelAnimationFrame(frame);paused=state.paused||!visible||document.hidden;if(!paused){last=0;frame=requestAnimationFrame(loop)} });
   } catch(err) {
     // The Earth fallback remains visible when the Three.js CDN or WebGL is unavailable.
     console.info('Showing the local globe illustration.');

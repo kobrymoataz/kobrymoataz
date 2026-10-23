@@ -43,4 +43,6 @@ jobs:
         run: |
           node --check docs/script.js
           node --check docs/v19.js
+          node --check docs/v20.js
+          node --check docs/globe-fallback.js
           node --input-type=module --check < docs/globe.js
