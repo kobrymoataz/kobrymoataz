@@ -1,6 +1,6 @@
 # Branch publishing remains Settings -> Pages -> Deploy from a branch -> main /docs.
 # This action VALIDATES only and never performs an additional deployment.
-name: Validate V23 portfolio (branch publishing)
+name: Validate V24 portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -38,4 +38,4 @@ jobs:
           node --check docs/i18n.js
           node --check docs/lab.js
           node --check docs/app.js
-          node --check docs/globe-v22.js
+          node --check docs/globe.js

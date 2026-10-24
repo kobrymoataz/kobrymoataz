@@ -1,5 +1,5 @@
 /**
- * V22 interactive geographic globe. WebGL rendering is self-hosted and has no CDN dependency.
+ * Interactive geographic globe. WebGL rendering is self-hosted and has no CDN dependency.
  * Texture: local equirectangular illustration bundled with the website.
  * Institutional markers are contextual locations, not real-time activity data.
  */

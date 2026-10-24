@@ -1,45 +1,36 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-label="SubmissionLedger illustration">
-<defs>
-  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-    <stop offset="0%" stop-color="#081018"/>
-    <stop offset="100%" stop-color="#13181f"/>
-  </linearGradient>
-  <linearGradient id="glow" x1="0" x2="1">
-    <stop offset="0%" stop-color="#c78bff"/>
-    <stop offset="100%" stop-color="#7ea2ff"/>
-  </linearGradient>
-</defs>
-<rect width="1200" height="690" rx="36" fill="url(#bg)"/>
-<rect x="40" y="40" width="1120" height="610" rx="28" fill="none" stroke="#24303d"/>
-<circle cx="955" cy="170" r="132" fill="#c78bff" opacity="0.09"/>
-<circle cx="195" cy="545" r="115" fill="#7ea2ff" opacity="0.08"/>
-<text x="78" y="112" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3" fill="#9a8460">Delivery reliability</text>
-<text x="78" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#f3efe5">SubmissionLedger</text>
-<text x="82" y="258" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#d8cab1">Reliable submission delivery</text>
-<rect x="78" y="315" width="462" height="240" rx="26" fill="#0f171f" stroke="#263241"/>
-<g transform="translate(105 350)">
-  <rect x="0" y="0" width="165" height="28" rx="10" fill="#1b2733"/>
-  <rect x="188" y="0" width="122" height="28" rx="10" fill="url(#glow)" opacity="0.25"/>
-  <rect x="0" y="55" width="336" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="90" width="282" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="125" width="310" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="160" width="250" height="16" rx="8" fill="#283545"/>
-</g>
-<g transform="translate(640 172)">
-  <rect x="0" y="0" width="420" height="300" rx="28" fill="#0d141b" stroke="#263241"/>
-  <g>
-    <rect x="38" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="url(#glow)"/>
-    <rect x="244" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <rect x="38" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <rect x="244" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <path d="M176 76h68M107 110v80M313 110v80M176 224h68" stroke="url(#glow)" stroke-width="4" stroke-linecap="round"/>
-  </g>
-</g>
-<g font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#f3efe5">
-  <text x="88" y="615">Intake API</text>
-  <text x="332" y="615">·</text>
-  <text x="360" y="615">Outbox queue</text>
-  <text x="644" y="615">·</text>
-  <text x="672" y="615">Webhook delivery</text>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-label="Conceptual illustration for delivery pipeline">
+    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09131c"/><stop offset="1" stop-color="#0e1b25"/></linearGradient><linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#192634"/><stop offset="1" stop-color="#101a24"/></linearGradient></defs>
+    <rect width="1200" height="690" fill="url(#bg)"/>
+    <g opacity=".17" stroke="#af87d0" fill="none"><circle cx="1025" cy="114" r="210"/><circle cx="1025" cy="114" r="280"/><path d="M0 550H1200M0 610H1200"/></g>
+    <rect x="55" y="52" width="1090" height="586" rx="26" fill="#0e1822" stroke="#2d3e4b" stroke-width="2"/>
+    <rect x="55" y="52" width="1090" height="58" rx="26" fill="#172532"/>
+    <rect x="55" y="86" width="1090" height="24" fill="#172532"/>
+    <circle cx="91" cy="82" r="7" fill="#9d5f54"/><circle cx="118" cy="82" r="7" fill="#b59a64"/><circle cx="145" cy="82" r="7" fill="#5c9b78"/>
+    <rect x="194" y="75" width="160" height="13" rx="6" fill="#566778" opacity=".5"/>
+    <circle cx="1099" cy="81" r="13" stroke="#af87d0" fill="none" stroke-width="2"/>
+
+    <g transform="translate(82 140)">
+    <rect width="1034" height="421" rx="20" fill="#151e2a" stroke="#4c436b"/>
+    <rect x="24" y="26" width="985" height="44" rx="11" fill="#1e2735"/>
+    <rect x="45" y="42" width="283" height="13" rx="6" fill="#9d94bc"/>
+    <rect x="847" y="38" width="138" height="22" rx="11" fill="#244f47"/>
+    <g>
+      <rect x="38" y="104" width="218" height="119" rx="17" fill="#1e2a39" stroke="#68548d"/>
+      <rect x="316" y="104" width="218" height="119" rx="17" fill="#1e2a39" stroke="#68548d"/>
+      <rect x="594" y="104" width="218" height="119" rx="17" fill="#1e2a39" stroke="#68548d"/>
+      <path d="M256 163h60M534 163h60" stroke="#ad8ad7" stroke-width="4" stroke-dasharray="8 8"/>
+      <g fill="#a58ec6"><rect x="60" y="130" width="140" height="13" rx="6"/><rect x="338" y="130" width="140" height="13" rx="6"/><rect x="616" y="130" width="140" height="13" rx="6"/></g>
+      <g fill="#5b577d"><rect x="60" y="165" width="174" height="9" rx="4"/><rect x="338" y="165" width="174" height="9" rx="4"/><rect x="616" y="165" width="174" height="9" rx="4"/></g>
+      <circle cx="862" cy="163" r="36" fill="none" stroke="#b193d9" stroke-width="6"/>
+      <path d="m849 161 12 12 17-25" fill="none" stroke="#b193d9" stroke-width="6"/>
+    </g>
+    <rect x="38" y="250" width="946" height="148" rx="16" fill="#0d151e" stroke="#3b4357"/>
+    <g font-family="monospace" font-size="19" fill="#a9aed0">
+      <text x="63" y="289">14:02:01</text><text x="207" y="289">POST /submissions</text><text x="689" y="289" fill="#8bd0ae">202 ACCEPTED</text>
+      <text x="63" y="327">14:02:02</text><text x="207" y="327">OUTBOX · queued</text><text x="689" y="327" fill="#d9b781">PENDING</text>
+      <text x="63" y="365">14:02:04</text><text x="207" y="365">WEBHOOK · signed</text><text x="689" y="365" fill="#8bd0ae">DELIVERED</text>
+    </g>
+    </g>
+    <rect x="66" y="600" width="1067" height="1" fill="#334251" opacity=".6"/>
+    <text x="88" y="622" fill="#a4b5c1" font-size="16" letter-spacing="3" font-family="Arial,Helvetica,sans-serif">DESIGN STUDY  /  DELIVERY PIPELINE</text>
+    </svg>

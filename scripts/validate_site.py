@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""V23 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V24 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import re,json,sys,xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 D=R/'docs'; errors=[]
-REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe-v22.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-fallback.webp']
+REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-fallback.webp']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v23.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v24.sh']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -63,12 +63,12 @@ else:
 if (D/'assets/Moataz_Kobry_Professional_CV.pdf').exists():errors.append('Public CV PDF must not be included in docs')
 if 'Moataz_Kobry_Professional_CV.pdf' in md or 'Moataz_Kobry_Professional_CV.pdf' in (D/'index.html').read_text(): errors.append('Public CV download link found')
 html=(D/'index.html').read_text(encoding='utf-8') if (D/'index.html').exists() else ''
-for term in ['V22','RepoVerity','SubmissionLedger','FlowFault','Firebase','PostgreSQL','MongoDB','MYCDIC','Trendad','globeCanvas','engineeringLab']:
- if term not in html+md and term!='V22':errors.append('Required portfolio element not found: '+term)
+for term in ['V24','RepoVerity','SubmissionLedger','FlowFault','Firebase','PostgreSQL','MongoDB','MYCDIC','Trendad','globeCanvas','engineeringLab','termInput','termOutput','workflow-simulator / v3']:
+ if term not in html+md and term!='V24':errors.append('Required portfolio element not found: '+term)
 workflow=(R/'.github/workflows/deploy-pages.yml').read_text(encoding='utf-8') if (R/'.github/workflows/deploy-pages.yml').exists() else ''
 if 'actions/deploy-pages' in workflow or 'pages: write' in workflow:errors.append('Workflow unexpectedly deploys; use branch publishing')
 if errors:
- print('V23 VALIDATION FAILED',file=sys.stderr)
+ print('V24 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V23 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V24 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

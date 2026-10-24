@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes responsibly labeled technical illustrations and a **browser-only engineering lab v2** with normal, retry, missing-record and manual-review scenarios.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive browser-only terminal lab v3** with commands (`help`, `run retry`, `status`, `trace`, `step`, `reset`) and realistic normal, retry, missing-record and human-review scenarios.
 
 ### Engineering toolkit
 
@@ -64,3 +64,21 @@ Internal records and private administrative interfaces are not published. The [p
 [GitHub](https://github.com/kobrymoataz) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Request CV by email](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
 
 <p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>
+
+> The terminal on the portfolio is a **local simulation**. It never executes operating-system commands or sends applicant or project data anywhere.
+
+### Interactive engineering lab
+
+The [terminal demo](https://kobrymoataz.github.io/kobrymoataz/#lab) looks and behaves like a small command-line interface. It shows queue, verification, retry and human-review decisions using generated sample data. Useful example commands:
+
+```text
+help
+run retry
+status
+trace
+scenario review
+run
+approve
+```
+
+It is intentionally sandboxed in the browser: **no remote execution, credentials, or private MYCDIC records**.

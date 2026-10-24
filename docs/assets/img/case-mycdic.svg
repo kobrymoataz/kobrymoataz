@@ -1,45 +1,50 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-label="MYCDIC illustration">
-<defs>
-  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
-    <stop offset="0%" stop-color="#081018"/>
-    <stop offset="100%" stop-color="#13181f"/>
-  </linearGradient>
-  <linearGradient id="glow" x1="0" x2="1">
-    <stop offset="0%" stop-color="#3ca36b"/>
-    <stop offset="100%" stop-color="#d54b4b"/>
-  </linearGradient>
-</defs>
-<rect width="1200" height="690" rx="36" fill="url(#bg)"/>
-<rect x="40" y="40" width="1120" height="610" rx="28" fill="none" stroke="#24303d"/>
-<circle cx="955" cy="170" r="132" fill="#3ca36b" opacity="0.09"/>
-<circle cx="195" cy="545" r="115" fill="#d54b4b" opacity="0.08"/>
-<text x="78" y="112" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3" fill="#9a8460">Institutional systems</text>
-<text x="78" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#f3efe5">MYCDIC</text>
-<text x="82" y="258" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#d8cab1">Digital environment</text>
-<rect x="78" y="315" width="462" height="240" rx="26" fill="#0f171f" stroke="#263241"/>
-<g transform="translate(105 350)">
-  <rect x="0" y="0" width="165" height="28" rx="10" fill="#1b2733"/>
-  <rect x="188" y="0" width="122" height="28" rx="10" fill="url(#glow)" opacity="0.25"/>
-  <rect x="0" y="55" width="336" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="90" width="282" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="125" width="310" height="16" rx="8" fill="#283545"/>
-  <rect x="0" y="160" width="250" height="16" rx="8" fill="#283545"/>
-</g>
-<g transform="translate(640 172)">
-  <rect x="0" y="0" width="420" height="300" rx="28" fill="#0d141b" stroke="#263241"/>
-  <g>
-    <rect x="38" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="url(#glow)"/>
-    <rect x="244" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <rect x="38" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <rect x="244" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
-    <path d="M176 76h68M107 110v80M313 110v80M176 224h68" stroke="url(#glow)" stroke-width="4" stroke-linecap="round"/>
-  </g>
-</g>
-<g font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#f3efe5">
-  <text x="88" y="615">Public website</text>
-  <text x="332" y="615">·</text>
-  <text x="360" y="615">Member intake</text>
-  <text x="644" y="615">·</text>
-  <text x="672" y="615">Verification center</text>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-label="Conceptual illustration for institutional environment">
+    <defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#09131c"/><stop offset="1" stop-color="#0e1b25"/></linearGradient><linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#192634"/><stop offset="1" stop-color="#101a24"/></linearGradient></defs>
+    <rect width="1200" height="690" fill="url(#bg)"/>
+    <g opacity=".17" stroke="#3b9a71" fill="none"><circle cx="1025" cy="114" r="210"/><circle cx="1025" cy="114" r="280"/><path d="M0 550H1200M0 610H1200"/></g>
+    <rect x="55" y="52" width="1090" height="586" rx="26" fill="#0e1822" stroke="#2d3e4b" stroke-width="2"/>
+    <rect x="55" y="52" width="1090" height="58" rx="26" fill="#172532"/>
+    <rect x="55" y="86" width="1090" height="24" fill="#172532"/>
+    <circle cx="91" cy="82" r="7" fill="#9d5f54"/><circle cx="118" cy="82" r="7" fill="#b59a64"/><circle cx="145" cy="82" r="7" fill="#5c9b78"/>
+    <rect x="194" y="75" width="160" height="13" rx="6" fill="#566778" opacity=".5"/>
+    <circle cx="1099" cy="81" r="13" stroke="#3b9a71" fill="none" stroke-width="2"/>
+
+    <rect x="80" y="138" width="615" height="424" rx="18" fill="#f0eee8"/>
+    <rect x="80" y="138" width="615" height="14" rx="7" fill="#156f4d"/>
+    <g transform="translate(105 173)">
+      <circle cx="65" cy="56" r="42" fill="#17694d"/>
+      <path d="M48 79l17-48 17 48-41-30h48z" fill="#e5c78a" opacity=".95"/>
+      <rect x="145" y="19" width="304" height="15" rx="6" fill="#1a3e36"/>
+      <rect x="145" y="50" width="250" height="10" rx="5" fill="#607a70"/>
+      <rect x="145" y="78" width="290" height="9" rx="5" fill="#82958e"/>
+      <rect x="0" y="144" width="560" height="148" rx="16" fill="#e3ebe5"/>
+      <rect x="22" y="169" width="150" height="20" rx="8" fill="#196e4e" opacity=".82"/>
+      <rect x="22" y="204" width="260" height="10" rx="5" fill="#92ada0"/>
+      <rect x="22" y="228" width="212" height="10" rx="5" fill="#b1c3ba"/>
+      <rect x="360" y="165" width="174" height="101" rx="14" fill="#fff"/>
+      <rect x="375" y="184" width="143" height="20" rx="6" fill="#e3b0ab"/>
+      <rect x="375" y="218" width="108" height="14" rx="5" fill="#b8d3bf"/>
+    </g>
+    <g transform="translate(741 143)">
+      <rect width="375" height="418" rx="18" fill="url(#card)" stroke="#3d534e"/>
+      <rect x="20" y="24" width="198" height="16" rx="6" fill="#637b70"/>
+      <rect x="20" y="64" width="335" height="86" rx="14" fill="#162e2a" stroke="#397d5b"/>
+      <rect x="42" y="85" width="129" height="12" rx="6" fill="#76aa8a"/>
+      <rect x="42" y="110" width="207" height="10" rx="5" fill="#43665a"/>
+      <circle cx="316" cy="108" r="19" fill="#33865f"/>
+      <path d="m308 107 7 7 13-15" stroke="white" fill="none" stroke-width="3"/>
+      <path d="M182 150v26" stroke="#9b855b" stroke-width="3"/>
+      <rect x="20" y="176" width="155" height="94" rx="14" fill="#222f3a" stroke="#547367"/>
+      <rect x="201" y="176" width="154" height="94" rx="14" fill="#222f3a" stroke="#547367"/>
+      <rect x="39" y="198" width="99" height="10" rx="5" fill="#748e84"/>
+      <rect x="220" y="198" width="99" height="10" rx="5" fill="#748e84"/>
+      <circle cx="92" cy="244" r="10" fill="#3d9971"/>
+      <circle cx="273" cy="244" r="10" fill="#c59269"/>
+      <rect x="20" y="301" width="335" height="93" rx="12" fill="#111e27"/>
+      <rect x="37" y="320" width="286" height="9" rx="5" fill="#50675c"/>
+      <rect x="37" y="345" width="234" height="9" rx="5" fill="#39584e"/>
+      <rect x="37" y="370" width="262" height="9" rx="5" fill="#39584e"/>
+    </g>
+    <rect x="66" y="600" width="1067" height="1" fill="#334251" opacity=".6"/>
+    <text x="88" y="622" fill="#a4b5c1" font-size="16" letter-spacing="3" font-family="Arial,Helvetica,sans-serif">DESIGN STUDY  /  INSTITUTIONAL ENVIRONMENT</text>
+    </svg>
