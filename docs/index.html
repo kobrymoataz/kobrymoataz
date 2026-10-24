@@ -64,7 +64,7 @@
           <div class="portrait-outline portrait-outline-back" aria-hidden="true"></div>
           <div class="portrait-outline portrait-outline-front" aria-hidden="true"></div>
           <div class="portrait-picture"><img src="./assets/img/portrait.webp" width="1000" height="1000" alt="Portrait of Moataz Kobry" fetchpriority="high"><div class="portrait-shade"></div><p class="micro" dir="ltr">ENGINEERING / 2016—2026</p></div>
-          <div class="portrait-seal" aria-hidden="true"><span>✦</span></div>
+          <div class="portrait-seal" aria-hidden="true"><img src="./assets/logo-mark.svg" alt="" width="72" height="72"></div>
         </div>
       </div>
       <div class="wrap hero-baseline"><span data-i18n="heroBaseline">SOFTWARE · AUTOMATION · INFRASTRUCTURE</span><span data-i18n="scroll">SCROLL TO EXPLORE ↓</span></div>
@@ -82,7 +82,7 @@
         <div class="section-heading work-heading"><p class="eyebrow" data-i18n="workLabel">01 / SELECTED WORK</p><h2 id="workTitle"><span data-i18n="workHeading1">Real systems.</span><br><em data-i18n="workHeading2">Work you can inspect.</em></h2><p data-i18n="workIntro">Public source code and collaborative institutional delivery. The illustrations summarize documented architecture; they are not private application screenshots.</p></div>
         <div class="cases-grid">
           <article class="case-card case-featured" data-reveal>
-            <div class="case-photo"><img src="./assets/img/case-mycdic.svg" width="1200" height="690" decoding="async" loading="lazy" alt="Diagram of MYCDIC public website, internal operations and automation"><span data-i18n="illustration">ARCHITECTURE ILLUSTRATION</span></div>
+            <div class="case-photo"><img src="./assets/img/mycdic-public-website.webp" width="1200" height="690" decoding="async" loading="lazy" alt="Screenshot of the public MYCDIC website homepage supplied for this portfolio"><span class="source-label">PUBLIC WEBSITE SCREENSHOT</span></div>
             <div class="case-body"><p class="case-index" data-i18n="caseInstitutionalTag">INSTITUTIONAL DELIVERY / TEAM LEADERSHIP</p><h3 data-i18n="caseInstitutionalTitle">MYCDIC digital environment</h3><p data-i18n="caseInstitutionalText">Leading digital platform initiatives with MYCDIC and Trendad teams, covering the public website and internal administrative workflows.</p><div class="case-tags"><span>Website architecture</span><span>Automation</span><span>Operations</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseInstitutionalDetail">Public communication, managed submissions, structured records, verification and correspondence. Internal screens and personal records remain private; responsibilities are shared with the teams.</p></div></details><a class="underlined-link" href="https://www.mycdic.org/" target="_blank" rel="noopener noreferrer"><span data-i18n="visitPublic">View public website</span> ↗</a></div>
           </article>
           <article class="case-card" data-reveal>
@@ -108,8 +108,13 @@
       <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive macOS-inspired simulated terminal">
         <div class="mac-titlebar">
           <span class="mac-traffic" aria-hidden="true"><i></i><i></i><i></i></span>
-          <span class="mac-title">moataz@portfolio — zsh</span>
+          <span class="mac-title" id="terminalTitle">moataz@portfolio — zsh</span>
           <span class="mac-local" data-i18n="terminalDemo">DEMO / LOCAL</span>
+        </div>
+        <div class="terminal-tabs" role="tablist" aria-label="Virtual terminal environment">
+          <button type="button" role="tab" class="active" aria-selected="true" data-terminal-os="mac" id="tabMac"><span aria-hidden="true">●</span> macOS <small>zsh</small></button>
+          <button type="button" role="tab" aria-selected="false" data-terminal-os="linux" id="tabLinux"><span aria-hidden="true">◈</span> Ubuntu <small>bash</small></button>
+          <span class="terminal-env-note">SANDBOX / LOCAL ONLY</span>
         </div>
         <div class="mac-toolbar">
           <span class="mac-toolbar-label"><span>workflow-simulator / v3</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
@@ -121,6 +126,7 @@
           </div>
         </div>
         <div class="lab-metrics" aria-label="Current simulation metrics">
+          <div class="lab-time-metric"><small>ELAPSED / LIVE</small><strong id="labElapsed" aria-label="Elapsed simulation time">00:00:00</strong></div>
           <div><small data-i18n="labMetricScenario">SCENARIO</small><strong id="labScenarioMetric">NORMAL</strong></div>
           <div><small data-i18n="labMetricRetries">RETRIES</small><strong id="labRetryMetric">00</strong></div>
           <div><small data-i18n="labMetricStage">STAGE</small><strong id="labStageMetric">00 / 06</strong></div>
@@ -138,7 +144,7 @@
         <div class="terminal-screen" id="terminalScreen" role="log" aria-label="Simulation terminal output" aria-live="polite" aria-relevant="additions text">
           <div id="termOutput" class="term-lines"></div>
           <form id="termForm" class="term-prompt" autocomplete="off">
-            <label class="term-prefix" for="termInput"><span>moataz@portfolio</span> ~ %</label>
+            <label class="term-prefix" for="termInput" id="terminalPrompt"><span>moataz@portfolio</span> ~ %</label>
             <input id="termInput" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" autocorrect="off" aria-label="Terminal command" maxlength="120" placeholder="help"/>
             <button type="submit" class="term-enter" aria-label="Execute terminal demo command">↵</button>
           </form>
@@ -146,6 +152,8 @@
         <div class="terminal-quick-actions" aria-label="Sample terminal commands">
           <span data-i18n="terminalTry">TRY</span>
           <button type="button" data-command="help">help</button>
+          <button type="button" data-command="git status" data-mac-only="true">git status</button>
+          <button type="button" data-command="uname -a" data-linux-only="true" hidden>uname -a</button>
           <button type="button" data-command="run retry">run retry</button>
           <button type="button" data-command="status">status</button>
           <button type="button" data-command="trace">trace</button>
@@ -205,7 +213,7 @@
         <div class="globe-header"><span class="live-pulse" aria-hidden="true"></span><span data-i18n="globeVisualization">GEOGRAPHICAL CONTEXT</span><small data-globe-status>3D INITIALIZING</small></div>
         <div class="globe-viewport">
           <div class="orbit orbit-a" aria-hidden="true"></div><div class="orbit orbit-b" aria-hidden="true"></div>
-          <img class="globe-fallback" src="./assets/img/globe-fallback.webp" alt="Illustration of Earth" width="760" height="760" loading="lazy">
+          <img class="globe-fallback" src="./assets/img/globe-v25-fallback.webp" alt="Gold geographic Earth illustration shown if WebGL is unavailable" width="760" height="760" loading="lazy">
           <canvas id="globeCanvas" role="img" aria-label="3D globe. Drag or touch to rotate; use zoom controls." tabindex="0"></canvas>
         </div>
         <div class="globe-panel">

@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="6" fill="#142124"/><text x="8" y="44" font-family="Georgia,serif" font-size="39" fill="#f5f1e9">MK</text><circle cx="55" cy="47" r="4" fill="#bda17b"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="mark-title"><title id="mark-title">Moataz Kobry geometric compass mark</title>
+<defs><linearGradient id="a" x1="0" x2=".9" y1="0" y2="1"><stop stop-color="#f4d7a3"/><stop offset=".52" stop-color="#c49a61"/><stop offset="1" stop-color="#92704a"/></linearGradient></defs>
+<circle cx="60" cy="60" r="52" fill="#0c1117" stroke="url(#a)" stroke-width="3"/>
+<path fill="url(#a)" d="M60 10 C65 43 75 53 110 60 C75 66 66 77 60 110 C54 77 45 66 10 60 C45 54 54 44 60 10 Z"/>
+<path fill="#10151b" d="M60 40 C63 54 66 57 80 60 C66 63 63 66 60 80 C57 66 54 63 40 60 C54 57 57 54 60 40 Z"/>
+</svg>

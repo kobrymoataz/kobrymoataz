@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive browser-only terminal lab v3** with commands (`help`, `run retry`, `status`, `trace`, `step`, `reset`) and realistic normal, retry, missing-record and human-review scenarios.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive browser-only terminal lab v3.5 (macOS and Ubuntu bash modes)** with commands (`help`, `run retry`, `status`, `trace`, `step`, `reset`) and realistic normal, retry, missing-record and human-review scenarios.
 
 ### Engineering toolkit
 
@@ -69,7 +69,7 @@ Internal records and private administrative interfaces are not published. The [p
 
 ### Interactive engineering lab
 
-The [terminal demo](https://kobrymoataz.github.io/kobrymoataz/#lab) looks and behaves like a small command-line interface. It shows queue, verification, retry and human-review decisions using generated sample data. Useful example commands:
+The [terminal demo](https://kobrymoataz.github.io/kobrymoataz/#lab) looks and behaves like a small command-line interface with selectable macOS / zsh and Ubuntu / bash environments, plus a real elapsed-time stopwatch. It shows queue, verification, retry and human-review decisions using generated sample data. Useful example commands:
 
 ```text
 help
@@ -80,5 +80,7 @@ scenario review
 run
 approve
 ```
+
+Sample Linux commands: `uname -a`, `docker ps`, `df -h`, `systemctl status nginx`. All command output is simulated, not real machine or server health.
 
 It is intentionally sandboxed in the browser: **no remote execution, credentials, or private MYCDIC records**.
