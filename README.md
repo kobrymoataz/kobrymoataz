@@ -1,68 +1,66 @@
 <div align="center">
 
-<a href="https://kobrymoataz.github.io/kobrymoataz/"><img src="./assets/banners/hero.gif" width="100%" alt="Moataz Kobry — Computing, AI automation, cybersecurity and digital platforms" /></a>
+<a href="https://kobrymoataz.github.io/kobrymoataz/"><img src="./assets/banners/hero.gif" width="100%" alt="Moataz Kobry - Computing, AI automation, cybersecurity and digital platforms" /></a>
 
 **Computing · AI Automation · Cybersecurity · Digital Platforms**
 
-[Interactive portfolio & 3D globe](https://kobrymoataz.github.io/kobrymoataz/#perspective) · [Selected code](https://kobrymoataz.github.io/kobrymoataz/#open-source) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
+[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [Download professional profile (PDF)](https://kobrymoataz.github.io/kobrymoataz/assets/Moataz_Kobry_Professional_CV.pdf) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org)
 
 </div>
 
 ### Profile
 
-I'm **Abdelmouiz (Moataz) Kobry**. I work across computing, practical software, AI automation and security-aware infrastructure, with experience in digital development dating back to **2016** and contributions to **100+ websites and platforms**.
+I'm **Abdelmouiz (Moataz) Kobry**. I build practical software, automation and digital systems, drawing on hands-on development experience since **2016** and work across **100+ websites and digital projects**.
 
-I study **Computing at the Escuela Superior de Informática (ESI), UCLM**, while leading digital platform initiatives with colleagues at **MYCDIC** and **Trendad**. That collaborative work includes MYCDIC's [public website](https://www.mycdic.org/) and an internal institutional management platform. I am also **Founder & President of MYCDIC**.
+I study **Computing at UCLM's Escuela Superior de Informática (ESI)**, with an interest in AI and automation. Beyond my academic work, I lead digital initiatives collaboratively with teams at **MYCDIC** and **Trendad**, including the public MYCDIC website and work on an internal institutional management environment. I am **Founder & President of MYCDIC**.
 
 ### Selected engineering work
 
-My public repositories are linked below so their implementation, documentation and limitations can be inspected directly.
+These public repositories are open to inspect. They show code, design decisions and limitations rather than relying on claims alone.
 
-These projects cover developer tooling, backend reliability and controlled fault testing. They are not substitutes for the private institutional systems described on the portfolio.
+| Repository | Focus | Explore |
+| :--- | :--- | :--- |
+| **RepoVerity** | Public GitHub metadata research, repository audit and developer workflows | [Source](https://github.com/kobrymoataz/repoverity) · [Demo](https://kobrymoataz.github.io/repoverity/) |
+| **SubmissionLedger** | Reliable intake, idempotency, a SQLite outbox and signed webhook delivery | [Source and documentation](https://github.com/kobrymoataz/submissionledger) |
+| **FlowFault** | Form inspection and controlled, authorized network-failure experiments | [Source and documentation](https://github.com/kobrymoataz/flowfault) |
 
-| Public repository | What it explores |
-|:---|:---|
-| **[RepoVerity](https://github.com/kobrymoataz/repoverity)** | Public GitHub repository exploration, developer analytics and evidence-oriented maintenance checks. [Live workspace ↗](https://kobrymoataz.github.io/repoverity/) |
-| **[SubmissionLedger](https://github.com/kobrymoataz/submissionledger)** | Idempotent JSON intake, SQLite-backed persistence and reliable, signed webhook delivery. |
-| **[FlowFault](https://github.com/kobrymoataz/flowfault)** | Form inspection and controlled network-failure experiments for application testing. |
+### Institutional digital systems
 
-**Institutional work:** [MYCDIC public site](https://www.mycdic.org/) · [How the systems are approached](https://kobrymoataz.github.io/kobrymoataz/#systems)
+Working with MYCDIC and Trendad colleagues, I help lead delivery of official websites and operational platforms. The aim is to make information, processes, verification, documents and communication work together in dependable systems.
 
-### Systems and architecture
+[MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-<div align="center"><img src="./assets/banners/architecture.gif" width="100%" alt="Architecture diagram showing connected platforms and operational systems" /></div>
-
-My work spans front-end interfaces, backend services, SQL and document data, APIs, workflow automation, email infrastructure and delivery operations. I care about maintainability, predictable behavior and systems that the people using them can understand.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes responsibly labeled technical illustrations and a **browser-only engineering lab** demonstrating a synthetic submission flow.
 
 ### Engineering toolkit
 
 <div align="center">
-  <img src="./assets/logos/javascript.svg" height="37" alt="JavaScript" />&nbsp;
-  <img src="./assets/logos/typescript.svg" height="37" alt="TypeScript" />&nbsp;
-  <img src="./assets/logos/python.svg" height="37" alt="Python" />&nbsp;
-  <img src="./assets/logos/java.svg" height="37" alt="Java" />&nbsp;
-  <img src="./assets/logos/php.svg" height="37" alt="PHP" />&nbsp;
-  <img src="./assets/logos/react.svg" height="37" alt="React" />&nbsp;
-  <img src="./assets/logos/reactnative.svg" height="37" alt="React Native" />&nbsp;
-  <img src="./assets/logos/nodejs.svg" height="37" alt="Node.js" />&nbsp;
-  <img src="./assets/logos/postgresql.svg" height="37" alt="PostgreSQL" />&nbsp;
-  <img src="./assets/logos/mongodb.svg" height="37" alt="MongoDB" />&nbsp;
-  <img src="./assets/logos/firebase.svg" height="37" alt="Firebase" />&nbsp;
-  <img src="./assets/logos/github.svg" height="37" alt="GitHub" />
+  <img src="./assets/logos/javascript.svg" width="35" height="35" alt="JavaScript" /> &nbsp;
+  <img src="./assets/logos/python.svg" width="35" height="35" alt="Python" /> &nbsp;
+  <img src="./assets/logos/java.svg" width="35" height="35" alt="Java" /> &nbsp;
+  <img src="./assets/logos/php.svg" width="35" height="35" alt="PHP" /> &nbsp;
+  <img src="./assets/logos/react.svg" width="35" height="35" alt="React" /> &nbsp;
+  <img src="./assets/logos/nodejs.svg" width="35" height="35" alt="Node.js" /> &nbsp;
+  <img src="./assets/logos/postgresql.svg" width="35" height="35" alt="PostgreSQL" /> &nbsp;
+  <img src="./assets/logos/mongodb.svg" width="35" height="35" alt="MongoDB" /> &nbsp;
+  <img src="./assets/logos/n8n.svg" width="35" height="35" alt="n8n" /> &nbsp;
+  <img src="./assets/logos/github.svg" width="35" height="35" alt="GitHub" />
 </div>
 
-**Automation and collaboration:** n8n · Google Workspace / Apps Script · Microsoft 365 · GitHub Actions · prompt engineering · AI-assisted development.
+**Languages & frameworks:** JavaScript, TypeScript, Python, Java, PHP, React, React Native and Node.js.
 
-**Email infrastructure:** SPF · DKIM · DMARC · DNS · SMTP · deliverability and authentication alignment.
+**Data & automation:** PostgreSQL, MongoDB, Firebase, n8n, Google Apps Script, Google Workspace and Microsoft 365.
 
-### Beyond code
+**Infrastructure & communication:** Git/GitHub, GitHub Actions, APIs, email deliverability, DNS, SPF, DKIM, DMARC and security-aware configuration.
 
-My interests also include **Wikipedia, Wikimedia and Wikidata**, public information, institutional communication and media-facing digital work. I approach these areas from the same perspective as engineering: accuracy, structure and responsible execution.
+**Additional work:** Wikipedia, Wikimedia, Wikidata, institutional digital visibility and media-oriented technical work.
 
-**Languages:** Arabic · English · French · Spanish
+### Working languages
 
-<div align="center">
+**Arabic · English · French · Spanish**. The [portfolio](https://kobrymoataz.github.io/kobrymoataz/) offers EN / FR / ES / AR, including an Arabic RTL layout.
 
-[**Explore the interactive 3D portfolio →**](https://kobrymoataz.github.io/kobrymoataz/#perspective) · [**Institutional profile →**](https://www.mycdic.org/president/) · [**Contact →**](mailto:president@mycdic.org)
+### Connect
 
-</div>
+[GitHub](https://github.com/kobrymoataz) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Professional CV](https://kobrymoataz.github.io/kobrymoataz/assets/Moataz_Kobry_Professional_CV.pdf) · [Request CV by email](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
+
+<p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>

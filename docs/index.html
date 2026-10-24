@@ -1,255 +1,208 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#090d12">
-  <meta name="description" content="Moataz Kobry develops practical software, institutional platforms and AI automation. Explore selected systems, open-source work and engineering experience since 2016.">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Moataz Kobry | Computing & Digital Systems">
-  <meta property="og:description" content="Computing, AI automation, official platforms and selected open-source engineering work."
-  >
+  <meta name="theme-color" content="#0b1117">
+  <meta name="description" content="Moataz Kobry: computing, AI automation, engineering systems and institutional digital work. Case studies, public source code and interactive engineering demonstrations.">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Moataz Kobry | Computing, Systems &amp; Automation">
+  <meta property="og:description" content="Selected engineering work, digital systems and international institutional experience since 2016.">
   <meta property="og:image" content="https://kobrymoataz.github.io/kobrymoataz/assets/img/share-card.png">
   <meta property="og:url" content="https://kobrymoataz.github.io/kobrymoataz/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="color-scheme" content="dark light">
   <link rel="canonical" href="https://kobrymoataz.github.io/kobrymoataz/">
   <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./site.css">
-  <link rel="preload" href="./assets/img/portrait.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="./assets/img/earth-texture.webp" as="image" type="image/webp">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Moataz Kobry | Computing & Digital Systems">
-  <meta name="twitter:image" content="https://kobrymoataz.github.io/kobrymoataz/assets/img/share-card.png">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsAbout":["Computing","AI Automation","Web Platforms","Cybersecurity","Email Deliverability","Wikipedia","Wikidata","JavaScript","Python","PHP","n8n"],"knowsLanguage":["ar","en","fr","es"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-  <script defer src="./app.js"></script>
-  <title>Moataz Kobry | Digital Systems & Institutional Technology</title>
+  <link rel="preload" as="image" href="./assets/img/portrait.webp" fetchpriority="high">
+  <link rel="stylesheet" href="./styles.css">
+  <title>Moataz Kobry | Executive Engineering Portfolio</title>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsLanguage":["ar","en","fr","es"],"knowsAbout":["Computing","AI Automation","Cybersecurity","Web Platforms","Workflow Engineering","JavaScript","Python","PHP","PostgreSQL","Wikidata"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-  <div class="progress" id="progress" aria-hidden="true"></div>
-  <header class="header" id="siteHeader">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="Back to top"><img src="./assets/logo-mark.svg" alt="" width="48" height="48"><span><b>MOATAZ KOBRY</b><small>COMPUTING · SYSTEMS</small></span></a>
-      <nav class="nav" id="primaryNav" aria-label="Main navigation">
-        <a href="#about">About</a><a href="#systems">Selected work</a><a href="#capabilities">Capabilities</a><a href="#tools">Toolkit</a><a href="#architecture">Architecture</a><a href="#perspective">Perspective</a>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <div class="read-progress" id="readProgress" aria-hidden="true"></div>
+  <header class="site-header" id="siteHeader">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="Moataz Kobry portfolio"><img src="./assets/logo-mark.svg" width="40" height="40" alt=""><span dir="ltr"><strong>MOATAZ KOBRY</strong><small>COMPUTING / SYSTEMS</small></span></a>
+      <nav class="desktop-nav" id="primaryNav" aria-label="Main navigation">
+        <a href="#work" data-i18n="navWork">Selected work</a>
+        <a href="#lab" data-i18n="navLab">Engineering lab</a>
+        <a href="#stack" data-i18n="navStack">Toolkit</a>
+        <a href="#perspective" data-i18n="navGlobe">Perspective</a>
+        <a href="#profile" data-i18n="navProfile">Profile</a>
       </nav>
-      <a href="#contact" class="header-cta">Let's connect <span aria-hidden="true">↗</span></a>
-      <button class="mobile-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="primaryNav" aria-expanded="false"><span></span><span></span><span></span></button>
+      <div class="header-actions">
+        <div class="language-switch" role="group" aria-label="Choose language" id="languageSwitch">
+          <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+          <button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button>
+          <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+          <button type="button" data-lang="ar" aria-pressed="false" lang="ar">AR</button>
+        </div>
+        <a class="header-contact" href="#contact" data-i18n="navContact">Let's connect</a>
+        <button type="button" class="nav-toggle" id="menuToggle" aria-controls="primaryNav" aria-expanded="false" aria-label="Open navigation"><span></span><span></span></button>
+      </div>
     </div>
   </header>
+
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="hero-title">
-      <div class="hero-geometry" aria-hidden="true"><span class="g1"></span><span class="g2"></span><span class="g3"></span></div>
+    <section class="hero" id="top">
+      <div class="hero-pattern" aria-hidden="true"></div>
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="overline hero-kicker"><span class="gold-line"></span> TECHNOLOGY · INSTITUTIONAL SYSTEMS · SINCE 2016</p>
-          <h1 id="hero-title" class="hero-title"><span class="hero-name">Moataz</span><em>Kobry<span class="period">.</span></em></h1>
-          <p class="hero-lead">I build digital systems, automate operations and help teams deliver reliable platforms for real-world work.</p>
-          <p class="hero-discipline">Computing <span>✦</span> AI Automation <span>✦</span> Cybersecurity <span>✦</span> Digital Platforms</p>
-          <div class="hero-actions">
-            <a class="btn btn-gold" href="#systems">Explore my work <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-outline" href="mailto:president@mycdic.org?subject=Curriculum%20Vitae%20Request%20-%20Moataz%20Kobry&body=Hello%20Mr%20Kobry%2C%0D%0A%0D%0AI%20would%20like%20to%20request%20your%20CV.%0D%0A%0D%0AName%3A%0D%0AOrganization%3A%0D%0APurpose%3A%0D%0A%0D%0ARegards%2C">Request CV <span aria-hidden="true">↗</span></a>
+          <p class="micro hero-overline"><span class="micro-line"></span><span data-i18n="heroEyebrow">ENGINEERING · OPERATIONS · EST. 2016</span></p>
+          <h1><span>Moataz</span><em>Kobry<span class="gold-dot">.</span></em></h1>
+          <p class="hero-discipline" data-i18n="heroDisciplines">COMPUTING · AI AUTOMATION · CYBERSECURITY · DIGITAL PLATFORMS</p>
+          <p class="hero-lead" data-i18n="heroLead">I lead and build practical digital systems that connect a clear public experience with the operations behind it.</p>
+          <p class="hero-secondary" data-i18n="heroSecond">More than a decade of hands-on digital work, informed by Computing at UCLM ESI and collaborative platform delivery.</p>
+          <div class="hero-ctas">
+            <a class="button button-primary" href="#work"><span data-i18n="exploreWork">Explore selected work</span><span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="./assets/Moataz_Kobry_Professional_CV.pdf" download><span data-i18n="downloadCV">Download professional CV</span><span aria-hidden="true">↓</span></a>
           </div>
-          <p class="hero-footnote">MADRID · TECHNOLOGY & INSTITUTIONAL LEADERSHIP</p>
         </div>
-        <div class="portrait-stage">
-          <div class="portrait-back pback-one"></div><div class="portrait-back pback-two"></div>
-          <div class="portrait-frame"><img src="./assets/img/portrait.webp" decoding="async" alt="Professional portrait of Moataz Kobry" width="1000" height="1000" fetchpriority="high"><div class="portrait-shade"></div><div class="portrait-caption"><span>MOATAZ KOBRY</span><span>EST. 2016</span></div></div>
-          <div class="portrait-orbit" aria-hidden="true"><span></span><span></span></div>
-          <p class="portrait-axis" aria-hidden="true">SYSTEMS<br>DATA<br>AUTOMATION<br>PEOPLE</p>
+        <div class="portrait-composition">
+          <div class="portrait-outline portrait-outline-back" aria-hidden="true"></div>
+          <div class="portrait-outline portrait-outline-front" aria-hidden="true"></div>
+          <div class="portrait-picture"><img src="./assets/img/portrait.webp" width="1000" height="1000" alt="Portrait of Moataz Kobry" fetchpriority="high"><div class="portrait-shade"></div><p class="micro" dir="ltr">MK / 2016—2026</p></div>
+          <div class="portrait-seal" aria-hidden="true"><span>✦</span></div>
         </div>
       </div>
-      <div class="wrap hero-bottom"><span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span><span>WEB · AUTOMATION · OPERATIONAL SYSTEMS</span></div>
+      <div class="wrap hero-baseline"><span data-i18n="heroBaseline">SOFTWARE · AUTOMATION · INFRASTRUCTURE</span><span data-i18n="scroll">SCROLL TO EXPLORE ↓</span></div>
     </section>
-    <section class="credentials" aria-label="Experience at a glance"><div class="wrap credentials-grid">
-      <div><span class="small-label">EXPERIENCE</span><strong>Since 2016</strong><small>Digital development</small></div>
-      <div><span class="small-label">TRACK RECORD</span><strong>100<span class="gold-text">+</span></strong><small>Websites and platforms</small></div>
-      <div><span class="small-label">ACADEMIC FOUNDATION</span><strong>UCLM / ESI</strong><small>Computing · Ciudad Real</small></div>
-      <div><span class="small-label">LANGUAGES</span><strong>04</strong><small>Arabic · English · French · Spanish</small></div>
-    </div></section>
-    <section class="intro light-block section" id="about"><div class="wrap intro-grid"><div class="section-index"><span class="eyebrow">01 / ABOUT</span><span class="index-rule"></span><p>TECHNOLOGY<br>MEETS EXECUTION</p></div><div><h2 class="display-heading">Engineering that supports <em>the work behind the screen.</em></h2><div class="intro-copy"><p class="intro-statement">A platform matters when people can rely on it every day.</p><div><p>I'm Abdelmouiz (Moataz) Kobry. My work brings together software, workflow automation and institutional digital operations. Since 2016, I have contributed to more than 100 websites and digital platforms.</p><p>At MYCDIC, I lead digital initiatives with colleagues from the council and Trendad. My academic work in Computing at UCLM ESI strengthens the technical side of that experience.</p><a class="text-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">Institutional profile <span>↗</span></a></div></div></div></div></section>
-    <section class="capabilities-section section" id="capabilities"><div class="wrap"><div class="section-head split-head"><div><p class="eyebrow">02 / CAPABILITIES</p><h2 class="display-heading">From ideas to <em>working systems.</em></h2></div><p>Software and operational thinking, applied from initial requirements through implementation and ongoing improvement.</p></div><div class="cap-grid">
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">◇</div><h3>Digital platforms</h3><p>Official websites, practical applications, and coherent digital experiences.</p><span>01 / PLATFORMS</span></article>
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">⟡</div><h3>AI & automation</h3><p>Automation that removes repetitive work and connects day-to-day processes.</p><span>02 / WORKFLOWS</span></article>
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">⬡</div><h3>Cybersecurity</h3><p>Authentication, secure configuration, and security-aware operations.</p><span>03 / TRUST</span></article>
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">▣</div><h3>Application systems</h3><p>Back-end logic, integrations, APIs, data handling and maintenance.</p><span>04 / APPLICATIONS</span></article>
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">◎</div><h3>Knowledge & visibility</h3><p>Wikimedia, Wikidata, web presence and media-oriented technical support.</p><span>05 / PUBLIC INFORMATION</span></article>
-      <article class="cap-card"><div class="cap-icon" aria-hidden="true">♧</div><h3>Institutional operations</h3><p>Systems designed around teams, accountability and continuity.</p><span>06 / ORGANIZATIONS</span></article>
-    </div></div></section>
-    <!-- Verified project experience. Diagrams are labeled as illustrative; not internal screenshots. -->
-    <section class="systems-section section v19-work" id="systems" aria-labelledby="selected-work-title">
-      <div class="wrap">
-        <div class="section-head spread v19-work-head">
-          <div><p class="eyebrow">03 / SELECTED WORK</p><h2 class="display-heading" id="selected-work-title">Built with teams.<br><em>Made for real operations.</em></h2></div>
-          <p>A selection of digital work led with colleagues at MYCDIC and Trendad, from institutional communication to internal operations.</p>
-        </div>
-        <div class="case-list">
-          <article class="case-study" aria-labelledby="case-public-heading">
-            <div class="case-visual case-public-art" aria-label="Illustrative layout of the public website, not a live screenshot">
-              <div class="case-browser" aria-hidden="true"><div class="case-browser-top"><i></i><i></i><i></i><span>MYCDIC / PUBLIC WEB</span></div><div class="case-browser-nav"><i></i><i></i><i></i><i></i></div><div class="case-browser-hero"><span></span><b></b><i></i></div><div class="case-browser-grid"><i></i><i></i><i></i></div></div>
-              <span class="case-visual-caption">CONCEPTUAL INTERFACE · NOT A PRODUCT SCREENSHOT</span>
-              <div class="case-visual-orbit" aria-hidden="true"></div>
-            </div>
-            <div class="case-content">
-              <p class="case-overline">01 / PUBLIC DIGITAL ENVIRONMENT</p>
-              <h3 id="case-public-heading">A public platform with a clear institutional voice.</h3>
-              <p class="case-summary">The official MYCDIC website brings public information, institutional communication and routes for engagement into one digital environment.</p>
-              <div class="case-facts"><div><span>CONTEXT</span><b>MYCDIC · Public website</b></div><div><span>MY CONTRIBUTION</span><b>Digital direction and development leadership with MYCDIC and Trendad colleagues</b></div></div>
-              <details class="case-disclosure"><summary>See project approach <span aria-hidden="true">↗</span></summary><div class="case-expanded"><div><span>THE NEED</span><p>Bring different types of institutional information into a coherent, usable public experience.</p></div><div><span>THE WORK</span><p>Information architecture, public-facing interactions, integrations and improvements to ongoing web operations.</p></div><div><span>WHAT EXISTS</span><p>A public website visitors can explore, with accessible institutional information and routes for engagement.</p></div></div></details>
-              <a class="case-link" href="https://www.mycdic.org/" target="_blank" rel="noopener noreferrer">View the public website <span aria-hidden="true">↗</span></a>
-            </div>
-          </article>
-          <article class="case-study case-study-reverse" aria-labelledby="case-operations-heading">
-            <div class="case-visual case-operations-art" aria-label="Illustrative administrative workflow, not an internal system screenshot">
-              <div class="case-dash" aria-hidden="true"><div class="case-dash-rail"><i></i><i></i><i></i><i></i></div><div class="case-dash-main"><div class="case-dash-heading"><span></span><i></i></div><div class="case-dash-metrics"><b></b><b></b><b></b></div><div class="case-dash-rows"><i></i><i></i><i></i><i></i><i></i></div><div class="case-dash-flow"><span></span><span></span><span></span></div></div></div>
-              <span class="case-visual-caption">WORKFLOW MODEL · INTERNAL DETAILS OMITTED</span>
-            </div>
-            <div class="case-content">
-              <p class="case-overline">02 / INTERNAL OPERATIONS</p>
-              <h3 id="case-operations-heading">Administrative work, translated into structured digital workflows.</h3>
-              <p class="case-summary">An evolving operational platform for the council, covering structured records, applicant processes, correspondence, verification and staff workflows.</p>
-              <div class="case-facts"><div><span>CONTEXT</span><b>MYCDIC · Institutional management</b></div><div><span>MY CONTRIBUTION</span><b>Platform direction, workflow engineering and coordination with technical colleagues</b></div></div>
-              <details class="case-disclosure"><summary>See the workflow model <span aria-hidden="true">↗</span></summary><div class="case-expanded"><div><span>THE NEED</span><p>Reduce disconnected manual steps while retaining traceability across administrative processes.</p></div><div><span>THE WORK</span><p>Intake and status workflows, SQL-backed records, Google Apps Script processes and document or email automation.</p></div><div><span>CURRENT CONTEXT</span><p>Continually refined institutional tooling. Private internal records and interfaces are intentionally not shown.</p></div></div></details>
-              <a class="case-link" href="#architecture">Explore the systems model <span aria-hidden="true">↓</span></a>
-            </div>
-          </article>
-        </div>
 
-        <div class="engineering-evidence" id="open-source" aria-labelledby="engineering-evidence-title">
-          <div class="evidence-top">
-            <div>
-              <p class="eyebrow">ENGINEERING / PUBLIC SOURCE</p>
-              <h3 id="engineering-evidence-title">Work you can <em>inspect.</em></h3>
-            </div>
-            <p>These public repositories provide a closer look at how I approach reliability, developer experience and system behavior. Each links to code and technical documentation.</p>
-          </div>
-          <div class="evidence-grid">
-            <article class="evidence-card">
-              <div class="evidence-meta"><span>01 / DEVELOPER TOOLING</span><span aria-hidden="true">↗</span></div>
-              <h4>RepoVerity</h4>
-              <p>Public GitHub repository research, maintainability checks and an evidence-based audit workspace.</p>
-              <div class="evidence-keywords"><span>GitHub APIs</span><span>Read-only research</span><span>Analysis</span></div>
-              <div class="evidence-links"><a href="https://github.com/kobrymoataz/repoverity" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://kobrymoataz.github.io/repoverity/" target="_blank" rel="noopener noreferrer">Open demo ↗</a></div>
-            </article>
-            <article class="evidence-card">
-              <div class="evidence-meta"><span>02 / BACKEND RELIABILITY</span><span aria-hidden="true">↗</span></div>
-              <h4>SubmissionLedger</h4>
-              <p>A self-hosted JSON intake service with idempotent submission handling, durable outbox jobs and signed webhook delivery.</p>
-              <div class="evidence-keywords"><span>Node.js</span><span>SQLite</span><span>Webhooks</span></div>
-              <div class="evidence-links"><a href="https://github.com/kobrymoataz/submissionledger" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://github.com/kobrymoataz/submissionledger#why-this-exists" target="_blank" rel="noopener noreferrer">Read approach ↗</a></div>
-            </article>
-            <article class="evidence-card">
-              <div class="evidence-meta"><span>03 / TESTING &amp; RESILIENCE</span><span aria-hidden="true">↗</span></div>
-              <h4>FlowFault</h4>
-              <p>A local-first toolkit for inspecting forms and running authorized, controlled network failure experiments.</p>
-              <div class="evidence-keywords"><span>Node.js</span><span>CDP</span><span>Diagnostics</span></div>
-              <div class="evidence-links"><a href="https://github.com/kobrymoataz/flowfault" target="_blank" rel="noopener noreferrer">View source ↗</a><a href="https://github.com/kobrymoataz/flowfault#three-workflows" target="_blank" rel="noopener noreferrer">Explore workflows ↗</a></div>
-            </article>
-          </div>
-          <p class="evidence-foot">Public repositories are linked directly. Institutional case-study visuals above are illustrative, not screenshots of confidential systems.</p>
-        </div>
-        <p class="case-method-note"><span class="note-dot" aria-hidden="true"></span> Illustrations explain the structure of the work. Internal administrative screens and personal records are not shown.</p>
-      </div>
-    </section>
-    <section class="record-section section" id="record" aria-labelledby="record-heading">
+    <section class="proof-strip" aria-label="Professional highlights"><div class="wrap proof-grid">
+      <div><small data-i18n="statExperience">DIGITAL WORK SINCE</small><strong>2016</strong></div>
+      <div><small data-i18n="statDelivery">WEBSITES &amp; DIGITAL PROJECTS</small><strong>100+</strong></div>
+      <div><small data-i18n="statAcademic">COMPUTING / UNIVERSITY</small><strong>UCLM <span>/ ESI</span></strong></div>
+      <div><small data-i18n="statLanguages">WORKING LANGUAGES</small><strong>AR · EN · FR · ES</strong></div>
+    </div></section>
+
+    <section class="work-section section light-section" id="work" aria-labelledby="workTitle">
       <div class="wrap">
-        <div class="record-top"><p class="eyebrow">PRACTICE / TRACK RECORD</p><h2 class="display-heading" id="record-heading">Experience is built <em>over time.</em></h2></div>
-        <div class="record-track" role="list" aria-label="Professional track record">
-          <div class="record-entry" role="listitem"><span class="record-point" aria-hidden="true"></span><b>2016</b><h3>First digital projects</h3><p>Started developing websites and building practical programming skills.</p></div>
-          <div class="record-entry" role="listitem"><span class="record-point" aria-hidden="true"></span><b>100+</b><h3>Wider delivery experience</h3><p>Work spanning websites, web applications and digital platforms.</p></div>
-          <div class="record-entry" role="listitem"><span class="record-point" aria-hidden="true"></span><b>MYCDIC</b><h3>Institutional systems</h3><p>Leading digital platform initiatives in collaboration with council and Trendad teams.</p></div>
-          <div class="record-entry" role="listitem"><span class="record-point" aria-hidden="true"></span><b>Today</b><h3>Computing & AI automation</h3><p>Continuing technical study at UCLM ESI alongside practical platform work.</p></div>
+        <div class="section-heading work-heading"><p class="eyebrow" data-i18n="workLabel">01 / SELECTED WORK</p><h2 id="workTitle"><span data-i18n="workHeading1">Real systems.</span><br><em data-i18n="workHeading2">Work you can inspect.</em></h2><p data-i18n="workIntro">Public source code and collaborative institutional delivery. The illustrations summarize documented architecture; they are not private application screenshots.</p></div>
+        <div class="cases-grid">
+          <article class="case-card case-featured" data-reveal>
+            <div class="case-photo"><img src="./assets/img/case-mycdic.jpg" width="1200" height="690" loading="lazy" alt="Diagram of MYCDIC public website, internal operations and automation"><span data-i18n="illustration">ARCHITECTURE ILLUSTRATION</span></div>
+            <div class="case-body"><p class="case-index" data-i18n="caseInstitutionalTag">INSTITUTIONAL DELIVERY / TEAM LEADERSHIP</p><h3 data-i18n="caseInstitutionalTitle">MYCDIC digital environment</h3><p data-i18n="caseInstitutionalText">Leading digital platform initiatives with MYCDIC and Trendad teams, covering the public website and internal administrative workflows.</p><div class="case-tags"><span>Website architecture</span><span>Automation</span><span>Operations</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseInstitutionalDetail">Public communication, managed submissions, structured records, verification and correspondence. Internal screens and personal records remain private; responsibilities are shared with the teams.</p></div></details><a class="underlined-link" href="https://www.mycdic.org/" target="_blank" rel="noopener noreferrer"><span data-i18n="visitPublic">View public website</span> ↗</a></div>
+          </article>
+          <article class="case-card" data-reveal>
+            <div class="case-photo"><img src="./assets/img/case-repoverity.jpg" width="1200" height="690" loading="lazy" alt="Repository metadata to research and audit architecture illustration"><span data-i18n="illustration">ARCHITECTURE ILLUSTRATION</span></div>
+            <div class="case-body"><p class="case-index" data-i18n="caseRepoTag">OPEN SOURCE / GITHUB RESEARCH</p><h3>RepoVerity</h3><p data-i18n="caseRepoText">A read-only workspace for exploring public GitHub metadata, maintainability checks and evidence-based repository research.</p><div class="case-tags"><span>GitHub API</span><span>Research</span><span>UI</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseRepoDetail">Structured public data inspection and bounded audits, with documentation of sample limits and evidence sources.</p></div></details><a class="underlined-link" href="https://github.com/kobrymoataz/repoverity" target="_blank" rel="noopener noreferrer"><span data-i18n="viewCode">View source code</span> ↗</a></div>
+          </article>
+          <article class="case-card" data-reveal>
+            <div class="case-photo"><img src="./assets/img/case-submissionledger.jpg" width="1200" height="690" loading="lazy" alt="SubmissionLedger durable intake, outbox and worker architecture illustration"><span data-i18n="illustration">ARCHITECTURE ILLUSTRATION</span></div>
+            <div class="case-body"><p class="case-index" data-i18n="caseLedgerTag">BACKEND / DELIVERY RELIABILITY</p><h3>SubmissionLedger</h3><p data-i18n="caseLedgerText">Local-first submission intake with idempotency, a durable SQLite outbox, retries and signed webhook delivery.</p><div class="case-tags"><span>Node.js</span><span>SQLite</span><span>Webhooks</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseLedgerDetail">An authenticated local API persists submissions and delivery jobs together; a worker tracks attempts and uses HMAC signatures.</p></div></details><a class="underlined-link" href="https://github.com/kobrymoataz/submissionledger" target="_blank" rel="noopener noreferrer"><span data-i18n="viewCode">View source code</span> ↗</a></div>
+          </article>
+          <article class="case-card" data-reveal>
+            <div class="case-photo"><img src="./assets/img/case-flowfault.jpg" width="1200" height="690" loading="lazy" alt="FlowFault inspect simulate report architecture illustration"><span data-i18n="illustration">ARCHITECTURE ILLUSTRATION</span></div>
+            <div class="case-body"><p class="case-index" data-i18n="caseFlowTag">TESTING / RESILIENCE</p><h3>FlowFault</h3><p data-i18n="caseFlowText">Local-first tooling for inspecting HTML forms and performing controlled, authorized one-request failure experiments.</p><div class="case-tags"><span>Node.js</span><span>Chrome DevTools</span><span>Reports</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseFlowDetail">Form checks, bounded offline or HTTP-failure simulations, and sanitized local report comparisons without sending report data to a cloud service.</p></div></details><a class="underlined-link" href="https://github.com/kobrymoataz/flowfault" target="_blank" rel="noopener noreferrer"><span data-i18n="viewCode">View source code</span> ↗</a></div>
+          </article>
         </div>
       </div>
     </section>
-    <section class="tools-section section" id="tools"><div class="wrap"><div class="section-head tools-head"><div><p class="eyebrow">04 / ENGINEERING TOOLKIT</p><h2 class="display-heading">The right tools <em>for the work.</em></h2></div><p>My day-to-day toolkit spans programming, databases, automation and the infrastructure that connects them.</p></div>
-    <div class="tools-toolbar"><div class="tool-filters" role="group" aria-label="Filter technologies"><button class="filter active" aria-pressed="true" data-filter="all">All</button><button class="filter" aria-pressed="false" data-filter="code">Development</button><button class="filter" aria-pressed="false" data-filter="data">Data</button><button class="filter" aria-pressed="false" data-filter="automate">Automation</button><button class="filter" aria-pressed="false" data-filter="ops">Operations</button></div><div class="tools-count" id="toolsCount" aria-live="polite">18 TECHNOLOGIES</div></div>
-    <div class="tools-grid" id="toolsGrid">
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/javascript.svg" alt=""><span>JavaScript</span><small>Language</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/typescript.svg" alt=""><span>TypeScript</span><small>Language</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/python.svg" alt=""><span>Python</span><small>Language</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/java.svg" alt=""><span>Java</span><small>Language</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/php.svg" alt=""><span>PHP</span><small>Backend</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/react.svg" alt=""><span>React</span><small>Frontend</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/reactnative.svg" alt=""><span>React Native</span><small>Mobile</small></button>
-      <button type="button" class="tool" data-type="code" aria-pressed="false"><img src="./assets/logos/nodejs.svg" alt=""><span>Node.js</span><small>Backend</small></button>
-      <button type="button" class="tool" data-type="data" aria-pressed="false"><img src="./assets/logos/postgresql.svg" alt=""><span>PostgreSQL</span><small>Relational data</small></button>
-      <button type="button" class="tool" data-type="data" aria-pressed="false"><img src="./assets/logos/mongodb.svg" alt=""><span>MongoDB</span><small>Document data</small></button>
-      <button type="button" class="tool" data-type="data" aria-pressed="false"><img src="./assets/logos/firebase.svg" alt=""><span>Firebase</span><small>Cloud services</small></button>
-      <button type="button" class="tool" data-type="automate" aria-pressed="false"><img src="./assets/logos/n8n.svg" alt=""><span>n8n</span><small>Orchestration</small></button>
-      <button type="button" class="tool" data-type="automate" aria-pressed="false"><img src="./assets/logos/googleworkspace.svg" alt=""><span>Google Workspace</span><small>Apps Script</small></button>
-      <button type="button" class="tool" data-type="automate" aria-pressed="false"><img src="./assets/logos/prompt.svg" alt=""><span>Prompt design</span><small>AI workflows</small></button>
-      <button type="button" class="tool" data-type="ops" aria-pressed="false"><img src="./assets/logos/microsoft365.svg" alt=""><span>Microsoft 365</span><small>Productivity</small></button>
-      <button type="button" class="tool" data-type="ops" aria-pressed="false"><img src="./assets/logos/github.svg" alt=""><span>GitHub</span><small>Collaboration</small></button>
-      <button type="button" class="tool" data-type="ops" aria-pressed="false"><img src="./assets/logos/docker.svg" alt=""><span>Docker</span><small>Containers</small></button>
-      <button type="button" class="tool" data-type="ops" aria-pressed="false"><img src="./assets/logos/mail.svg" alt=""><span>Email systems</span><small>Deliverability</small></button>
-    </div>
-      <aside class="tool-spotlight" id="toolSpotlight" aria-live="polite" aria-atomic="true">
-        <div class="tool-spotlight-icon"><img id="spotIcon" src="./assets/logos/javascript.svg" alt="" width="54" height="54"></div>
-        <div class="tool-spotlight-copy"><span>TOOL / APPLICATION</span><h3 id="spotTitle">JavaScript</h3><p id="spotDescription">Interactive interfaces, browser-side logic and connected web applications.</p></div>
-        <span class="tool-spotlight-index" aria-hidden="true">SELECT A TOOL ↗</span>
-      </aside>
+
+    <section class="lab-section section" id="lab" aria-labelledby="labTitle"><div class="wrap lab-layout">
+      <div class="lab-intro"><p class="eyebrow" data-i18n="labLabel">02 / INTERACTIVE ENGINEERING LAB</p><h2 id="labTitle"><span data-i18n="labHeading1">Follow a request</span><br><em data-i18n="labHeading2">through a system.</em></h2><p data-i18n="labIntro">A deterministic, browser-only demonstration of intake, validation, storage, delivery and verification. All data is synthetic; no request leaves your device.</p>
+        <div class="lab-explainer"><span class="lab-note" data-i18n="labNote">WHY IT MATTERS</span><p data-i18n="labBenefit">Reliability depends on more than a successful form submission: traceability, recovery and clear outcomes are part of the design.</p></div>
+      </div>
+      <div class="lab-console" id="engineeringLab">
+        <div class="console-head"><span class="console-lights" aria-hidden="true"><i></i><i></i><i></i></span><strong>workflow-simulator / v1</strong><span id="labBadge" class="run-state" data-i18n="labReady">READY</span></div>
+        <div class="lab-flow" id="labFlow" role="list" aria-label="Simulation stages">
+          <div class="lab-node" data-stage="0" role="listitem"><b>01</b><strong data-i18n="stepClient">INTAKE</strong><small>HTTP</small></div>
+          <div class="lab-node" data-stage="1" role="listitem"><b>02</b><strong data-i18n="stepVerify">VALIDATE</strong><small>API</small></div>
+          <div class="lab-node" data-stage="2" role="listitem"><b>03</b><strong data-i18n="stepStore">STORE</strong><small>DB</small></div>
+          <div class="lab-node" data-stage="3" role="listitem"><b>04</b><strong data-i18n="stepQueue">QUEUE</strong><small>OUTBOX</small></div>
+          <div class="lab-node" data-stage="4" role="listitem"><b>05</b><strong data-i18n="stepDeliver">DELIVER</strong><small>WEBHOOK</small></div>
+          <div class="lab-node" data-stage="5" role="listitem"><b>06</b><strong data-i18n="stepDone">VERIFY</strong><small>ACK</small></div>
+        </div>
+        <div class="console-body">
+          <div class="console-log-heading"><span data-i18n="labActivity">EVENT LOG</span><span id="labEventCount">00 EVENTS</span></div>
+          <ol id="labLog" class="console-log" aria-live="polite" aria-relevant="additions text"><li data-i18n="labIdle">Ready to simulate a request. Choose Run.</li></ol>
+        </div>
+        <div class="lab-settings"><label><input type="checkbox" id="injectFailure"><span data-i18n="labFailure">Inject one recoverable delivery failure</span></label><span class="mock-tag" data-i18n="labMock">LOCAL SIMULATION ONLY</span></div>
+        <div class="lab-actions"><button type="button" class="lab-primary" id="labRun" data-i18n="labRun">Run simulation ↗</button><button type="button" id="labStep" data-i18n="labStep">Single step</button><button type="button" id="labReset" data-i18n="labReset">Reset</button></div>
+      </div>
     </div></section>
-    <section class="architecture-section section" id="architecture"><div class="wrap"><div class="section-head"><p class="eyebrow">05 / SYSTEM ARCHITECTURE</p><h2 class="display-heading">The systems <em>behind the screen.</em></h2><p>Public experiences work best when their services, data, integrations and communications are designed as one practical system.</p></div>
-      <div class="architecture-flow" aria-label="Illustrative architecture, from user experience to delivered services">
-        <div class="arch-item"><span class="arch-symbol">♧</span><span class="arch-step">01 / FRONT END</span><h3>Clients & users</h3><p>Websites, applications and institutional interfaces</p></div><div class="arch-arrow" aria-hidden="true">→</div>
-        <div class="arch-item"><span class="arch-symbol">◇</span><span class="arch-step">02 / APPLICATION</span><h3>Business logic</h3><p>PHP, Node.js, services and APIs</p></div><div class="arch-arrow" aria-hidden="true">→</div>
-        <div class="arch-item"><span class="arch-symbol">▤</span><span class="arch-step">03 / DATA</span><h3>Information layer</h3><p>PostgreSQL, MongoDB and Firebase</p></div><div class="arch-arrow" aria-hidden="true">→</div>
-        <div class="arch-item"><span class="arch-symbol">◎</span><span class="arch-step">04 / INTEGRATION</span><h3>Operations</h3><p>n8n, Apps Script and secure workflows</p></div><div class="arch-arrow" aria-hidden="true">→</div>
-        <div class="arch-item"><span class="arch-symbol">↗</span><span class="arch-step">05 / OUTCOME</span><h3>Delivered work</h3><p>Usable systems, trusted messages and continuity</p></div>
-      </div><div class="architecture-note"><span>ENGINEERING PRINCIPLE</span><p>Dependability comes from the whole process: clear requirements, trusted data, review, and maintainable delivery.</p></div>
+
+    <section class="toolkit-section section light-section" id="stack" aria-labelledby="stackTitle"><div class="wrap">
+      <div class="section-heading toolkit-heading"><p class="eyebrow" data-i18n="stackLabel">03 / ENGINEERING TOOLKIT</p><h2 id="stackTitle"><span data-i18n="stackHeading1">A working toolkit,</span><br><em data-i18n="stackHeading2">not a wall of logos.</em></h2><p data-i18n="stackIntro">Select a technology to see what it contributes to a real development or operations workflow.</p></div>
+      <div class="tool-categories" role="group" aria-label="Technology categories">
+        <button type="button" class="category active" data-category="all" aria-pressed="true" data-i18n="catAll">All tools</button>
+        <button type="button" class="category" data-category="dev" aria-pressed="false" data-i18n="catDev">Development</button>
+        <button type="button" class="category" data-category="data" aria-pressed="false" data-i18n="catData">Data</button>
+        <button type="button" class="category" data-category="automation" aria-pressed="false" data-i18n="catAutomation">Automation</button>
+        <button type="button" class="category" data-category="ops" aria-pressed="false" data-i18n="catOps">Operations</button>
+        <output id="toolCount" aria-live="polite">18</output>
+      </div>
+      <div class="toolkit-grid" id="toolGrid">
+        <button class="skill" type="button" data-skill="javascript" data-category="dev" aria-pressed="true"><img src="./assets/logos/javascript.svg" alt="" loading="lazy"><span>JavaScript</span></button>
+        <button class="skill" type="button" data-skill="python" data-category="dev" aria-pressed="false"><img src="./assets/logos/python.svg" alt="" loading="lazy"><span>Python</span></button>
+        <button class="skill" type="button" data-skill="php" data-category="dev" aria-pressed="false"><img src="./assets/logos/php.svg" alt="" loading="lazy"><span>PHP</span></button>
+        <button class="skill" type="button" data-skill="java" data-category="dev" aria-pressed="false"><img src="./assets/logos/java.svg" alt="" loading="lazy"><span>Java</span></button>
+        <button class="skill" type="button" data-skill="typescript" data-category="dev" aria-pressed="false"><img src="./assets/logos/typescript.svg" alt="" loading="lazy"><span>TypeScript</span></button>
+        <button class="skill" type="button" data-skill="react" data-category="dev" aria-pressed="false"><img src="./assets/logos/react.svg" alt="" loading="lazy"><span>React</span></button>
+        <button class="skill" type="button" data-skill="nodejs" data-category="dev" aria-pressed="false"><img src="./assets/logos/nodejs.svg" alt="" loading="lazy"><span>Node.js</span></button>
+        <button class="skill" type="button" data-skill="reactnative" data-category="dev" aria-pressed="false"><img src="./assets/logos/reactnative.svg" alt="" loading="lazy"><span>React Native</span></button>
+        <button class="skill" type="button" data-skill="postgresql" data-category="data" aria-pressed="false"><img src="./assets/logos/postgresql.svg" alt="" loading="lazy"><span>PostgreSQL</span></button>
+        <button class="skill" type="button" data-skill="mongodb" data-category="data" aria-pressed="false"><img src="./assets/logos/mongodb.svg" alt="" loading="lazy"><span>MongoDB</span></button>
+        <button class="skill" type="button" data-skill="firebase" data-category="data" aria-pressed="false"><img src="./assets/logos/firebase.svg" alt="" loading="lazy"><span>Firebase</span></button>
+        <button class="skill" type="button" data-skill="n8n" data-category="automation" aria-pressed="false"><img src="./assets/logos/n8n.svg" alt="" loading="lazy"><span>n8n</span></button>
+        <button class="skill" type="button" data-skill="googleworkspace" data-category="automation" aria-pressed="false"><img src="./assets/logos/googleworkspace.svg" alt="" loading="lazy"><span>Google Workspace</span></button>
+        <button class="skill" type="button" data-skill="microsoft365" data-category="automation" aria-pressed="false"><img src="./assets/logos/microsoft365.svg" alt="" loading="lazy"><span>Microsoft 365</span></button>
+        <button class="skill" type="button" data-skill="github" data-category="ops" aria-pressed="false"><img src="./assets/logos/github.svg" alt="" loading="lazy"><span>GitHub</span></button>
+        <button class="skill" type="button" data-skill="git" data-category="ops" aria-pressed="false"><img src="./assets/logos/git.svg" alt="" loading="lazy"><span>Git</span></button>
+        <button class="skill" type="button" data-skill="docker" data-category="ops" aria-pressed="false"><img src="./assets/logos/docker.svg" alt="" loading="lazy"><span>Docker</span></button>
+        <button class="skill" type="button" data-skill="cybersecurity" data-category="ops" aria-pressed="false"><img src="./assets/logos/cybersecurity.svg" alt="" loading="lazy"><span>Security &amp; Email</span></button>
+      </div>
+      <div class="tool-spotlight" aria-live="polite"><div class="spot-code" data-i18n="spotCode">// selected toolkit</div><div><p class="spot-label" data-i18n="spotLabel">TECHNOLOGY IN PRACTICE</p><h3 id="spotTitle">JavaScript</h3><p id="spotDescription" data-i18n="skillJavascript">Interfaces, validation, client-side behavior and connected web applications.</p></div><span class="spot-arrow" aria-hidden="true">↗</span></div>
     </div></section>
-    <section class="security-section section"><div class="wrap security-layout"><div><p class="eyebrow">06 / CYBERSECURITY & COMMUNICATION</p><h2 class="display-heading">Reliability is <em>part of the design.</em></h2><p>Technical work extends beyond code to infrastructure, sender authentication and dependable institutional communication.</p></div><div class="security-list"><div><b>SPF / DKIM / DMARC</b><span>Email authentication and alignment</span></div><div><b>DNS / SMTP</b><span>Delivery foundations and configuration</span></div><div><b>SECURITY-AWARE SYSTEMS</b><span>Careful operational and platform design</span></div></div></div></section>
-    <section class="perspective-section section" id="perspective"><div class="wrap perspective-grid"><div class="perspective-copy"><p class="eyebrow">07 / PERSPECTIVE</p><h2 class="display-heading">Systems informed by <em>an international perspective.</em></h2><p>Institutional leadership and technical work have taught me that digital systems must serve people with different roles, needs and contexts.</p><p>As Founder & President of MYCDIC, I work with international collaborators and multidisciplinary teams. This perspective informs the systems I help create.</p><a class="text-link gold-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">Read my institutional profile <span>↗</span></a><div class="perspective-metrics"><div><strong>04</strong><span>Working languages</span></div><div><strong>AR · EN<br>FR · ES</strong><span>Multilingual communication</span></div></div></div>
-      <div class="globe-stage" aria-label="Interactive geographical illustration">
-        <div class="globe-head"><span><i class="globe-live-dot" aria-hidden="true"></i>GEOGRAPHIC CONTEXT</span><span data-globe-status>LOADING THE 3D GLOBE</span></div>
+
+    <section class="globe-section section" id="perspective" aria-labelledby="globeTitle"><div class="wrap globe-layout">
+      <div class="globe-copy"><p class="eyebrow" data-i18n="globeLabel">04 / GLOBAL PERSPECTIVE</p><h2 id="globeTitle"><span data-i18n="globeHeading1">Systems are built</span><br><em data-i18n="globeHeading2">for people and places.</em></h2><p data-i18n="globeText">My work combines technical execution with institutional cooperation and cross-border communication. The locations below describe verifiable work and academic context, not live activity.</p><a class="underlined-link pale-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer"><span data-i18n="institutionalProfile">Institutional profile</span> ↗</a><div class="globe-language-note"><span data-i18n="globeLanguage">WORKING LANGUAGES</span><strong dir="ltr">العربية / English / Français / Español</strong></div></div>
+      <div class="globe-stage" aria-label="Interactive Earth globe">
+        <div class="globe-header"><span class="live-pulse" aria-hidden="true"></span><span data-i18n="globeVisualization">GEOGRAPHICAL CONTEXT</span><small data-globe-status>3D INITIALIZING</small></div>
         <div class="globe-viewport">
-          <div class="globe-rings" aria-hidden="true"><span></span><span></span><span></span></div>
-          <img class="globe-fallback globe-fallback-image" src="./assets/img/globe-fallback.webp" alt="Geographical illustration of Earth" width="760" height="760" loading="lazy" decoding="async">
-          <canvas id="globeCanvas" aria-label="Interactive geographical globe; drag to rotate" role="img" tabindex="0"></canvas>
+          <div class="orbit orbit-a" aria-hidden="true"></div><div class="orbit orbit-b" aria-hidden="true"></div>
+          <img class="globe-fallback" src="./assets/img/globe-fallback.webp" alt="Illustration of Earth" width="760" height="760" loading="lazy">
+          <canvas id="globeCanvas" role="img" aria-label="3D globe. Drag or touch to rotate; use zoom controls." tabindex="0"></canvas>
         </div>
-        <div class="globe-interact">
-          <div class="globe-controls" role="group" aria-label="Globe controls">
-            <button id="globeMotionToggle" type="button" aria-pressed="true">Pause rotation Ⅱ</button>
-            <button id="globeZoomIn" type="button" aria-label="Zoom in">＋</button><button id="globeZoomOut" type="button" aria-label="Zoom out">－</button>
-            <button id="globeReset" type="button" aria-label="Reset globe view">Reset ↺</button>
-          </div>
-          <p class="globe-caption-small">DRAG TO ROTATE · SCROLL TO ZOOM · SELECT A LOCATION</p>
-          <div class="globe-locations" role="group" aria-label="Explore institutional and academic locations">
-            <button type="button" data-globe-location="madrid" aria-pressed="true">Madrid</button><button type="button" data-globe-location="rabat" aria-pressed="false">Rabat</button>
-            <button type="button" data-globe-location="brussels" aria-pressed="false">Brussels</button><button type="button" data-globe-location="ciudad-real" aria-pressed="false">Ciudad Real</button>
-          </div>
-          <div class="globe-location-detail" aria-live="polite"><strong data-globe-place>Madrid</strong><span data-globe-context>MYCDIC headquarters</span></div>
+        <div class="globe-panel">
+          <div class="globe-controls" role="group" aria-label="Globe controls"><button id="globeMotionToggle" type="button" aria-pressed="true" data-i18n="globePause">Pause rotation Ⅱ</button><button id="globeZoomIn" type="button" aria-label="Zoom in">＋</button><button id="globeZoomOut" type="button" aria-label="Zoom out">－</button><button id="globeReset" type="button" data-i18n="globeReset">Reset ↺</button></div>
+          <p class="globe-instruction" data-i18n="globeInstruction">DRAG TO ROTATE · SCROLL TO ZOOM · SELECT A LOCATION</p>
+          <div class="globe-locations" role="group" aria-label="Select a location"><button type="button" data-globe-location="madrid" aria-pressed="true">Madrid</button><button type="button" data-globe-location="rabat" aria-pressed="false">Rabat</button><button type="button" data-globe-location="brussels" aria-pressed="false">Brussels</button><button type="button" data-globe-location="ciudad-real" aria-pressed="false">Ciudad Real</button></div>
+          <div class="globe-detail" aria-live="polite"><strong data-globe-place>Madrid</strong><span data-globe-context data-i18n="locationMadrid">MYCDIC headquarters</span></div>
         </div>
-        <p class="globe-legal">Selected locations provide context for the institutional and academic work. Lines are illustrative, not real-time activity or travel tracking.</p>
+        <p class="globe-disclaimer" data-i18n="globeDisclaimer">Connection arcs are conceptual. They do not represent live operations, personal tracking or travel routes.</p>
       </div>
     </div></section>
-    <section class="contact-section" id="contact" aria-labelledby="contact-heading">
-      <div class="wrap"><div class="contact-top"><span>08 / CONTACT</span><span>LET'S TALK ABOUT THE WORK</span></div>
-        <div class="contact-v19-grid">
-          <div class="contact-v19-copy"><h2 class="display-heading" id="contact-heading">Let's build <em>what lasts.</em></h2><p>For practical software, automation, institutional platforms and thoughtful collaboration.</p>
-            <a href="mailto:president@mycdic.org" class="contact-email">president@mycdic.org <span aria-hidden="true">↗</span></a>
-            <div class="contact-actions"><a class="btn btn-gold" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AMy%20name%3A%0AOrganization%3A%0APurpose%3A%0A%0AThank%20you.">Request CV ↗</a><button type="button" class="btn btn-outline" id="copyEmail">Copy email ↗</button></div>
-          </div>
-          <form class="contact-form" id="contactForm" action="mailto:president@mycdic.org" method="post" enctype="text/plain">
-            <p class="contact-form-heading">START A CONVERSATION <span>↗</span></p>
-            <div class="form-row"><label for="contactName">Name <span aria-hidden="true">*</span><input id="contactName" name="name" autocomplete="name" required maxlength="90" placeholder="Your name"></label><label for="contactReply">Email <span aria-hidden="true">*</span><input id="contactReply" name="reply" type="email" autocomplete="email" required maxlength="150" placeholder="you@organization.com"></label></div>
-            <label for="contactTopic">Topic<select id="contactTopic" name="topic"><option>Platform / systems collaboration</option><option>Automation & integration</option><option>Institutional technology</option><option>Media / professional enquiry</option><option>Other</option></select></label>
-            <label for="contactMessage">Message <span aria-hidden="true">*</span><textarea id="contactMessage" name="message" rows="4" required maxlength="1600" placeholder="A few lines about your idea or question..."></textarea></label>
-            <button class="contact-submit" type="submit">Prepare an email <span aria-hidden="true">↗</span></button>
-            <p class="contact-privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 5 6v6c0 4.2 2.8 7.2 7 9 4.2-1.8 7-4.8 7-9V6Z"/></svg> Opens your email application for review and sending. This website does not transmit or store the form.</p>
-          </form>
-        </div>
+
+    <section class="profile-section section light-section" id="profile" aria-labelledby="profileTitle"><div class="wrap profile-layout"><div><p class="eyebrow" data-i18n="profileLabel">05 / PROFESSIONAL PROFILE</p><h2 id="profileTitle"><span data-i18n="profileHeading1">Experience earned</span><br><em data-i18n="profileHeading2">by building.</em></h2><p data-i18n="profileText">I study Computing at the Escuela Superior de Informática (UCLM ESI), with a focus on AI and automation. Outside the classroom, I work across engineering, technical coordination, Wikimedia and institutional digital visibility.</p><div class="profile-cta"><a class="button button-dark" href="./assets/Moataz_Kobry_Professional_CV.pdf" download><span data-i18n="downloadCV">Download professional CV</span> ↓</a><a class="text-link-dark" href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div></div>
+      <div class="story-timeline">
+        <div><span>2016</span><p data-i18n="timeline2016">Began web development and hands-on digital projects.</p></div>
+        <div><span>100+</span><p data-i18n="timeline100">Websites and digital platforms across years of work.</p></div>
+        <div><span>MYCDIC</span><p data-i18n="timelineCouncil">Leads collaborative digital initiatives with MYCDIC and Trendad teams.</p></div>
+        <div><span>UCLM / ESI</span><p data-i18n="timelineUCLM">Computing studies, AI automation and continuous technical learning.</p></div>
       </div>
-    </section>
+    </div></section>
+
+    <section class="contact-section section" id="contact" aria-labelledby="contactTitle"><div class="wrap contact-layout"><div><p class="eyebrow" data-i18n="contactLabel">06 / CONTACT</p><h2 id="contactTitle"><span data-i18n="contactHeading1">Let's discuss</span><br><em data-i18n="contactHeading2">the work ahead.</em></h2><p data-i18n="contactIntro">For engineering collaboration, digital platforms, institutional projects and practical automation.</p><a class="contact-mail" href="mailto:president@mycdic.org">president@mycdic.org ↗</a><div class="social-row"><a href="https://github.com/kobrymoataz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
+      <form id="contactForm" class="contact-form" novalidate>
+        <h3 data-i18n="formHeading">Prepare a message</h3>
+        <div class="form-split"><label><span data-i18n="formName">Your name</span><input type="text" id="contactName" name="name" autocomplete="name" required maxlength="100" placeholder="Full name" data-i18n-placeholder="formNamePlaceholder"></label><label><span data-i18n="formEmail">Reply email</span><input type="email" id="contactEmail" name="email" autocomplete="email" required maxlength="160" placeholder="you@example.com"></label></div>
+        <label><span data-i18n="formTopic">Subject</span><select id="contactTopic" name="topic"><option value="systems" data-i18n="topicSystems">Systems / platform engineering</option><option value="automation" data-i18n="topicAutomation">Automation and integration</option><option value="institutional" data-i18n="topicInstitutional">Institutional collaboration</option><option value="media" data-i18n="topicMedia">Media or professional enquiry</option></select></label>
+        <label><span data-i18n="formMessage">Your message</span><textarea id="contactMessage" name="message" required rows="5" maxlength="1800" data-i18n-placeholder="formPlaceholder" placeholder="A few lines about your project..."></textarea></label>
+        <button type="submit" class="contact-submit"><span data-i18n="formSubmit">Open message in email app</span> ↗</button>
+        <p class="form-privacy" data-i18n="formPrivacy">This opens your mail app. Nothing is sent or stored by this website; you review and send the email yourself.</p>
+        <p id="contactFeedback" class="form-feedback" aria-live="polite"></p>
+      </form>
+    </div></section>
   </main>
-  <footer class="footer"><div class="wrap footer-main"><div class="footer-identity"><img src="./assets/logo-mark.svg" width="56" height="56" alt=""><div><strong>MOATAZ KOBRY</strong><small>COMPUTING · SYSTEMS</small></div></div><p>Digital systems designed with purpose, built for the people and teams behind them.</p><div class="footer-links"><a href="https://github.com/kobrymoataz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram ↗</a><a href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer">MYCDIC ↗</a></div></div><div class="wrap footer-last"><span>© 2026 MOATAZ KOBRY</span><span>BUILT FOR THE WEB · HOSTED ON GITHUB PAGES</span></div></footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script defer src="./globe-v21.js"></script>
+  <footer class="site-footer"><div class="wrap footer-row"><div class="brand footer-brand"><img src="./assets/logo-mark.svg" alt="" width="35" height="35"><span dir="ltr"><strong>MOATAZ KOBRY</strong><small>COMPUTING / SYSTEMS</small></span></div><p data-i18n="footerNote">Built for clarity, continuity and the people behind digital systems.</p><a href="#top" data-i18n="backTop">Back to top ↑</a></div><div class="wrap footer-bottom"><span>© 2026 MOATAZ KOBRY</span><span>GITHUB PAGES · MAIN / DOCS</span></div></footer>
+  <script src="./i18n.js" defer></script>
+  <script src="./lab.js" defer></script>
+  <script src="./app.js" defer></script>
+  <script src="./globe-v22.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
 </body>
 </html>

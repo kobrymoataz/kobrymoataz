@@ -1,5 +1,5 @@
 /**
- * V21 geographic globe. WebGL rendering is self-hosted and has no CDN dependency.
+ * V22 interactive geographic globe. WebGL rendering is self-hosted and has no CDN dependency.
  * Texture: local equirectangular illustration bundled with the website.
  * Institutional markers are contextual locations, not real-time activity data.
  */
@@ -18,6 +18,9 @@
   ];
   const edges = [[0,1],[0,2]]; // conceptual links, not travel or operational routing
   const status = stage.querySelector('[data-globe-status]');
+  const tr=k=>window.siteI18n?.t(k)||k;
+  const contextKey={'madrid':'locationMadrid','rabat':'locationRabat','brussels':'locationBrussels','ciudad-real':'locationCiudadReal'};
+  let statusKey='';
   const currentPlace = stage.querySelector('[data-globe-place]');
   const currentContext = stage.querySelector('[data-globe-context]');
   const playButton = document.getElementById('globeMotionToggle');
@@ -58,14 +61,17 @@
   let cssHeight = 400;
   let failed = false;
   let render = () => {};
+  let start = () => {}; // Assigned after the WebGL renderer is initialized.
   const identity = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
 
   function clamp(v,lo,hi){return Math.min(hi,Math.max(lo,v));}
-  function setStatus(text){if(status)status.textContent=text;}
+  function setStatus(text){statusKey=text;if(status)status.textContent=text;}
+  function localizeGlobe(){labelLocation(locations[active]);updateButton();if(status&&statusKey==='INTERACTIVE WEBGL · DRAG TO ROTATE')status.textContent=tr('globeStatusWebGL');if(status&&statusKey==='STATIC VIEW · WEBGL NOT AVAILABLE')status.textContent=tr('globeStatusFallback');}
+  document.addEventListener('portfolio:locale',localizeGlobe);
   function labelLocation(loc){
     if(!loc)return;
     currentPlace && (currentPlace.textContent=loc.label);
-    currentContext && (currentContext.textContent=loc.sub);
+    currentContext && (currentContext.textContent=tr(contextKey[loc.id]));
     pointButtons.forEach(btn=>{
       const on=btn.dataset.globeLocation===loc.id;
       btn.classList.toggle('is-selected',on);
@@ -97,7 +103,7 @@
     render();
   }
   function updateButton(){
-    if(playButton){playButton.textContent=auto?'Pause rotation Ⅱ':'Resume rotation ↻';playButton.setAttribute('aria-pressed',String(auto));}
+    if(playButton){playButton.textContent=auto?tr('globePause'):tr('globePlay');playButton.setAttribute('aria-pressed',String(auto));}
   }
   function pauseOrPlay(){auto=!auto;spinTarget=null;updateButton();if(auto)start();render();}
   playButton?.addEventListener('click',pauseOrPlay);
@@ -244,7 +250,7 @@
     canvas.tabIndex=0;
     canvas.setAttribute('aria-label','Interactive 3D Earth. Drag to rotate; scroll or use buttons to zoom; arrow keys rotate.');
     stage.classList.add('has-webgl-v21');stage.dataset.renderer='webgl';
-    setStatus('INTERACTIVE WEBGL · DRAG TO ROTATE');
+    setStatus('INTERACTIVE WEBGL · DRAG TO ROTATE');status.textContent=tr('globeStatusWebGL');
     const resize=()=>{
       const rect=canvas.getBoundingClientRect();
       cssWidth=Math.max(80,rect.width);cssHeight=Math.max(80,rect.height);
@@ -303,7 +309,7 @@
       render();
       if(auto||spinTarget!==null||dragging||Math.abs(velocity)>.004)start();
     }
-    function start(){if(!raf&&visible&&!document.hidden&&!failed){last=performance.now();raf=requestAnimationFrame(tick);}}
+    start = function(){if(!raf&&visible&&!document.hidden&&!failed){last=performance.now();raf=requestAnimationFrame(tick);}};
     function stop(){if(raf){cancelAnimationFrame(raf);raf=0;}}
     function fitAngle(x){return ((x+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;}
     const pick=(x,y)=>{
@@ -373,7 +379,7 @@
     updateButton();choose(0,false);render();start();
   } catch(err) {
     failed=true;stage.dataset.renderer='fallback';stage.classList.remove('has-webgl-v21');
-    setStatus('STATIC VIEW · WEBGL NOT AVAILABLE');
+    setStatus('STATIC VIEW · WEBGL NOT AVAILABLE');if(status)status.textContent=tr('globeStatusFallback');
     [playButton, zoomPlus, zoomMinus, resetButton].forEach(btn=>{if(btn){btn.disabled=true;btn.title='Interactive 3D requires WebGL';}});
     console.warn('Globe fallback activated:',err.message);
   }

@@ -1,38 +1,41 @@
-# GitHub Pages remains configured to deploy from main /docs (no competing deploy job).
-name: Validate portfolio (branch publishing)
+# Branch publishing remains Settings -> Pages -> Deploy from a branch -> main /docs.
+# This action VALIDATES only and never performs an additional deployment.
+name: Validate V22 portfolio (branch publishing)
 on:
   push:
     branches: [main]
     paths:
       - 'docs/**'
-      - 'assets/**'
       - 'README.md'
+      - 'assets/**'
       - 'scripts/validate_site.py'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
       - 'docs/**'
-      - 'assets/**'
       - 'README.md'
+      - 'assets/**'
       - 'scripts/validate_site.py'
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: portfolio-check-${{ github.ref }}
+  group: profile-validate-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  validate:
+  verify:
+    name: Validate static portfolio
     runs-on: ubuntu-latest
-    name: Validate portfolio assets
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate site and README
+      - name: Validate files, anchors, multilingual coverage and PDF
         run: python scripts/validate_site.py
-      - name: Check JavaScript syntax
+      - name: Verify JavaScript syntax
         run: |
+          node --check docs/i18n.js
+          node --check docs/lab.js
           node --check docs/app.js
-          node --check docs/globe-v21.js
+          node --check docs/globe-v22.js
