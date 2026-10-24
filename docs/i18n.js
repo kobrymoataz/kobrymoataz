@@ -49,7 +49,7 @@
     "labLabel": "02 / INTERACTIVE ENGINEERING LAB",
     "labHeading1": "A system trace,",
     "labHeading2": "from your terminal.",
-    "labIntro": "An interactive terminal for exploring intake, validation, storage and delivery. Try real commands within a safe local simulation; nothing reaches a server.",
+    "labIntro": "A browser workstation with editable files, saved changes, local version snapshots and stateful delivery workflows. No commands run on your Mac or a remote server.",
     "labNote": "WHY IT MATTERS",
     "labBenefit": "A reliable system needs visibility into failed attempts, retries, queued jobs and decisions. Use the terminal to explore how each state changes.",
     "labReady": "READY",
@@ -164,11 +164,11 @@
     "labApprovedMsg": "Manual review approved. Workflow continues.",
     "spotCategory": "AREA",
     "spotWork": "RELATED WORK",
-    "terminalDemo": "DEMO / LOCAL",
+    "terminalDemo": "LOCAL WORKSPACE",
     "terminalScenarios": "CHOOSE A SCENARIO",
     "terminalStatus": "STATUS",
     "terminalTry": "TRY",
-    "terminalPrivacy": "This is a browser-only engineering demonstration. Commands do not reach a server or your Mac."
+    "terminalPrivacy": "Local browser project. Files and operations persist in this browser. Git commands manage local snapshots, not real Git repositories. No actual OS execution or delivery."
   },
   "fr": {
     "caseRepoTag": "CODE PUBLIC / RECHERCHE GITHUB",
@@ -217,7 +217,7 @@
     "labLabel": "02 / LABORATOIRE D'INGÉNIERIE INTERACTIF",
     "labHeading1": "Suivre un système,",
     "labHeading2": "depuis le terminal.",
-    "labIntro": "Un terminal interactif pour explorer la réception, la validation, le stockage et la livraison. Les commandes sont simulées localement, sans accès serveur.",
+    "labIntro": "Un espace de travail dans le navigateur : fichiers modifiables, sauvegarde, versions locales et flux de traitement avec états persistants. Aucune commande système réelle.",
     "labNote": "POURQUOI C'EST IMPORTANT",
     "labBenefit": "La fiabilité suppose de comprendre les échecs, les relances, les tâches en attente et les décisions. Explorez chaque état depuis le terminal.",
     "labReady": "PRÊT",
@@ -332,11 +332,11 @@
     "labApprovedMsg": "Vérification approuvée. Le flux continue.",
     "spotCategory": "DOMAINE",
     "spotWork": "TRAVAUX ASSOCIÉS",
-    "terminalDemo": "DÉMO / LOCALE",
+    "terminalDemo": "ESPACE LOCAL",
     "terminalScenarios": "CHOISIR UN SCÉNARIO",
     "terminalStatus": "ÉTAT",
     "terminalTry": "ESSAYER",
-    "terminalPrivacy": "Démonstration locale dans le navigateur. Les commandes n’accèdent ni à un serveur ni à votre Mac."
+    "terminalPrivacy": "Projet local dans ce navigateur. Les fichiers et les opérations y sont enregistrés. Les commandes Git gèrent des versions locales, pas un dépôt Git réel. Aucun envoi externe."
   },
   "es": {
     "caseRepoTag": "CÓDIGO ABIERTO / INVESTIGACIÓN GITHUB",
@@ -385,7 +385,7 @@
     "labLabel": "02 / LABORATORIO INTERACTIVO",
     "labHeading1": "Sigue un sistema,",
     "labHeading2": "desde el terminal.",
-    "labIntro": "Un terminal interactivo para explorar recepción, validación, almacenamiento y entrega. Todos los comandos son simulaciones locales seguras.",
+    "labIntro": "Un entorno de trabajo en el navegador con archivos editables, cambios guardados, versiones locales y procesos con estados reales. No ejecuta comandos del sistema.",
     "labNote": "POR QUÉ IMPORTA",
     "labBenefit": "Un sistema fiable exige comprender fallos, reintentos, trabajos en cola y decisiones. Explora cada estado desde el terminal.",
     "labReady": "LISTO",
@@ -500,11 +500,11 @@
     "labApprovedMsg": "Revisión aprobada. Continúa el flujo.",
     "spotCategory": "ÁREA",
     "spotWork": "TRABAJO RELACIONADO",
-    "terminalDemo": "DEMO / LOCAL",
+    "terminalDemo": "ENTORNO LOCAL",
     "terminalScenarios": "ELIGE UN ESCENARIO",
     "terminalStatus": "ESTADO",
     "terminalTry": "PRUEBA",
-    "terminalPrivacy": "Demostración local en el navegador. Los comandos no acceden a un servidor ni a tu Mac."
+    "terminalPrivacy": "Proyecto local en el navegador. Los archivos y las operaciones se guardan aquí. Los comandos Git gestionan versiones locales, no un repositorio Git real. Sin envíos externos."
   },
   "ar": {
     "caseRepoTag": "مصدر مفتوح / أبحاث GitHub",
@@ -553,7 +553,7 @@
     "labLabel": "02 / مختبر الهندسة التفاعلي",
     "labHeading1": "تتبّع النظام،",
     "labHeading2": "من خلال الطرفية.",
-    "labIntro": "طرفية تفاعلية لاستكشاف استقبال الطلب والتحقق والحفظ والتسليم. تُنفَّذ الأوامر في محاكاة آمنة داخل المتصفح فقط.",
+    "labIntro": "مساحة عمل داخل المتصفح تضم ملفات قابلة للتحرير والحفظ، وإصدارات محلية، وعمليات تتغيّر حالتها فعلًا. لا تنفّذ أوامر نظام حقيقية.",
     "labNote": "لماذا هذا مهم؟",
     "labBenefit": "موثوقية النظام تتطلب فهم الإخفاقات وإعادة المحاولة والمهام المنتظرة والمراجعات. استكشف كل حالة باستخدام الطرفية.",
     "labReady": "جاهز",
@@ -668,11 +668,11 @@
     "labApprovedMsg": "تم اعتماد المراجعة وتواصلت المعالجة.",
     "spotCategory": "المجال",
     "spotWork": "الأعمال المرتبطة",
-    "terminalDemo": "تجربة / محلية",
+    "terminalDemo": "مساحة عمل محلية",
     "terminalScenarios": "اختر السيناريو",
     "terminalStatus": "الحالة",
     "terminalTry": "جرّب",
-    "terminalPrivacy": "هذه محاكاة محلية داخل المتصفح؛ الأوامر لا تصل إلى خادم ولا تُنفذ على جهاز Mac الخاص بك."
+    "terminalPrivacy": "مشروع محلي محفوظ في هذا المتصفح. أوامر Git تدير نسخًا محلية وليست مستودع Git حقيقيًا. لا يوجد إرسال خارجي أو تنفيذ على جهازك."
   }
 };
   const available=['en','fr','es','ar'];

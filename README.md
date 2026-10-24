@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive browser-only terminal lab v3.5 (macOS and Ubuntu bash modes)** with commands (`help`, `run retry`, `status`, `trace`, `step`, `reset`) and realistic normal, retry, missing-record and human-review scenarios.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive engineering workstation V26**: persistent editable files, local Git-style version snapshots, executable file validation, stateful workflows and a browser Python panel. macOS and Ubuntu are interface styles, not actual operating systems.
 
 ### Engineering toolkit
 
@@ -65,22 +65,24 @@ Internal records and private administrative interfaces are not published. The [p
 
 <p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>
 
-> The terminal on the portfolio is a **local simulation**. It never executes operating-system commands or sends applicant or project data anywhere.
+> The engineering workstation edits browser-local files and executes stateful workflows, but it does not run real shell commands, send messages, or connect to private systems. Git-style commits are local snapshots, **not actual Git objects**.
 
-### Interactive engineering lab
+### V26 · Interactive engineering workstation
 
-The [terminal demo](https://kobrymoataz.github.io/kobrymoataz/#lab) looks and behaves like a small command-line interface with selectable macOS / zsh and Ubuntu / bash environments, plus a real elapsed-time stopwatch. It shows queue, verification, retry and human-review decisions using generated sample data. Useful example commands:
+The [interactive workstation](https://kobrymoataz.github.io/kobrymoataz/#lab) lets visitors edit local project files, save them in IndexedDB, inspect changes, stage files and commit real local **snapshots**, and run delivery jobs with state, errors, retries, validation and audit records. The editable project includes `config.json` and `data/request.json`. Try:
 
 ```text
 help
-run retry
-status
-trace
-scenario review
-run
-approve
+ls
+cat config.json
+write notes.txt hello-world
+git status
+git add .
+git commit -m "Update notes"
+workflow run retry
+workflow jobs
+workflow logs
+test
 ```
 
-Sample Linux commands: `uname -a`, `docker ps`, `df -h`, `systemctl status nginx`. All command output is simulated, not real machine or server health.
-
-It is intentionally sandboxed in the browser: **no remote execution, credentials, or private MYCDIC records**.
+The workstation saves its data in your own browser and can export/import a JSON backup. **Git-style versioning is a local snapshot engine, not compatible Git object storage.** Terminal commands are deliberately limited; no real Bash, Docker, SSH, npm or remote servers are exposed. Python runs via an optional Pyodide WebAssembly runtime that downloads on demand if an internet connection is available. The main workstation remains functional without it.

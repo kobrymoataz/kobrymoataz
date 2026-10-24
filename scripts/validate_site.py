@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V25 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V26 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -9,7 +9,7 @@ D=R/'docs'; errors=[]
 REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v25.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v26.sh']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -63,17 +63,17 @@ else:
 if (D/'assets/Moataz_Kobry_Professional_CV.pdf').exists():errors.append('Public CV PDF must not be included in docs')
 if 'Moataz_Kobry_Professional_CV.pdf' in md or 'Moataz_Kobry_Professional_CV.pdf' in (D/'index.html').read_text(): errors.append('Public CV download link found')
 html=(D/'index.html').read_text(encoding='utf-8') if (D/'index.html').exists() else ''
-for term in ['V25','RepoVerity','SubmissionLedger','FlowFault','Firebase','PostgreSQL','MongoDB','MYCDIC','Trendad','globeCanvas','engineeringLab','termInput','termOutput','workflow-simulator / v3']:
+for term in ['V25','RepoVerity','SubmissionLedger','FlowFault','Firebase','PostgreSQL','MongoDB','MYCDIC','Trendad','globeCanvas','engineeringLab','termInput','termOutput','engineering-workstation / v26']:
  if term not in html+md and term!='V25':errors.append('Required portfolio element not found: '+term)
 lab=(D/'lab.js').read_text(encoding='utf-8') if (D/'lab.js').is_file() else ''
-for term in ['data-terminal-os','labElapsed','tabLinux','tabMac']:
+for term in ['data-terminal-os','labElapsed','tabLinux','tabMac','wsEditor','wsFileList','wsRunPython','wsExport']:
  if term not in html:errors.append('Missing terminal UI control: '+term)
-for term in ['setShell','formatDuration','stopwatchReset','systemctl','docker']:
+for term in ['indexedDBOpen','workflowRun','gitAction','importWorkspace','tests','pythonWorker']:
  if term not in lab:errors.append('Missing terminal engine feature: '+term)
 workflow=(R/'.github/workflows/deploy-pages.yml').read_text(encoding='utf-8') if (R/'.github/workflows/deploy-pages.yml').exists() else ''
 if 'actions/deploy-pages' in workflow or 'pages: write' in workflow:errors.append('Workflow unexpectedly deploys; use branch publishing')
 if errors:
- print('V25 VALIDATION FAILED',file=sys.stderr)
+ print('V26 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V25 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V26 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

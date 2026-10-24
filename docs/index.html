@@ -102,22 +102,22 @@
     </section>
 
     <section class="lab-section section" id="lab" aria-labelledby="labTitle"><div class="wrap lab-layout">
-      <div class="lab-intro"><p class="eyebrow" data-i18n="labLabel">02 / INTERACTIVE ENGINEERING LAB</p><h2 id="labTitle"><span data-i18n="labHeading1">Follow a request</span><br><em data-i18n="labHeading2">through a system.</em></h2><p data-i18n="labIntro">A deterministic, browser-only demonstration of intake, validation, storage, delivery and verification. All data is synthetic; the terminal runs locally and executes no shell commands.</p>
+      <div class="lab-intro"><p class="eyebrow" data-i18n="labLabel">02 / INTERACTIVE ENGINEERING LAB</p><h2 id="labTitle"><span data-i18n="labHeading1">Follow a request</span><br><em data-i18n="labHeading2">through a system.</em></h2><p data-i18n="labIntro">An interactive browser workstation: edit files, inspect changes, commit local snapshots and run a real stateful delivery pipeline. Nothing reaches your computer or institutional systems.</p>
         <div class="lab-explainer"><span class="lab-note" data-i18n="labNote">WHY IT MATTERS</span><p data-i18n="labBenefit">Reliability depends on more than a successful form submission: traceability, recovery and clear outcomes are part of the design.</p></div>
       </div>
-      <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive macOS-inspired simulated terminal">
+      <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive local engineering workstation terminal">
         <div class="mac-titlebar">
           <span class="mac-traffic" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="mac-title" id="terminalTitle">moataz@portfolio — zsh</span>
-          <span class="mac-local" data-i18n="terminalDemo">DEMO / LOCAL</span>
+          <span class="mac-local" data-i18n="terminalDemo">LOCAL / PERSISTENT</span>
         </div>
-        <div class="terminal-tabs" role="tablist" aria-label="Virtual terminal environment">
+        <div class="terminal-tabs" role="tablist" aria-label="Terminal interface style">
           <button type="button" role="tab" class="active" aria-selected="true" data-terminal-os="mac" id="tabMac"><span aria-hidden="true">●</span> macOS <small>zsh</small></button>
           <button type="button" role="tab" aria-selected="false" data-terminal-os="linux" id="tabLinux"><span aria-hidden="true">◈</span> Ubuntu <small>bash</small></button>
-          <span class="terminal-env-note">SANDBOX / LOCAL ONLY</span>
+          <span class="terminal-env-note">BROWSER WORKSPACE</span>
         </div>
         <div class="mac-toolbar">
-          <span class="mac-toolbar-label"><span>workflow-simulator / v3</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
+          <span class="mac-toolbar-label"><span>engineering-workstation / v26</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
           <div class="lab-scenarios" role="group" aria-label="Choose simulator scenario" id="labScenarios">
             <button type="button" class="is-active" data-lab-scenario="normal" aria-pressed="true" data-i18n="labModeNormal">Normal</button>
             <button type="button" data-lab-scenario="retry" aria-pressed="false" data-i18n="labModeRetry">Retry</button>
@@ -141,31 +141,62 @@
           <div class="lab-node" data-stage="5" role="listitem"><b>06</b><strong data-i18n="stepDone">VERIFY</strong><small>ACK</small></div>
           <span class="lab-flow-progress" id="labTrace" aria-hidden="true"></span>
         </div>
-        <div class="terminal-screen" id="terminalScreen" role="log" aria-label="Simulation terminal output" aria-live="polite" aria-relevant="additions text">
+        <div class="terminal-screen" id="terminalScreen" role="log" aria-label="Browser engineering workstation output" aria-live="polite" aria-relevant="additions text">
           <div id="termOutput" class="term-lines"></div>
           <form id="termForm" class="term-prompt" autocomplete="off">
             <label class="term-prefix" for="termInput" id="terminalPrompt"><span>moataz@portfolio</span> ~ %</label>
             <input id="termInput" type="text" spellcheck="false" autocapitalize="none" autocomplete="off" autocorrect="off" aria-label="Terminal command" maxlength="120" placeholder="help"/>
-            <button type="submit" class="term-enter" aria-label="Execute terminal demo command">↵</button>
+            <button type="submit" class="term-enter" aria-label="Run local workstation command">↵</button>
           </form>
         </div>
-        <div class="terminal-quick-actions" aria-label="Sample terminal commands">
-          <span data-i18n="terminalTry">TRY</span>
+        <div class="terminal-quick-actions" aria-label="Working terminal commands">
+          <span>TRY</span>
           <button type="button" data-command="help">help</button>
-          <button type="button" data-command="git status" data-mac-only="true">git status</button>
-          <button type="button" data-command="uname -a" data-linux-only="true" hidden>uname -a</button>
-          <button type="button" data-command="run retry">run retry</button>
-          <button type="button" data-command="status">status</button>
-          <button type="button" data-command="trace">trace</button>
-          <button type="button" data-command="reset">reset</button>
+          <button type="button" data-command="ls">ls</button>
+          <button type="button" data-command="cat config.json">cat config.json</button>
+          <button type="button" data-command="git status">git status</button>
+          <button type="button" data-command="test">test</button>
+          <button type="button" data-command="workflow run retry">workflow run retry</button>
+          <button type="button" data-command="workflow logs">workflow logs</button>
         </div>
         <div class="lab-actions">
-          <button type="button" class="lab-primary" id="labRun" data-i18n="labRun">Run simulation ↗</button>
-          <button type="button" id="labStep" data-i18n="labStep">Single step</button>
+          <button type="button" class="lab-primary" id="labRun" data-i18n="labRun">Run workflow ↗</button>
+          <button type="button" id="labStep" data-i18n="labStep">Step paused job</button>
           <button type="button" id="labReset" data-i18n="labReset">Reset</button>
           <span id="labBadge" class="run-state" data-i18n="labReady">READY</span>
         </div>
-        <p class="terminal-disclaimer" data-i18n="terminalPrivacy">A sandboxed browser demonstration. Commands are simulated and never reach a server or your Mac.</p>
+        <p class="terminal-disclaimer" data-i18n="terminalPrivacy">Your workspace and run history are stored in this browser. Git-style commits are local snapshots, not real Git objects; no shell commands run on your device.</p>
+      </div>
+    </div>
+    <div class="wrap ws-shell" id="workstation" aria-label="Interactive browser development workspace">
+      <div class="ws-header">
+        <div><span class="eyebrow">WORKSPACE / ENGINEERING PRACTICE</span><h3>Build, test, inspect.</h3><p>Write to a persistent local project. Check real file changes, run scenario-based workflows, and export the session.</p></div>
+        <div class="ws-actions"><span id="wsStorageState" class="ws-storage">CONNECTING STORAGE</span><button id="wsExport" type="button">Export workspace ↓</button><button id="wsImport" type="button">Import JSON ↑</button><input type="file" id="wsImportFile" accept="application/json,.json" hidden><button id="wsReset" type="button">Reset workspace</button></div>
+      </div>
+      <div class="ws-grid">
+        <div class="ws-pane ws-files-pane">
+          <div class="ws-pane-title">EXPLORER <button id="wsNewFile" type="button" aria-label="Create a new file">+ New</button></div>
+          <div id="wsFileList" class="ws-file-list" role="listbox" aria-label="Workspace files"></div>
+          <p class="ws-caption">All changes stay on this device and can be exported as JSON.</p>
+          <div class="ws-commitbox"><strong>LOCAL VERSION HISTORY</strong><span id="wsBranch">main · 0 commits</span><div id="wsCommits" class="ws-commits"></div></div>
+        </div>
+        <div class="ws-pane ws-editor-pane">
+          <div class="ws-pane-title"><span id="wsFileTitle">config.json</span><span id="wsDirty" class="ws-dirty">SAVED</span></div>
+          <textarea id="wsEditor" spellcheck="false" autocomplete="off" aria-label="Edit workspace file" autocapitalize="off"></textarea>
+          <div class="ws-editor-actions"><span id="wsEditorHint">Editing local file</span><button type="button" id="wsSave">Save file <kbd>⌘ / Ctrl S</kbd></button></div>
+        </div>
+        <div class="ws-pane ws-inspector-pane">
+          <div class="ws-pane-title">OPERATIONS <span id="wsJobCount">0 JOBS</span></div>
+          <div class="ws-stat-grid"><div><small>QUEUED</small><strong id="wsQueued">0</strong></div><div><small>DELIVERED</small><strong id="wsDelivered">0</strong></div><div><small>FAILED</small><strong id="wsFailed">0</strong></div><div><small>RETRIES</small><strong id="wsRetries">0</strong></div></div>
+          <div class="ws-pane-title">RECENT JOBS</div><div id="wsJobList" class="ws-job-list"></div>
+          <div class="ws-pane-title">EXECUTABLE CHECKS <span id="wsTestSummary">NOT RUN</span></div><div id="wsTestResults" class="ws-test-results">Run <code>test</code> in the terminal. It will validate your saved configuration and workspace content.</div>
+        </div>
+      </div>
+      <div class="ws-python">
+        <div><span class="eyebrow">OPTIONAL / PYTHON RUNTIME</span><h4>Python in the browser</h4><p>Run your code with Pyodide WebAssembly. The runtime is downloaded on demand and may be unavailable offline. Output reflects actual execution, not predefined messages.</p></div>
+        <textarea id="wsPythonCode" spellcheck="false" aria-label="Python program">print('Engineering lab ready')
+print(sum([2, 3, 5]))</textarea>
+        <div><button type="button" id="wsRunPython">Run Python</button><span id="wsPythonStatus">Not loaded</span><pre id="wsPythonOutput" aria-live="polite">Python results will appear here.</pre></div>
       </div>
     </div></section>
 

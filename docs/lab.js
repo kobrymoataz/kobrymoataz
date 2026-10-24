@@ -1,231 +1,144 @@
-/* workflow-simulator / v3 — local demonstration; it never executes OS commands or makes network requests. */
+/* V26 Engineering Workstation. Real browser-local file edits, saved snapshots, tests and async jobs.
+   Git-style commands implement a small local snapshot workflow, NOT Git's object format or a real OS shell.
+   No user command is evaluated as JavaScript or sent to a server. */
 (() => {
-  'use strict';
-  const root = document.getElementById('engineeringLab');
-  if (!root) return;
-  const one = (s) => root.querySelector(s);
-  const all = (s) => [...root.querySelectorAll(s)];
-  const t = (k) => window.siteI18n?.t(k) || k;
-  const output = one('#termOutput'), input = one('#termInput'), form = one('#termForm');
-  const screen = one('#terminalScreen'), badge = one('#labBadge');
-  const buttons = all('[data-lab-scenario]'), nodes = all('.lab-node');
-  const ui = {scenario:one('#labScenarioMetric'),retries:one('#labRetryMetric'),stage:one('#labStageMetric'),status:one('#labStatusMetric'),trace:one('#labTrace')};
-  const runButton=one('#labRun'),stepButton=one('#labStep'),resetButton=one('#labReset');
-  const modes=['normal','retry','missing','review'];
-  const commands=['help','run','step','pause','reset','status','trace','logs','scenario','approve','clear','whoami','pwd','ls','cat','date','git','npm','sw_vers','uname','df','ps','top','docker','systemctl','uptime','echo'];
-  const phases=[
-    ['Intake', 'HTTP request accepted with synthetic reference DEMO-1042.'],
-    ['Validate','Required fields validated; all values are mock data.'],
-    ['Store','Record persisted to in-memory demo store.'],
-    ['Queue','Delivery job written to simulated outbox.'],
-    ['Deliver','HMAC-signed webhook delivery simulated successfully.'],
-    ['Verify','Acknowledgement matched and trace closed.']
-  ];
-  let scenario='normal', position=0, retries=0, state='READY', stopped=false, waitingReview=false;
-  let didFail=false, reviewApproved=false, timer=null, auto=false, entryHistory=[], commandHistory=[], commandIndex=0;
-  let shell='mac', elapsedBase=0, elapsedStart=0, elapsedRunning=false;
-  let pausedByUser=false;
-  const elapsedNode=one('#labElapsed'), titleNode=one('#terminalTitle'), promptNode=one('#terminalPrompt');
-  const formatDuration=(ms)=>{const s=Math.max(0,Math.floor(ms/1000));return String(Math.floor(s/3600)).padStart(2,'0')+':'+String(Math.floor((s%3600)/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');};
-  const elapsedMS=()=>elapsedBase+(elapsedRunning?performance.now()-elapsedStart:0);
-  const refreshTime=()=>{if(elapsedNode)elapsedNode.textContent=formatDuration(elapsedMS());};
-  const stopwatchStart=()=>{if(!elapsedRunning){elapsedStart=performance.now();elapsedRunning=true;}refreshTime();};
-  const stopwatchPause=()=>{if(elapsedRunning){elapsedBase+=performance.now()-elapsedStart;elapsedRunning=false;}refreshTime();};
-  const stopwatchReset=()=>{stopwatchPause();elapsedBase=0;refreshTime();};
-  const timestamp=()=>formatDuration(elapsedMS());
-  setInterval(()=>{if(elapsedRunning)refreshTime();},200);
-  function setShell(name){
-    if(name!=='mac'&&name!=='linux')return;
-    shell=name;
-    root.dataset.terminalOs=name;
-    titleNode.textContent=name==='mac'?'moataz@portfolio — zsh':'dev@ubuntu — bash';
-    promptNode.innerHTML=name==='mac'?'<span>moataz@portfolio</span> ~ %':'<span>dev@ubuntu</span>:~/deployment$';
-    all('[data-terminal-os]').forEach(tab=>{const yes=tab.dataset.terminalOs===name;tab.classList.toggle('active',yes);tab.setAttribute('aria-selected',String(yes));tab.tabIndex=yes?0:-1;});
-    all('[data-linux-only]').forEach(b=>b.hidden=name!=='linux');
-    all('[data-mac-only]').forEach(b=>b.hidden=name!=='mac');
-    print(name==='mac'?'Switched to virtual macOS (zsh) session.':'Switched to virtual Ubuntu (bash) session.','accent');
+'use strict';
+const root=document.getElementById('engineeringLab'), ws=document.getElementById('workstation');
+if(!root||!ws)return;
+const $=(s,scope=document)=>scope.querySelector(s), $$=(s,scope=document)=>[...scope.querySelectorAll(s)];
+const output=$('#termOutput'), screen=$('#terminalScreen'), input=$('#termInput'), form=$('#termForm');
+const shellPrompt=$('#terminalPrompt'),shellTitle=$('#terminalTitle');
+const elapsed=$('#labElapsed'),badge=$('#labBadge');
+const editor=$('#wsEditor'),fileTitle=$('#wsFileTitle'),dirty=$('#wsDirty');
+const initial=()=>({
+  'README.md':'# Browser Engineering Workstation\n\nA local practice project. Edit files, save, stage and commit snapshots.\nCommands: help, git status, test, workflow run normal.\n',
+  'config.json':JSON.stringify({service:'portfolio-webhook',retryLimit:2,latencyMs:420,simulateDeliveryFailureOnce:false,requireHumanReview:false,requireReference:true},null,2)+'\n',
+  'data/request.json':JSON.stringify({reference:'REQ-2026-1001',name:'Example User',email:'example@example.org',event:'submission.created'},null,2)+'\n',
+  'src/handler.js':'// Read-only sample handler. Edit it and inspect git status.\nexport function normalize(input) {\n  return { ...input, receivedAt: new Date().toISOString() };\n}\n',
+  'tests/acceptance.json':JSON.stringify({requiredFields:['reference','name','email','event'],acceptedEvents:['submission.created']},null,2)+'\n'
+});
+let model={files:initial(),stage:{},commits:[],jobs:[],events:[],nextId:1,pythonCode:"print('Engineering lab ready')\nprint(sum([2, 3, 5]))",activeFile:'config.json'};
+let os='mac',commandHistory=[],historyIndex=0, activeJob=null, workflowTimer=null;
+let sessionStarted=performance.now(),sessionRunStart=null,sessionRunElapsed=0, runClock=null;
+const validFile=x=>typeof x==='string'&&x.length>0&&x.length<100&&!x.includes('\\')&&!x.startsWith('/')&&!x.split('/').some(y=>['..','.',''].includes(y))&&!x.includes('\0')&&!x.startsWith('.git');
+const clone=x=>JSON.parse(JSON.stringify(x));
+let db=null,persistQueue=Promise.resolve(),saved=true;
+function indexedDBOpen(){return new Promise((resolve,reject)=>{const request=indexedDB.open('mk-workstation-v26',1);request.onupgradeneeded=()=>request.result.createObjectStore('state');request.onsuccess=()=>resolve(request.result);request.onerror=()=>reject(request.error);});}
+function getStored(){return new Promise((resolve,reject)=>{const tx=db.transaction('state','readonly'),r=tx.objectStore('state').get('workspace');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});}
+function setStored(data){return new Promise((resolve,reject)=>{const tx=db.transaction('state','readwrite');tx.objectStore('state').put(data,'workspace');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});}
+function save(){saved=false;const snapshot=clone(model);persistQueue=persistQueue.then(()=>db?setStored(snapshot):null).then(()=>{saved=true;$('#wsStorageState').textContent=db?'SAVED / THIS BROWSER':'SESSION ONLY';}).catch(e=>{console.warn('Local save unavailable',e);$('#wsStorageState').textContent='STORAGE ERROR';});return persistQueue;}
+function notice(line,type='info'){const el=document.createElement('div');el.className='term-line term-'+type;const stamp=document.createElement('span');stamp.className='term-stamp';stamp.textContent=new Date().toLocaleTimeString([],{hour12:false});const msg=document.createElement('span');msg.className='term-message';msg.textContent=String(line);el.append(stamp,msg);output.append(el);while(output.children.length>140)output.firstElementChild.remove();screen.scrollTop=screen.scrollHeight;}
+function promptEcho(line){const el=document.createElement('div');el.className='term-command';const p=document.createElement('span');p.className='term-user';p.textContent=os==='mac'?'moataz@portfolio ~ %':'dev@ubuntu:~/workspace$';const txt=document.createElement('span');txt.textContent=' '+line;el.append(p,txt);output.append(el);screen.scrollTop=screen.scrollHeight;}
+function msFormat(ms){const n=Math.max(0,Math.floor(ms/1000));return [Math.floor(n/3600),Math.floor(n/60)%60,n%60].map(x=>String(x).padStart(2,'0')).join(':');}
+function stopwatch(){elapsed.textContent=msFormat(sessionRunElapsed+(sessionRunStart===null?0:performance.now()-sessionRunStart));}
+setInterval(stopwatch,200);
+function runClockStart(){if(sessionRunStart===null)sessionRunStart=performance.now();}
+function runClockStop(){if(sessionRunStart!==null){sessionRunElapsed+=performance.now()-sessionRunStart;sessionRunStart=null;}stopwatch();}
+function runClockReset(){runClockStop();sessionRunElapsed=0;stopwatch();}
+function shell(next){os=next;root.dataset.terminalOs=next;shellTitle.textContent=next==='mac'?'moataz@portfolio — zsh':'dev@ubuntu — bash';shellPrompt.textContent=next==='mac'?'moataz@portfolio ~ %':'dev@ubuntu:~/workspace$';$$('[data-terminal-os]',root).forEach(x=>{const yes=x.dataset.terminalOs===next;x.classList.toggle('active',yes);x.setAttribute('aria-selected',String(yes));x.tabIndex=yes?0:-1;});$('#termInput').focus();}
+function filesList(){return Object.keys(model.files).sort();}
+function getBaseline(){return model.commits.length?model.commits.at(-1).files:initial();}
+function changed(){const baseline=getBaseline(),names=new Set([...Object.keys(baseline),...filesList()]);return [...names].sort().filter(k=>baseline[k]!==model.files[k]);}
+function renderFileList(){const list=$('#wsFileList');list.replaceChildren();filesList().forEach(name=>{const btn=document.createElement('button');btn.type='button';btn.className='ws-file'+(name===model.activeFile?' active':'');btn.textContent=(name.split('/').length>1?'▸ ':'◫ ')+name;btn.addEventListener('click',()=>openFile(name));list.append(btn);});if(!list.children.length)list.textContent='No files';}
+function openFile(name){if(name!==model.activeFile&&dirty.textContent==='UNSAVED'){if(!confirm('Discard unsaved editor changes?'))return;}
+  if(!(name in model.files))return;model.activeFile=name;editor.value=model.files[name];fileTitle.textContent=name;dirty.textContent='SAVED';dirty.classList.remove('is-dirty');$('#wsEditorHint').textContent='File stored in this browser';renderFileList();}
+function renderHistory(){const history=$('#wsCommits');history.replaceChildren();$('#wsBranch').textContent='main · '+model.commits.length+' snapshots';model.commits.slice(-5).reverse().forEach(c=>{const line=document.createElement('div');line.className='ws-commit';line.textContent=c.id+' · '+c.message;history.append(line);});if(!model.commits.length)history.textContent='No snapshots yet. Try git add . then git commit -m "Initial work".';}
+function renderJobs(){const list=$('#wsJobList');list.replaceChildren();let counts={queued:0,delivered:0,failed:0,retry:0};model.jobs.forEach(j=>{if(['RUNNING','PENDING','REVIEW'].includes(j.status))counts.queued++;if(j.status==='DELIVERED')counts.delivered++;if(j.status==='FAILED')counts.failed++;counts.retry+=j.retries;});$('#wsQueued').textContent=counts.queued;$('#wsDelivered').textContent=counts.delivered;$('#wsFailed').textContent=counts.failed;$('#wsRetries').textContent=counts.retry;$('#wsJobCount').textContent=model.jobs.length+' JOBS';model.jobs.slice(-5).reverse().forEach(j=>{const n=document.createElement('div');n.className='ws-job';const strong=document.createElement('strong');strong.textContent=j.id+' · '+j.status;const desc=document.createElement('small');desc.textContent=j.scenario+' · '+j.stage+' · attempts '+j.attempts;n.append(strong,desc);list.append(n);});if(!model.jobs.length)list.textContent='No jobs yet. Run workflow run normal.';}
+function renderUI(){renderFileList();renderHistory();renderJobs();let job=activeJob?model.jobs.find(j=>j.id===activeJob):model.jobs.at(-1);let state=job?.status||'READY',phase=job?.index||0;$('#labScenarioMetric').textContent=job?.scenario?.toUpperCase()||'NORMAL';$('#labRetryMetric').textContent=String(job?.retries||0).padStart(2,'0');$('#labStageMetric').textContent=String(Math.min(phase,6)).padStart(2,'0')+' / 06';$('#labStatusMetric').textContent=state;$('#labBadge').textContent=state;$('#labBadge').dataset.state=state;$('#labTrace').style.width=Math.min(phase/6*100,100)+'%';$$('.lab-node',root).forEach((n,i)=>{n.classList.toggle('active',i===phase&&state==='RUNNING');n.classList.toggle('done',i<phase);n.classList.toggle('retry',state==='RETRY'&&i===4);});$$('[data-lab-scenario]',root).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.labScenario===(job?.scenario||'normal'))));}
+function editorSave(){const name=model.activeFile;if(!validFile(name))return;model.files[name]=editor.value;dirty.textContent='SAVED';dirty.classList.remove('is-dirty');save();renderFileList();notice('Saved '+name,'success');}
+function writeFile(name,content){if(!validFile(name))throw Error('Invalid relative filename');if(content.length>150000)throw Error('File exceeds 150 KB limit');model.files[name]=content;save();if(model.activeFile===name){editor.value=content;dirty.textContent='SAVED';dirty.classList.remove('is-dirty');}renderFileList();}
+function configRead(){try{const c=JSON.parse(model.files['config.json']);if(!c||typeof c!=='object')throw Error('Must be a JSON object');return c;}catch(e){throw Error('Invalid config.json: '+e.message);}}
+function payloadRead(){try{const c=JSON.parse(model.files['data/request.json']);if(!c||typeof c!=='object')throw Error('Must be a JSON object');return c;}catch(e){throw Error('Invalid data/request.json: '+e.message);}}
+function tests(){const lines=[];const check=(name,condition)=>lines.push({name,pass:!!condition});let cfg=null,payload=null;try{cfg=configRead();check('Configuration parses as JSON',true);}catch(e){check('Configuration parses as JSON',false);}try{payload=payloadRead();check('Request payload parses as JSON',true);}catch(e){check('Request payload parses as JSON',false);}check('Retry limit is a nonnegative integer',cfg&&Number.isInteger(cfg.retryLimit)&&cfg.retryLimit>=0&&cfg.retryLimit<=8);check('Execution latency between 50 and 5000ms',cfg&&Number.isInteger(cfg.latencyMs)&&cfg.latencyMs>=50&&cfg.latencyMs<=5000);check('Simulation settings are booleans',cfg&&['simulateDeliveryFailureOnce','requireHumanReview','requireReference'].every(x=>typeof cfg[x]==='boolean'));check('Payload email looks valid',payload&&typeof payload.email==='string'&&/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email));check('Request identifier is present',payload&&typeof payload.reference==='string'&&payload.reference.trim().length>0);check('At least one source file exists',filesList().some(x=>x.startsWith('src/')));const pass=lines.filter(x=>x.pass).length;$('#wsTestSummary').textContent=pass+'/'+lines.length+' PASS';const area=$('#wsTestResults');area.replaceChildren();lines.forEach(x=>{const row=document.createElement('div');row.className='ws-test-row '+(x.pass?'pass':'fail');row.textContent=(x.pass?'✓ ':'✗ ')+x.name;area.append(row);});notice('Workspace checks: '+pass+'/'+lines.length+' passed',pass===lines.length?'success':'error');return pass===lines.length;}
+const phases=['INTAKE','VALIDATE','STORE','QUEUE','DELIVER','VERIFY'];
+function event(job,level,message){const e={job:job?.id||null,level,message,at:new Date().toISOString()};model.events.push(e);if(model.events.length>300)model.events.shift();notice((job?job.id+' ':'')+message,level==='error'?'error':level==='warn'?'warn':'success');save();}
+function pauseRun(){if(workflowTimer)clearTimeout(workflowTimer);workflowTimer=null;runClockStop();}
+function schedule(job){pauseRun();runClockStart();let cfg;try{cfg=configRead();}catch(e){event(job,'error',e.message);job.status='FAILED';renderUI();return;}const delay=Math.max(50,Math.min(5000,cfg.latencyMs||420));workflowTimer=setTimeout(()=>{workflowTimer=null;advance(job);},delay);}
+function advance(job){if(!job||job.status!=='RUNNING')return;let cfg,payload;try{cfg=configRead();payload=payloadRead();}catch(e){job.status='FAILED';event(job,'error',e.message);pauseRun();renderUI();return;}
+  const stage=phases[job.index];job.stage=stage;
+  if(stage==='VALIDATE'){
+    if((cfg.requireReference||job.scenario==='missing')&&(!payload.reference||job.scenario==='missing')){job.status='FAILED';event(job,'error','Validation failed: record reference missing');pauseRun();renderUI();return;}
+    if(!payload.email||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)){job.status='FAILED';event(job,'error','Validation failed: email address invalid');pauseRun();renderUI();return;}
   }
-
-  function print(message, type='info', isEvent=false){
-    const line=document.createElement('div'); line.className='term-line term-'+type;
-    const stamp=document.createElement('span');stamp.className='term-stamp';stamp.textContent=timestamp();
-    const body=document.createElement('span');body.className='term-message';body.textContent=message;
-    line.append(stamp,body);output.appendChild(line);
-    if(isEvent)entryHistory.push({type,message});
-    while(output.childElementCount>100)output.firstElementChild?.remove();
-    screen.scrollTop=screen.scrollHeight;
+  if(stage==='STORE'){
+    const filename='data/record-'+job.id.toLowerCase()+'.json';model.files[filename]=JSON.stringify({id:job.id,receivedAt:new Date().toISOString(),payload},null,2)+'\n';
   }
-  function promptEcho(text){ const line=document.createElement('div');line.className='term-command';const p=document.createElement('span');p.className='term-user';p.textContent=shell==='mac'?'moataz@portfolio ~ %':'dev@ubuntu:~/deployment$';const v=document.createElement('span');v.textContent=' '+text;line.append(p,v);output.appendChild(line);screen.scrollTop=screen.scrollHeight; }
-  function halt(){auto=false;clearTimeout(timer);timer=null;stopwatchPause();}
-  function render(){
-    const complete=state==='COMPLETED', blocked=state==='BLOCKED';
-    nodes.forEach((node,i)=>{
-      node.classList.toggle('active',!complete&&!blocked&&i===position);
-      node.classList.toggle('done',i<position);
-      node.classList.toggle('retry',i===4&&didFail&&position===4);
-    });
-    ui.scenario.textContent=scenario.toUpperCase();ui.retries.textContent=String(retries).padStart(2,'0');
-    ui.stage.textContent=String(Math.min(position,6)).padStart(2,'0')+' / 06';ui.status.textContent=state;
-    ui.trace.style.width=(Math.min(position,6)/6*100)+'%';
-    badge.textContent=state;badge.dataset.state=state;
-    runButton.disabled=complete||blocked||waitingReview;
-    stepButton.disabled=complete||blocked||waitingReview;
-    buttons.forEach(b=>{const yes=b.dataset.labScenario===scenario;b.setAttribute('aria-pressed',String(yes));b.classList.toggle('is-active',yes);});
-  }
-  function reset({quiet=false}={}){
-    halt(); position=0;retries=0;state='READY';stopped=false;waitingReview=false;reviewApproved=false;didFail=false;pausedByUser=false;entryHistory=[];stopwatchReset();
-    render();if(!quiet)print('State reset. Scenario: '+scenario+'.','info');
-  }
-  function changeScenario(next){
-    if(!modes.includes(next)){print('Unknown scenario. Valid: '+modes.join(', ')+'.','error');return false;}
-    scenario=next;reset({quiet:true});print('Scenario loaded: '+next+'. Type run or step.','accent');render();return true;
-  }
-  function advance(){
-    if(waitingReview){print('Manual approval required. Enter approve to continue.','warn');return false;}
-    if(stopped){print('Simulation ended. Use reset or choose a scenario.','dim');return false;}
-    if(position===1&&scenario==='missing'){
-      print('VALIDATION_ERROR: verification record DEMO-1042 not found.','error',true);
-      print('Stopped safely before storage or delivery.','warn',true);
-      state='BLOCKED';stopped=true;halt();render();return false;
-    }
-    if(position===2&&scenario==='review'&&!waitingReview&&!reviewApproved){
-      waitingReview=true;state='AWAITING REVIEW';halt();
-      print('REVIEW_REQUIRED: record held for manual approval.','warn',true);
-      print('Type approve to release the hold.','accent');render();return false;
-    }
-    if(position===4&&scenario==='retry'&&!didFail){
-      didFail=true;retries+=1;state='RETRYING';
-      print('DELIVERY_TIMEOUT: attempt 1 failed; job retained in outbox.','error',true);
-      print('Retry scheduled with the same idempotency key.','warn',true);render();return true;
-    }
-    if(position===4&&didFail){ print('Retry attempt 2 accepted. Delivery recovered.','success',true);}
-    else print(phases[position][0].toUpperCase()+'  '+phases[position][1], 'success', true);
-    position++;
-    state=position===6?'COMPLETED':auto?'RUNNING':'READY';
-    if(position===6){stopped=true;halt();print('Trace complete · synthetic data · no network traffic.','accent',true);}
-    render();return !stopped;
-  }
-  function loop(){
-    if(!auto)return;
-    timer=setTimeout(()=>{if(!auto)return;const cont=advance();if(cont&&auto)loop();},700);
-  }
-  function start(){
-    if(waitingReview){print('Approve the review before continuing.','warn');return;}
-    if(stopped){print('This run is closed. Use reset to replay.','warn');return;}
-    halt();stopwatchStart();auto=true;state='RUNNING';render();print('Executing scenario '+scenario+' with synthetic job DEMO-1042.','accent');loop();
-  }
-  function manualStep(){halt();stopwatchStart();if(state==='RUNNING')state='PAUSED';advance();stopwatchPause();render();}
-  function approve(){
-    if(!waitingReview){print('No approval is pending.','dim');return;}
-    waitingReview=false;reviewApproved=true;state='APPROVED';print('Operator approval recorded in local simulation.','success',true);render();
-  }
-  function status(){print('status='+state+'  scenario='+scenario+'  stage='+position+'/6  retries='+retries+'  elapsed='+formatDuration(elapsedMS())+'  events='+entryHistory.length,'accent');}
-  function trace(){
-    phases.forEach(([name],idx)=>print((idx<position?'✓':idx===position&&!stopped?'→':'·')+'  '+String(idx+1).padStart(2,'0')+'  '+name.toUpperCase(),idx<position?'success':idx===position?'accent':'dim'));
-  }
-  function help(){
-    print('AVAILABLE COMMANDS  (demo shell; no operating-system access)','accent');
-    [
-      'help                  show this command list',
-      'scenario <name>       normal | retry | missing | review',
-      'run [name]            execute the current or named scenario',
-      'step                  advance exactly one stage',
-      'pause                 suspend automatic execution',
-      'approve               release a manual-review hold',
-      'status | trace | logs inspect current simulation',
-      'reset | clear         restart scenario | clear console',
-      'whoami | pwd | ls     virtual, read-only shell information',
-      'macOS: git status | npm test | sw_vers | date',
-      'Linux: uname -a | docker ps | df -h | systemctl status nginx',
-      '↑ / ↓ / Tab           history / command completion'
-    ].forEach(text=>print(text,'dim'));
-  }
-  function executeVirtual(action,args){
-    const arg=args.join(' ').trim();
-    const linux=shell==='linux';
-    if(action==='date'){print('Browser local time: '+new Date().toLocaleString()+' (device clock)','dim');return true;}
-    if(action==='echo'){print(args.join(' ').slice(0,180),'dim');return true;}
-    if(action==='uptime'){print('demo session elapsed '+formatDuration(elapsedMS())+' · SYNTHETIC, NOT DEVICE UPTIME','dim');return true;}
-    if(action==='git'){
-      if(arg==='status'){print('On branch main  |  nothing to commit, working tree clean  [DEMO]','success');return true;}
-      print('git: demo supports only git status','warn');return true;
-    }
-    if(action==='npm'){
-      if(['test','run test'].includes(arg)){print('> portfolio-demo@1.0.0 test   [SIMULATED]','accent');print('✓ 28 passing checks · no tests were executed','success');return true;}
-      print('npm: demo supports npm test only','warn');return true;
-    }
-    if(action==='sw_vers'){
-      print(linux?'sw_vers: not available in virtual Ubuntu':'ProductName: macOS · DEMO shell (not real device details)','dim');return true;
-    }
-    if(action==='uname'){
-      if(linux)print('Linux ubuntu-demo 6.8.0-demo x86_64 GNU/Linux  [SIMULATED]','accent');
-      else print('Darwin macbook-demo 24.0.0 arm64  [SIMULATED]','accent');return true;
-    }
-    if(action==='df'){
-      print('Filesystem       Size  Used  Avail  Use%  Mounted on  [MOCK DATA]','dim');
-      print('/dev/demo         80G   12G    68G    15%  /','dim');return true;
-    }
-    if(action==='ps'||action==='top'){
-      print('PID  COMMAND               CPU%  MEM%  [SIMULATED]','dim');
-      print('101  portfolio-renderer     2.3   1.1','dim');
-      print('102  mock-api-worker        0.7   0.6','dim');return true;
-    }
-    if(action==='docker'){
-      if(arg==='ps'){print('CONTAINER ID   IMAGE         STATUS         PORTS  [SIMULATED]','dim');print('demo-091       mock-api      Up 00:04       3000/tcp','success');return true;}
-      print('docker: demo supports docker ps only','warn');return true;
-    }
-    if(action==='systemctl'){
-      if(arg==='status nginx'){print('● nginx.service - A simulated web server service','accent');print('   Active: active (running) [MOCK STATUS, NO SERVER CONNECTED]','success');return true;}
-      print('systemctl: demo supports systemctl status nginx only','warn');return true;
-    }
-    return false;
-  }
-  function execute(raw,fromInput=true){
-    const cmd=raw.trim().replace(/\s+/g,' ');
-    if(!cmd)return;
-    if(fromInput){promptEcho(cmd);commandHistory.push(cmd);commandIndex=commandHistory.length;}
-    const [action,...args]=cmd.toLowerCase().split(' ');
-    if(executeVirtual(action,args))return;
-    switch(action){
-      case 'help':help();break;
-      case 'scenario':changeScenario(args[0]||'');break;
-      case 'run':if(args.length&&!changeScenario(args[0]))break;start();break;
-      case 'step':manualStep();break;
-      case 'pause':halt();state=stopped?state:'PAUSED';render();print('Execution paused. Type run to continue.','warn');break;
-      case 'approve':approve();break;
-      case 'reset':reset();break;
-      case 'status':status();break;
-      case 'trace':trace();break;
-      case 'logs':entryHistory.length?entryHistory.slice(-10).forEach(x=>print(x.message,x.type)):print('No events in the current trace.','dim');break;
-      case 'clear':output.replaceChildren();print('Console cleared. State is unchanged.','dim');break;
-      case 'whoami':print(shell==='mac'?'moataz  (virtual macOS identity)':'dev  (virtual Ubuntu identity)','accent');break;
-      case 'pwd':print(shell==='mac'?'/Users/moataz/portfolio-demo  [VIRTUAL]':'/home/dev/deployment  [VIRTUAL]','dim');break;
-      case 'ls':print(shell==='mac'?'README.md  package.json  src/  tests/  [VIRTUAL]':'deploy.sh  README.md  mock-api/  logs/  [VIRTUAL]','dim');break;
-      case 'cat':args.join(' ')==='readme.md'?print('This local simulator models intake → validate → store → queue → deliver → verify. No data is sent.','dim'):print('cat: virtual file not found. Try cat README.md','error');break;
-      default:print((shell==='mac'?'zsh':'bash')+': command not found: '+action+'. Type help for supported demo commands.','error');
+  if(stage==='QUEUE')job.status='RUNNING';
+  if(stage==='DELIVER'){
+    job.attempts++;
+    if((cfg.simulateDeliveryFailureOnce||job.scenario==='retry')&&job.attempts===1){
+      job.retries++;
+      if(job.retries>cfg.retryLimit){job.status='FAILED';event(job,'error','Delivery failed. Retry limit reached ('+cfg.retryLimit+').');pauseRun();renderUI();return;}
+      event(job,'warn','Delivery attempt 1 timed out. Retrying '+job.retries+'/'+cfg.retryLimit+'...');renderUI();schedule(job);return;
     }
   }
-  all('[data-terminal-os]').forEach(b=>b.addEventListener('click',()=>setShell(b.dataset.terminalOs)));
-  form.addEventListener('submit',ev=>{ev.preventDefault();const cmd=input.value;input.value='';execute(cmd);input.focus();});
-  input.addEventListener('keydown',ev=>{
-    if((ev.ctrlKey||ev.metaKey)&&ev.key.toLowerCase()==='l'){ev.preventDefault();execute('clear',false);return;}
-    if(ev.ctrlKey&&ev.key.toLowerCase()==='c'){ev.preventDefault();halt();state='PAUSED';render();print('^C  Interrupted virtual simulation.','warn');return;}
-    if(ev.key==='ArrowUp'||ev.key==='ArrowDown'){
-      if(!commandHistory.length)return;ev.preventDefault();commandIndex=Math.max(0,Math.min(commandHistory.length,commandIndex+(ev.key==='ArrowUp'?-1:1)));
-      input.value=commandHistory[commandIndex]||'';input.setSelectionRange(input.value.length,input.value.length);
-    }else if(ev.key==='Tab'){
-      const matching=commands.filter(c=>c.startsWith(input.value.trim().toLowerCase()));
-      if(matching.length===1){ev.preventDefault();input.value=matching[0]+' ';}
-    }
-  });
-  all('[data-command]').forEach(b=>b.addEventListener('click',()=>{execute(b.dataset.command);input.focus();}));
-  buttons.forEach(b=>b.addEventListener('click',()=>changeScenario(b.dataset.labScenario)));
-  runButton.addEventListener('click',start);stepButton.addEventListener('click',manualStep);resetButton.addEventListener('click',()=>reset());
-  document.addEventListener('portfolio:locale',render);
-  window.addEventListener('pagehide',halt);
-  render();refreshTime();
-  print('workflow-simulator v3 · macOS-inspired terminal · browser-only demo','accent');
-  print('Nothing runs on your Mac. Type help, or try run retry.','dim');
-  // Expose a minimal read-only status hook for QA. No commands can execute arbitrary JS or OS processes.
-  window.__mkLabDebug=()=>({scenario,position,retries,state,entryCount:entryHistory.length,shell,elapsed:formatDuration(elapsedMS())});
+  if(stage==='VERIFY'&&(cfg.requireHumanReview||job.scenario==='review')&&!job.approved){job.status='REVIEW';event(job,'warn','Human review required. Use workflow approve '+job.id+'.');pauseRun();renderUI();return;}
+  job.index++;
+  event(job,'info',stage+' completed in workspace; '+(stage==='STORE'?'record saved locally.':stage==='DELIVER'?'delivery acknowledged locally.':'state updated.'));
+  if(job.index===phases.length){job.status='DELIVERED';job.stage='COMPLETE';pauseRun();event(job,'info','Workflow completed. No external messages sent.');}else schedule(job);renderUI();save();
+}
+function workflowRun(scenario='normal'){if(!['normal','retry','missing','review'].includes(scenario))throw Error('Use normal, retry, missing or review');if(model.jobs.some(j=>j.status==='RUNNING'))throw Error('Pause the current job before starting another');if(!tests())throw Error('Fix failing workspace checks before starting a workflow');const job={id:'JOB-'+String(model.nextId++).padStart(4,'0'),scenario,index:0,stage:'INTAKE',status:'RUNNING',attempts:0,retries:0,approved:false,started:new Date().toISOString()};model.jobs.push(job);activeJob=job.id;runClockReset();event(job,'info','Created real local workflow job from saved config.json and data/request.json');renderUI();schedule(job);return job.id;}
+function workflowAction(args){const sub=args[0]||'status',arg=args[1];if(sub==='run'){workflowRun(arg||'normal');return;}if(sub==='status'||sub==='jobs'){const jobs=sub==='jobs'?model.jobs.slice(-8):model.jobs.slice(-1);jobs.length?jobs.forEach(j=>notice(j.id+' '+j.status+' stage='+j.stage+' retry='+j.retries,'accent')):notice('No jobs yet','dim');return;}if(sub==='logs'){model.events.slice(-15).forEach(e=>notice(e.at.slice(11,19)+' '+(e.job||'')+' '+e.message,e.level==='error'?'error':'dim'));return;}if(sub==='approve'){const j=model.jobs.find(j=>j.id===arg);if(!j||j.status!=='REVIEW')throw Error('No job awaiting approval: '+(arg||''));j.approved=true;j.status='RUNNING';event(j,'info','Human approval granted locally');schedule(j);renderUI();return;}if(sub==='retry'){const j=model.jobs.find(j=>j.id===arg);if(!j||j.status!=='FAILED')throw Error('Job not failed or unknown: '+(arg||''));j.status='RUNNING';j.retries=0;j.index=Math.min(4,j.index);j.attempts=0;event(j,'info','Manual retry requested');schedule(j);renderUI();return;}if(sub==='pause'){const j=model.jobs.find(j=>j.status==='RUNNING');if(!j)throw Error('No running job');j.status='PAUSED';pauseRun();event(j,'warn','Workflow paused by operator');renderUI();return;}if(sub==='resume'){const j=model.jobs.find(j=>j.status==='PAUSED');if(!j)throw Error('No paused job');j.status='RUNNING';schedule(j);renderUI();return;}throw Error('Supported: workflow run [normal|retry|missing|review], status, jobs, logs, approve <id>, retry <id>, pause, resume');}
+async function snapshotId(s){if(globalThis.crypto?.subtle){const bytes=new TextEncoder().encode(s);const digest=await crypto.subtle.digest('SHA-256',bytes);return [...new Uint8Array(digest)].slice(0,4).map(x=>x.toString(16).padStart(2,'0')).join('');}let h=2166136261;for(let i=0;i<s.length;i++){h=Math.imul(h^s.charCodeAt(i),16777619);}return (h>>>0).toString(16).padStart(8,'0');}
+function gitStatus(){const diffs=changed(),stage=Object.keys(model.stage);notice('Local snapshot branch: main (Git-style, not a real Git repository)','accent');if(!diffs.length&&!stage.length)notice('Working tree clean','success');else {stage.forEach(f=>notice(' staged: '+f,'success'));diffs.forEach(f=>{if(model.stage[f]!==model.files[f]||!stage.includes(f))notice(' modified: '+f,'warn');});}}
+async function gitAction(args){const sub=args[0]||'status';if(sub==='status'){gitStatus();return;}if(sub==='add'){const names=args.slice(1).join(' ');const list=names==='.'||names==='-A'?[...new Set([...filesList(),...Object.keys(getBaseline())])]:[names];for(const f of list){if(!validFile(f))throw Error('Use git add <file> or git add .');model.stage[f]=model.files[f]??null;}await save();notice('Staged '+list.length+' path(s).','success');renderHistory();return;}if(sub==='commit'){const flag=args.indexOf('-m');if(flag===-1||!args[flag+1])throw Error('Usage: git commit -m "message"');const message=args.slice(flag+1).join(' ').replace(/^['"]|['"]$/g,'');if(!Object.keys(model.stage).length)throw Error('Nothing staged. Use git add .');const baseline=clone(getBaseline());Object.entries(model.stage).forEach(([name,v])=>{if(v===null)delete baseline[name];else baseline[name]=v;});if(JSON.stringify(Object.entries(baseline).sort())===JSON.stringify(Object.entries(getBaseline()).sort()))throw Error('Nothing changed from last snapshot');const id=await snapshotId(JSON.stringify(baseline)+message+new Date().toISOString());model.commits.push({id,message,files:baseline,at:new Date().toISOString()});model.stage={};await save();notice('['+id+'] '+message+' (local snapshot)', 'success');renderHistory();return;}if(sub==='log'){if(!model.commits.length)notice('No commits yet.','dim');model.commits.slice(-8).reverse().forEach(c=>notice(c.id+'  '+c.message+'  '+c.at.slice(0,19),'accent'));return;}if(sub==='diff'){changed().forEach(f=>notice('M '+f,'warn'));if(!changed().length)notice('No changes','success');return;}if(sub==='branch'){notice('* main (local snapshots)','accent');return;}throw Error('Supported: git status | add . | add <file> | commit -m "message" | log | diff | branch. This is Git-style local versioning, not Git itself.');}
+function exportWorkspace(){const file=new Blob([JSON.stringify({format:'mk-workstation-v26',exportedAt:new Date().toISOString(),model},null,2)],{type:'application/json'});const url=URL.createObjectURL(file);const a=document.createElement('a');a.href=url;a.download='mk-workspace-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);notice('Exported browser workspace to JSON','success');}
+function importWorkspace(data){if(data?.format!=='mk-workstation-v26'||!data.model||typeof data.model.files!=='object'||Array.isArray(data.model.files))throw Error('Unsupported workspace format');const m=data.model,files={};const entries=Object.entries(m.files);if(entries.length>120)throw Error('Too many files');for(const [name,body] of entries){if(!validFile(name)||typeof body!=='string'||body.length>150000)throw Error('Invalid workspace file '+name);files[name]=body;}if(!Array.isArray(m.jobs)||!Array.isArray(m.commits)||!Array.isArray(m.events))throw Error('Invalid history arrays');model={files,stage:{},commits:m.commits.slice(-40),jobs:m.jobs.slice(-100).map(j=>({...j,status:j.status==='RUNNING'?'PAUSED':j.status})),events:m.events.slice(-300),nextId:Number.isInteger(m.nextId)?m.nextId:1,activeFile:files[m.activeFile]!==undefined?m.activeFile:Object.keys(files)[0],pythonCode:typeof m.pythonCode==='string'?m.pythonCode.slice(0,8000):''};save();openFile(model.activeFile);renderUI();notice('Workspace imported; active jobs paused.','success');}
+async function execute(raw,echo=true){const cmd=raw.trim();if(!cmd)return;if(echo){promptEcho(cmd);commandHistory.push(cmd);historyIndex=commandHistory.length;}
+  const parts=cmd.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g)||[],name=parts[0]?.toLowerCase(),args=parts.slice(1).map(x=>x.replace(/^['"]|['"]$/g,''));
+  try{
+    if(name==='help'){['WORKSTATION: local files + snapshots + stateful jobs (not a real shell)', 'ls | pwd | cat <file> | touch <file> | rm <file>', 'write <path> <text> | echo text > path | edit <file>', 'git status | git add . | git commit -m "message" | git log | git diff', 'test | npm test | workflow run [normal|retry|missing|review]', 'workflow status | jobs | logs | approve JOB-0001 | retry JOB-0001', 'workflow pause | resume | export | clear | reset', 'File changes persist in IndexedDB; no Docker/Bash/real Git commands.'].forEach(x=>notice(x,'dim'));}
+    else if(name==='pwd')notice(os==='mac'?'/Users/moataz/workspace [BROWSER]':'/home/dev/workspace [BROWSER]','accent');
+    else if(name==='whoami')notice(os==='mac'?'moataz (virtual UI)':'dev (virtual UI)','accent');
+    else if(name==='ls'){const prefix=(args[0]||'').replace(/\/$/,'');const list=filesList().filter(x=>!prefix||x.startsWith(prefix));notice(list.join('   ')||'(empty)','dim');}
+    else if(name==='cat'){if(!(args[0] in model.files))throw Error('No such file: '+(args[0]||''));model.files[args[0]].split('\n').slice(0,50).forEach(x=>notice(x,'dim'));}
+    else if(name==='touch'){if(!validFile(args[0]))throw Error('Usage: touch <relative-path>');if(!(args[0] in model.files))writeFile(args[0],'');notice('Created or updated '+args[0],'success');}
+    else if(name==='rm'){if(!(args[0] in model.files))throw Error('No such file');if(['config.json','data/request.json'].includes(args[0]))throw Error('This required file cannot be removed; edit it instead');delete model.files[args[0]];save();if(model.activeFile===args[0]){model.activeFile=filesList()[0]||'';if(model.activeFile)openFile(model.activeFile);}renderFileList();notice('Removed '+args[0],'success');}
+    else if(name==='write'){if(args.length<2)throw Error('Usage: write <filename> <content>');writeFile(args[0],args.slice(1).join(' ')+'\n');notice('Wrote '+args[0],'success');}
+    else if(name==='echo'&&cmd.includes(' > ')){const m=cmd.match(/^echo\s+(.+?)\s*>\s*(\S+)\s*$/i);if(!m)throw Error('Use echo text > file');writeFile(m[2],m[1].replace(/^['"]|['"]$/g,'')+'\n');notice('Wrote '+m[2],'success');}
+    else if(name==='echo')notice(args.join(' '),'dim');
+    else if(name==='edit'){if(!(args[0] in model.files))throw Error('No such file');openFile(args[0]);editor.focus();notice('Opened '+args[0]+' in editor','accent');}
+    else if(name==='git')await gitAction(args);
+    else if(name==='npm'&&(args.join(' ')==='test'||args.join(' ')==='run test'))tests();
+    else if(name==='test')tests();
+    else if(name==='workflow')workflowAction(args);
+    else if(name==='run')workflowRun(args[0]||'normal');
+    else if(name==='scenario')notice('Use workflow run '+(args[0]||'normal')+' to execute using saved files.','accent');
+    else if(name==='logs')workflowAction(['logs']);
+    else if(name==='status')workflowAction(['status']);
+    else if(name==='approve'){const j=model.jobs.find(x=>x.status==='REVIEW');workflowAction(['approve',args[0]||j?.id]);}
+    else if(name==='pause')workflowAction(['pause']);
+    else if(name==='reset'){if(!confirm('Reset your local workspace and remove files and history?'))return;pauseRun();model={files:initial(),stage:{},commits:[],jobs:[],events:[],nextId:1,pythonCode:model.pythonCode,activeFile:'config.json'};activeJob=null;runClockReset();save();openFile('config.json');renderUI();notice('Restored starter workspace.','warn');}
+    else if(name==='clear')output.replaceChildren();
+    else if(name==='export')exportWorkspace();
+    else if(name==='date')notice(new Date().toString(),'dim');
+    else if(name==='uptime')notice(msFormat(performance.now()-sessionStarted)+' current browser session','dim');
+    else if(name==='uname')notice((os==='mac'?'macOS-style zsh':'Ubuntu-style bash')+' UI · browser sandbox · no host operating-system access','dim');
+    else if(['docker','systemctl','sudo','bash','python','pip','curl','ssh','npm','node','top','ps'].includes(name))throw Error(name+': unavailable in static browser workspace. Use the Python panel or built-in commands; no host OS/server is connected.');
+    else throw Error('Unknown command: '+name+'. Type help.');
+  }catch(e){notice('ERROR: '+e.message,'error');}
+}
+const runButton=$('#labRun'),stepButton=$('#labStep'),resetButton=$('#labReset');
+function switchOS(name){shell(name);}
+$$('[data-terminal-os]',root).forEach(b=>b.addEventListener('click',()=>switchOS(b.dataset.terminalOs)));
+$$('[data-command]',root).forEach(b=>b.addEventListener('click',()=>{execute(b.dataset.command);input.focus();}));
+$$('[data-lab-scenario]',root).forEach(b=>b.addEventListener('click',()=>{ $$('.lab-scenarios button',root).forEach(x=>x.classList.toggle('is-active',x===b));root.dataset.nextScenario=b.dataset.labScenario;notice('Next scenario: '+b.dataset.labScenario+'. Click Run.','accent');}));
+runButton.addEventListener('click',()=>execute('workflow run '+(root.dataset.nextScenario||'normal')));
+stepButton.addEventListener('click',()=>{const j=model.jobs.find(x=>x.status==='PAUSED');if(j){j.status='RUNNING';advance(j);}else notice('Use workflow run <scenario> or workflow resume.','warn');});
+resetButton.addEventListener('click',()=>execute('reset'));
+form.addEventListener('submit',e=>{e.preventDefault();const cmd=input.value;input.value='';execute(cmd);input.focus();});
+input.addEventListener('keydown',e=>{if(e.key==='ArrowUp'){e.preventDefault();historyIndex=Math.max(0,historyIndex-1);input.value=commandHistory[historyIndex]||'';}if(e.key==='ArrowDown'){e.preventDefault();historyIndex=Math.min(commandHistory.length,historyIndex+1);input.value=commandHistory[historyIndex]||'';}if(e.key==='Tab'){e.preventDefault();const commands=['help','ls','cat','touch','rm','write','edit','git','workflow','test','npm','date','clear','export','reset','pwd','whoami'];const matches=commands.filter(x=>x.startsWith(input.value));if(matches.length===1)input.value=matches[0]+' ';}});
+editor.addEventListener('input',()=>{dirty.textContent='UNSAVED';dirty.classList.add('is-dirty');$('#wsEditorHint').textContent='Save to update the persistent project';});
+$('#wsSave').addEventListener('click',editorSave);
+editor.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='s'){e.preventDefault();editorSave();}if(e.key==='Tab'){e.preventDefault();const a=editor.selectionStart,b=editor.selectionEnd;editor.setRangeText('  ',a,b,'end');editor.dispatchEvent(new Event('input'));}});
+$('#wsNewFile').addEventListener('click',()=>{const name=prompt('New relative file path, e.g. notes.txt');if(!name)return;try{if(!validFile(name)||name in model.files)throw Error('Invalid or existing filename');writeFile(name,'');openFile(name);editor.focus();}catch(e){alert(e.message);}});
+$('#wsExport').addEventListener('click',exportWorkspace);$('#wsImport').addEventListener('click',()=>$('#wsImportFile').click());
+$('#wsImportFile').addEventListener('change',async e=>{try{const file=e.target.files[0];if(!file)return;if(file.size>1000000)throw Error('JSON import too large');importWorkspace(JSON.parse(await file.text()));}catch(err){alert('Import failed: '+err.message);}e.target.value='';});
+$('#wsReset').addEventListener('click',()=>execute('reset'));
+const pyCode=$('#wsPythonCode'),pyStatus=$('#wsPythonStatus'),pyOutput=$('#wsPythonOutput'),pyButton=$('#wsRunPython');
+pyCode.addEventListener('input',()=>{model.pythonCode=pyCode.value.slice(0,8000);save();});
+let pyWorker=null,pyReady=false,pyPending=false;
+function pythonWorker(){const code=`let pyodide=null; self.onmessage=async e=>{if(e.data.type==='run'){try{if(!pyodide){postMessage({kind:'status',value:'Downloading Python runtime...'});importScripts('https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js');pyodide=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.28.3/full/'});}let logs=[];pyodide.setStdout({batched:s=>logs.push(s)});pyodide.setStderr({batched:s=>logs.push(s)});const result=await pyodide.runPythonAsync(e.data.code);postMessage({kind:'done',value:logs.join('\\n')+(result===undefined?'':'\\n'+String(result))});}catch(err){postMessage({kind:'error',value:String(err)});}}};`;const blob=new Blob([code],{type:'application/javascript'});const url=URL.createObjectURL(blob);const worker=new Worker(url);URL.revokeObjectURL(url);return worker;}
+pyButton.addEventListener('click',()=>{if(pyPending)return;pyPending=true;pyButton.disabled=true;pyStatus.textContent='Running / downloading';pyOutput.textContent='Loading isolated Python WebAssembly runtime...';if(!pyWorker){pyWorker=pythonWorker();pyWorker.onmessage=e=>{if(e.data.kind==='status'){pyStatus.textContent=e.data.value;return;}pyPending=false;pyButton.disabled=false;pyStatus.textContent=e.data.kind==='done'?'Executed in browser':'Runtime error / network unavailable';pyOutput.textContent=e.data.value;};pyWorker.onerror=e=>{pyPending=false;pyButton.disabled=false;pyStatus.textContent='Runtime unavailable';pyOutput.textContent='Pyodide could not be loaded. Check connection and reload the page.';};}pyWorker.postMessage({type:'run',code:pyCode.value.slice(0,8000)});});
+(async()=>{try{db=await indexedDBOpen();const stored=await getStored();if(stored&&stored.files&&stored.jobs&&stored.commits){model={...model,...stored};model.jobs.forEach(j=>{if(j.status==='RUNNING')j.status='PAUSED';});$('#wsStorageState').textContent='LOCAL STORAGE READY';}else await save();}catch(e){console.warn('IndexedDB unavailable',e);$('#wsStorageState').textContent='SESSION ONLY';}if(!(model.activeFile in model.files))model.activeFile=filesList()[0];pyCode.value=model.pythonCode;openFile(model.activeFile);renderUI();switchOS('mac');notice('WORKSTATION V26 · persistent browser files, local snapshot history and stateful job engine.','accent');notice('Type help to start. No real shell commands, Git remotes or emails are executed.','dim');})();
 })();
