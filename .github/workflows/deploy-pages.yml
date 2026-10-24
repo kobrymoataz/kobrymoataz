@@ -1,6 +1,6 @@
 # Branch publishing remains Settings -> Pages -> Deploy from a branch -> main /docs.
 # This action VALIDATES only and never performs an additional deployment.
-name: Validate V22 portfolio (branch publishing)
+name: Validate V23 portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate files, anchors, multilingual coverage and PDF
+      - name: Validate files, anchors, multilingual coverage and private CV request
         run: python scripts/validate_site.py
       - name: Verify JavaScript syntax
         run: |

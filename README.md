@@ -4,7 +4,7 @@
 
 **Computing · AI Automation · Cybersecurity · Digital Platforms**
 
-[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [Download professional profile (PDF)](https://kobrymoataz.github.io/kobrymoataz/assets/Moataz_Kobry_Professional_CV.pdf) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org)
+[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org)
 
 </div>
 
@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes responsibly labeled technical illustrations and a **browser-only engineering lab** demonstrating a synthetic submission flow.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes responsibly labeled technical illustrations and a **browser-only engineering lab v2** with normal, retry, missing-record and manual-review scenarios.
 
 ### Engineering toolkit
 
@@ -61,6 +61,6 @@ Internal records and private administrative interfaces are not published. The [p
 
 ### Connect
 
-[GitHub](https://github.com/kobrymoataz) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Professional CV](https://kobrymoataz.github.io/kobrymoataz/assets/Moataz_Kobry_Professional_CV.pdf) · [Request CV by email](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
+[GitHub](https://github.com/kobrymoataz) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Request CV by email](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A)
 
 <p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>

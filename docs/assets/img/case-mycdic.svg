@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" role="img" aria-label="MYCDIC illustration">
+<defs>
+  <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+    <stop offset="0%" stop-color="#081018"/>
+    <stop offset="100%" stop-color="#13181f"/>
+  </linearGradient>
+  <linearGradient id="glow" x1="0" x2="1">
+    <stop offset="0%" stop-color="#3ca36b"/>
+    <stop offset="100%" stop-color="#d54b4b"/>
+  </linearGradient>
+</defs>
+<rect width="1200" height="690" rx="36" fill="url(#bg)"/>
+<rect x="40" y="40" width="1120" height="610" rx="28" fill="none" stroke="#24303d"/>
+<circle cx="955" cy="170" r="132" fill="#3ca36b" opacity="0.09"/>
+<circle cx="195" cy="545" r="115" fill="#d54b4b" opacity="0.08"/>
+<text x="78" y="112" font-family="Arial, Helvetica, sans-serif" font-size="20" letter-spacing="3" fill="#9a8460">Institutional systems</text>
+<text x="78" y="208" font-family="Georgia, 'Times New Roman', serif" font-size="76" fill="#f3efe5">MYCDIC</text>
+<text x="82" y="258" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#d8cab1">Digital environment</text>
+<rect x="78" y="315" width="462" height="240" rx="26" fill="#0f171f" stroke="#263241"/>
+<g transform="translate(105 350)">
+  <rect x="0" y="0" width="165" height="28" rx="10" fill="#1b2733"/>
+  <rect x="188" y="0" width="122" height="28" rx="10" fill="url(#glow)" opacity="0.25"/>
+  <rect x="0" y="55" width="336" height="16" rx="8" fill="#283545"/>
+  <rect x="0" y="90" width="282" height="16" rx="8" fill="#283545"/>
+  <rect x="0" y="125" width="310" height="16" rx="8" fill="#283545"/>
+  <rect x="0" y="160" width="250" height="16" rx="8" fill="#283545"/>
+</g>
+<g transform="translate(640 172)">
+  <rect x="0" y="0" width="420" height="300" rx="28" fill="#0d141b" stroke="#263241"/>
+  <g>
+    <rect x="38" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="url(#glow)"/>
+    <rect x="244" y="42" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
+    <rect x="38" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
+    <rect x="244" y="190" width="138" height="68" rx="18" fill="#131e29" stroke="#30404d"/>
+    <path d="M176 76h68M107 110v80M313 110v80M176 224h68" stroke="url(#glow)" stroke-width="4" stroke-linecap="round"/>
+  </g>
+</g>
+<g font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#f3efe5">
+  <text x="88" y="615">Public website</text>
+  <text x="332" y="615">·</text>
+  <text x="360" y="615">Member intake</text>
+  <text x="644" y="615">·</text>
+  <text x="672" y="615">Verification center</text>
+</g>
+</svg>
