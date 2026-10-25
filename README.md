@@ -32,7 +32,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
-### V30.1 · TrustOps Studio — Free Public DNS Audit
+### V30.2 · TrustOps Studio — Free Public DNS Audit
 
 [**Open TrustOps Studio**](https://kobrymoataz.github.io/kobrymoataz/?trustops=1) · [Explore the DNS engine source](https://github.com/kobrymoataz/kobrymoataz/blob/main/docs/trustops-core.mjs)
 
@@ -131,3 +131,14 @@ The [Global Perspective](https://kobrymoataz.github.io/kobrymoataz/#perspective)
 Below Selected Work, **public GitHub repository metadata** can be loaded directly from GitHub's public API, showing actual stars and the last GitHub update date when the API is available. It uses no access token and avoids substituting invented statistics if the API is unavailable.
 
 The existing V28 engineering studio, README artwork, four-language content and private **Request CV** action remain.
+
+
+## V30.2 — Repository Intelligence
+
+TrustOps now supports two read-only audit modes:
+- **DNS and email:** existing SPF/DMARC/DKIM/MX evidence.
+- **Public GitHub repository:** repository metadata, CI workflows, security policy and governance files, GitHub releases, optional OpenSSF Scorecard, and an OSV advisory lookup for exact pinned versions in root `package-lock.json` or `requirements.txt`.
+
+**Coverage warning:** V30.2 does not access private settings or secrets and is not a vulnerability scan of the whole codebase. OSV analysis is intentionally capped at 20 exact dependencies from supported manifests. Rate limits, browser CORS policies, and unavailable providers are reported as unknown rather than guessed.
+
+Launch repository audit with `?trustops=repo`.

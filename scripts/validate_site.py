@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""V29 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V30.2 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import re,json,sys,xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 D=R/'docs'; errors=[]
-REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js','perspective.js','perspective.css','assets/img/regional-atlas.svg','trustops.css','trustops.js','trustops-core.mjs']
+REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js','perspective.js','perspective.css','assets/img/regional-atlas.svg','trustops.css','trustops.js','trustops-core.mjs','repo-audit.css','repo-audit.js','repo-audit-core.mjs']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v28.sh','scripts/push_v29.sh','scripts/test_perspective_v29.mjs','scripts/test_trustops_v30.mjs','scripts/push_v30_1.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v28.sh','scripts/push_v29.sh','scripts/test_perspective_v29.mjs','scripts/test_trustops_v30.mjs','scripts/push_v30_1.sh','scripts/push_v30_2.sh','scripts/test_repo_audit_v30_2.mjs']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -110,8 +110,15 @@ for key in ['auditDomain','createDohResolver','normalizeDomain','normalizeSelect
 for key in ['trustExportJSON','trustExportHTML','trustCancel','trustTabs','auditDomain']:
  if key not in trust_ui:errors.append('Missing V30 audit UI behavior: '+key)
 if 'TrustOps Studio' not in md or 'trustops-core.mjs' not in md:errors.append('README missing TrustOps tool and source')
+# V30.2 repository audit must be linked and its independent tests present.
+for key in ['id="repoAudit"', 'id="repoAuditForm"', 'id="repoAuditInput"', 'id="repoExportJSON"', './repo-audit.js']:
+ if key not in html:errors.append('Missing V30.2 repository audit UI: '+key)
+repo_core=(D/'repo-audit-core.mjs').read_text(encoding='utf8') if (D/'repo-audit-core.mjs').exists() else ''
+for key in ['parseRepository', 'auditRepository', 'dependenciesFromPackageLock', 'dependenciesFromRequirements']:
+ if key not in repo_core:errors.append('Missing V30.2 repository audit engine: '+key)
+if 'Repository Intelligence' not in md:errors.append('README missing V30.2 repository intelligence section')
 if errors:
- print('V30.1 VALIDATION FAILED',file=sys.stderr)
+ print('V30.2 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V30.1 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V30.2 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

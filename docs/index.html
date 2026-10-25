@@ -23,6 +23,7 @@
   <link rel="stylesheet" href="./studio-flow.css">
   <link rel="stylesheet" href="./perspective.css">
   <link rel="stylesheet" href="./trustops.css">
+  <link rel="stylesheet" href="./repo-audit.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -121,16 +122,16 @@
       <div class="wrap trust-landing">
         <div class="trust-landing-copy">
           <p class="eyebrow trust-overline" data-i18n="trustOverline">02 / A USEFUL PUBLIC TOOL</p>
-          <h2 id="trustTitle"><span data-i18n="trustHead1">Real DNS evidence.</span><br><em data-i18n="trustHead2">Clearer decisions.</em></h2>
-          <p data-i18n="trustIntro">TrustOps Studio checks public DNS records for mail authentication and routing. It explains findings and exports the underlying evidence — without collecting credentials, sending email, or claiming an inbox-delivery test.</p>
-          <div class="trust-landing-badges"><span>SPF</span><span>DMARC</span><span>MX</span><span>DKIM</span><span>DNS OVER HTTPS</span></div>
-          <button type="button" class="trust-launch" id="trustLaunch" data-i18n="trustLaunch">LAUNCH FREE DOMAIN AUDIT ↗</button>
-          <p class="trust-mini-note" data-i18n="trustFree">Free to use · public DNS only · no account required · no domain records changed</p>
+          <h2 id="trustTitle"><span data-i18n="trustHead1">Trust intelligence.</span><br><em data-i18n="trustHead2">Grounded in evidence.</em></h2>
+          <p data-i18n="trustIntro">TrustOps Studio brings together public DNS diagnostics and GitHub repository intelligence. Explore observable security signals, verify sources, and export reports without credentials or invented scores.</p>
+          <div class="trust-landing-badges"><span>SPF</span><span>DMARC</span><span>MX</span><span>DKIM</span><span>DNS OVER HTTPS</span><span>GITHUB API</span><span>OPENSSF</span><span>OSV</span></div>
+          <button type="button" class="trust-launch" id="trustLaunch" data-i18n="trustLaunch">LAUNCH FREE TRUST AUDIT ↗</button>
+          <p class="trust-mini-note" data-i18n="trustFree">Free · public DNS and repository data · no account · read-only</p>
         </div>
         <div class="trust-feature-visual" aria-hidden="true">
-          <div class="trust-fv-top"><span>TRUSTOPS / DIAGNOSTICS</span><span>v30.1</span></div>
+          <div class="trust-fv-top"><span>TRUSTOPS / DIAGNOSTICS</span><span>v30.2</span></div>
           <div class="trust-fv-radar"><div class="trust-fv-ring"><svg viewBox="0 0 220 220" width="100%" height="100%"><circle cx="110" cy="110" r="78" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".3"/><circle cx="110" cy="110" r="52" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".22"/><circle cx="110" cy="110" r="26" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".2"/><path d="M24 110H196M110 24V196" stroke="#c6a06b" stroke-width="1" opacity=".17"/><path d="M110 110 L161 58" stroke="#eed0a1" stroke-width="2.5"/><circle cx="161" cy="58" r="4" fill="#eed0a1"/></svg></div><div class="trust-fv-core">DNS</div></div>
-          <div class="trust-fv-rows"><div><span>01 / AUTHENTICATION</span><b>SPF + DMARC</b></div><div><span>02 / ROUTING</span><b>MX + NS</b></div><div><span>03 / OPTIONAL</span><b>DKIM SELECTOR</b></div></div>
+          <div class="trust-fv-rows"><div><span>01 / DOMAIN TRUST</span><b>SPF + DMARC</b></div><div><span>02 / REPOSITORY</span><b>CI + POLICY</b></div><div><span>03 / OPEN SOURCE</span><b>SCORECARD + OSV</b></div></div>
           <div class="trust-fv-foot"><span>PUBLIC DATA / EXPLAINABLE EVIDENCE</span><span>↗</span></div>
         </div>
       </div>
@@ -334,15 +335,35 @@ print(sum([2, 3, 5]))</textarea>
 <section id="trustopsStudio" class="trust-studio" hidden role="dialog" aria-modal="true" aria-labelledby="trustStudioTitle">
   <div class="trust-studio-shell">
     <header class="trust-studio-header">
-      <div class="trust-studio-brand"><span class="trust-mark" aria-hidden="true">◈</span><div><strong>TRUSTOPS <span>STUDIO</span></strong><small data-i18n="trustStudioMeta">v30.1 / PUBLIC DNS INTELLIGENCE</small></div></div>
+      <div class="trust-studio-brand"><span class="trust-mark" aria-hidden="true">◈</span><div><strong>TRUSTOPS <span>STUDIO</span></strong><small data-i18n="trustStudioMeta">v30.2 / PUBLIC TRUST INTELLIGENCE</small></div></div>
       <div class="trust-studio-actions"><span class="trust-readonly" data-i18n="trustReadOnly">READ-ONLY SCAN</span><button id="trustClose" type="button" class="trust-close" data-i18n="trustClose" aria-label="Close TrustOps Studio">Close ×</button></div>
     </header>
     <main class="trust-studio-body">
       <div class="trust-studio-overview">
-        <p class="trust-eyebrow" data-i18n="trustStudioMeta">v30.1 / PUBLIC DNS INTELLIGENCE</p>
-        <h2 id="trustStudioTitle" data-i18n="trustStudioTitle">Domain intelligence, with evidence.</h2>
-        <p data-i18n="trustStudioIntro">Check live DNS answers. Interpret mail authentication and routing records. Review exact findings, timestamps, and resolver sources. No synthetic scores or assumed delivery outcomes.</p>
+        <p class="trust-eyebrow" data-i18n="trustStudioMeta">v30.2 / PUBLIC TRUST INTELLIGENCE</p>
+        <h2 id="trustStudioTitle" data-i18n="trustStudioTitle">Trust intelligence, backed by evidence.</h2>
+        <p data-i18n="trustStudioIntro">Inspect public DNS records or GitHub repositories. Results contain observable evidence and explicit coverage limits, never imaginary grades or unverified security claims.</p>
       </div>
+      <div class="trust-mode-tabs" role="tablist" aria-label="Audit type">
+        <button type="button" role="tab" aria-selected="true" class="active" id="trustModeDNS" data-trust-mode="dns">01 / DOMAIN & EMAIL</button>
+        <button type="button" role="tab" aria-selected="false" id="trustModeRepo" data-trust-mode="repo">02 / GITHUB REPOSITORY</button>
+      </div>
+      <section class="repo-audit" id="repoAudit" hidden aria-label="Repository intelligence">
+        <form id="repoAuditForm" class="repo-audit-form">
+          <label for="repoAuditInput">PUBLIC GITHUB REPOSITORY <small>owner/repository or github.com/owner/repository</small></label>
+          <div class="repo-audit-input-row"><input id="repoAuditInput" spellcheck="false" autocomplete="off" placeholder="kobrymoataz/repoverity" maxlength="180" required>
+          <button type="submit" id="repoAuditRun">INSPECT REPOSITORY ↗</button><button type="button" id="repoAuditCancel" hidden>Cancel</button></div>
+        </form>
+        <p class="repo-audit-privacy">Read-only public requests to GitHub API and optionally OpenSSF Scorecard. OSV queries apply only to exact versions identified from supported dependency manifests. The website cannot verify private settings, secret scanning, hidden vulnerabilities or production security.</p>
+        <p id="repoAuditStatus" class="repo-audit-status" role="status" aria-live="polite">Enter a public GitHub repository to begin. No report has been generated.</p>
+        <div id="repoAuditResults" hidden>
+          <div class="repo-audit-report-header"><div><p class="trust-eyebrow">REPOSITORY EVIDENCE REPORT</p><h3 id="repoAuditTitle">—</h3><p id="repoAuditMeta"></p></div><div class="trust-export"><button id="repoExportJSON" type="button">Export JSON ↓</button><button id="repoExportHTML" type="button">Printable report ↗</button></div></div>
+          <div class="repo-audit-summary" id="repoAuditSummary"></div>
+          <div class="repo-audit-tabs" role="tablist" id="repoAuditTabs"><button class="active" aria-selected="true" role="tab" data-repo-tab="findings">FINDINGS</button><button aria-selected="false" role="tab" data-repo-tab="dependencies">DEPENDENCIES & OSV</button><button aria-selected="false" role="tab" data-repo-tab="evidence">RAW EVIDENCE</button></div>
+          <div id="repoAuditPanelFindings" class="repo-audit-panel"></div><div id="repoAuditPanelDependencies" class="repo-audit-panel" hidden></div><div id="repoAuditPanelEvidence" class="repo-audit-panel" hidden></div>
+          <p class="repo-audit-caveat">Absence of a public finding is not proof of security. Automated analysis is limited to accessible public files and APIs; OpenSSF/OSV results may be unavailable, incomplete, stale or rate-limited.</p>
+        </div>
+      </section>
       <form id="trustForm" class="trust-form" novalidate>
         <div class="trust-field trust-domain-field"><label for="trustDomain" data-i18n="trustDomainLabel">DOMAIN TO INSPECT</label><input id="trustDomain" name="domain" type="text" placeholder="example.com" autocomplete="off" spellcheck="false" autocapitalize="off" maxlength="253" required></div>
         <div class="trust-field"><label for="trustSelector" data-i18n="trustSelectorLabel">DKIM SELECTOR / OPTIONAL</label><input id="trustSelector" name="selector" type="text" placeholder="google / selector1" autocomplete="off" spellcheck="false" maxlength="125"></div>
@@ -350,7 +371,7 @@ print(sum([2, 3, 5]))</textarea>
         <button type="submit" class="trust-run" id="trustRun" data-i18n="trustRun">RUN LIVE DNS AUDIT ↗</button>
         <button type="button" class="trust-cancel" id="trustCancel" hidden data-i18n="trustCancel">Cancel</button>
       </form>
-      <div class="trust-privacy"><span class="trust-privacy-indicator" aria-hidden="true"></span><p data-i18n="trustPrivacy">Public DNS queries leave your browser for Cloudflare or Google DNS-over-HTTPS. The tool does not submit passwords, send mail, test SMTP, change DNS, or store your scan on this site. Resolver services may retain their own logs.</p></div>
+      <div class="trust-privacy" id="trustPrivacyDNS"><span class="trust-privacy-indicator" aria-hidden="true"></span><p data-i18n="trustPrivacy">Public DNS queries are sent to DNS-over-HTTPS providers when selected. Repository checks query GitHub API, OpenSSF and optionally OSV. Requests are read-only; third-party services may log queries.</p></div>
       <div class="trust-progress" aria-live="polite" role="status"><span id="trustStatus">Ready to inspect a public domain.</span><span id="trustProgressCount">—</span></div>
       <div class="trust-empty" id="trustEmpty"><div class="trust-empty-sigil">◌</div><h3 data-i18n="trustEmptyTitle">Your audit starts with real evidence.</h3><p data-i18n="trustEmptyText">Enter a domain to retrieve current DNS responses. Results are never prefilled with invented grades or sample checks.</p></div>
       <section class="trust-results" id="trustResults" hidden aria-label="Domain audit report">
@@ -440,6 +461,7 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./studio-flow-ui.js" defer></script>
   <script src="./studio.js" defer></script>
   <script type="module" src="./trustops.js"></script>
+  <script type="module" src="./repo-audit.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
 </body>

@@ -1,0 +1,22 @@
+/* Repository intelligence, V30.2. Shares black/bronze TrustOps design tokens. */
+.trust-mode-tabs,.repo-audit-tabs{display:flex;gap:9px;flex-wrap:wrap;margin:16px auto 24px;max-width:1350px}
+.trust-mode-tabs button,.repo-audit-tabs button{border:1px solid #344654;background:#111b25;color:#b8c4ce;cursor:pointer;padding:13px 19px;font:700 .74rem ui-monospace,Consolas,monospace;letter-spacing:.08em}
+.trust-mode-tabs button.active,.repo-audit-tabs button.active{border-color:#c4a174;background:#2b2928;color:#f3ddbb}
+.repo-audit{max-width:1350px;margin-inline:auto;min-width:0}.repo-audit[hidden],.repo-audit-panel[hidden],.trust-form[hidden],.trust-privacy[hidden],.trust-progress[hidden],.trust-empty[hidden],.trust-results[hidden]{display:none!important}
+.repo-audit-form{padding:25px;border:1px solid #384957;background:#131c26}
+.repo-audit-form label{display:block;color:#dfc5a0;font:700 .76rem ui-monospace,Consolas,monospace;letter-spacing:.1em}
+.repo-audit-form label small{display:block;color:#9eacb9;font:400 .77rem ui-sans-serif,system-ui,sans-serif;letter-spacing:normal;margin:8px 0 12px}
+.repo-audit-input-row{display:grid;grid-template-columns:1fr auto auto;gap:10px}
+.repo-audit-input-row input{width:100%;min-width:0;background:#080f18;border:1px solid #4b5a67;color:#f8eee2;padding:14px 16px;font:500 1rem ui-monospace,monospace}
+.repo-audit-input-row button{background:#cfae82;border:1px solid #cfae82;color:#10171f;padding:13px 19px;font-weight:800;cursor:pointer}
+.repo-audit-input-row button:disabled{opacity:.65;cursor:progress}#repoAuditCancel{background:transparent;color:#e3c9a5}
+.repo-audit-privacy,.repo-audit-caveat{color:#94a8b8;font-size:.83rem;line-height:1.75;padding:15px 0}
+.repo-audit-status{border:1px solid #354957;border-left:3px solid #bba077;background:#111b25;padding:17px 20px;color:#e5d3b9;line-height:1.65;overflow-wrap:anywhere}
+.repo-audit-report-header{display:flex;justify-content:space-between;align-items:end;gap:20px;border-bottom:1px solid #36434b;padding-bottom:20px}
+.repo-audit-report-header h3{font:400 clamp(2rem,4vw,3.5rem)/1.06 Georgia,serif;color:#f4eee5;margin:8px 0;overflow-wrap:anywhere}
+.repo-audit-report-header p{color:#94a8b9;font-size:.82rem;line-height:1.7;max-width:840px;overflow-wrap:anywhere}
+.repo-audit-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0}.repo-audit-counter{border:1px solid #384856;background:#121e28;padding:18px}.repo-audit-counter small{display:block;color:#96a9b7;font:.7rem ui-monospace,monospace;letter-spacing:.08em}.repo-audit-counter strong{display:block;color:#f5eadb;font:400 2rem Georgia,serif;margin-top:8px}.repo-audit-counter.observed{border-top:2px solid #8fcba7}.repo-audit-counter.advisory{border-top:2px solid #f1c17d}.repo-audit-counter.unknown{border-top:2px solid #91a4c4}
+.repo-audit-panel:not([hidden]){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:10px 0 22px}.repo-audit-card{min-width:0;background:#111b25;border:1px solid #344450;padding:22px}.repo-card-header{display:flex;gap:15px;align-items:start;justify-content:space-between}.repo-card-header h4{font:400 1.35rem Georgia,serif;color:#f4eee5;margin:0}.repo-audit-card p{color:#b4c4ce;line-height:1.75;overflow-wrap:anywhere}.repo-audit-card small{color:#a78e69;display:block;line-height:1.6}.repo-evidence-link{color:#e7c799;display:inline-block;margin-top:13px;font-size:.87rem;text-decoration:underline}.repo-status{border:1px solid #566777;padding:7px 9px;color:#cad7e0;font:.63rem ui-monospace,monospace;white-space:nowrap}.repo-status.observed{color:#98d5b2;border-color:#507963}.repo-status.advisory{color:#efc58b;border-color:#957448}.repo-status.unknown{color:#b2c8ee;border-color:#526789}.repo-audit-coverage{grid-column:1/-1;color:#9daeba;font-size:.83rem;line-height:1.6}
+[dir=rtl] .repo-audit{text-align:right}[dir=rtl] .repo-audit-input-row input{direction:ltr;text-align:left}[dir=rtl] .repo-audit-report-header h3{direction:ltr;text-align:right}
+@media(max-width:800px){.repo-audit-panel:not([hidden]){grid-template-columns:1fr}.repo-audit-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.repo-audit-report-header{align-items:start;flex-direction:column}}
+@media(max-width:600px){.repo-audit-input-row{grid-template-columns:1fr}.repo-audit-input-row button{width:100%}.trust-mode-tabs button{flex:1;min-width:145px;padding:11px}.repo-audit-form{padding:16px}.repo-audit-counter{padding:12px}}

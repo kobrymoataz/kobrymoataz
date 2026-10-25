@@ -1,6 +1,6 @@
 # GitHub Pages keeps its configured branch-based publishing source main /docs.
 # This workflow validates the portfolio and never deploys a competing site.
-name: Validate V30.1 TrustOps portfolio (branch publishing)
+name: Validate V30.2 TrustOps portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -13,6 +13,7 @@ on:
       - 'scripts/test_flow_v28.mjs'
       - 'scripts/test_perspective_v29.mjs'
       - 'scripts/test_trustops_v30.mjs'
+      - 'scripts/test_repo_audit_v30_2.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
@@ -42,7 +43,7 @@ jobs:
         run: python3 scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: |
-          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs; do node --check "$file"; done
+          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs docs/repo-audit.js docs/repo-audit-core.mjs; do node --check "$file"; done
       - name: Check Git-format object engine
         run: node scripts/test_studio.mjs
       - name: Check real local workflow graph, queue and trace behavior
@@ -52,3 +53,6 @@ jobs:
 
       - name: Check TrustOps DNS audit and uncertainty semantics (offline fixtures)
         run: node scripts/test_trustops_v30.mjs
+
+      - name: Check TrustOps repository evidence and OSV/Scorecard uncertainty
+        run: node scripts/test_repo_audit_v30_2.mjs
