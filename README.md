@@ -4,7 +4,7 @@
 
 **Computing · AI Automation · Cybersecurity · Digital Platforms**
 
-[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org)
+[Portfolio](https://kobrymoataz.github.io/kobrymoataz/) · [TrustOps Studio](https://kobrymoataz.github.io/kobrymoataz/?trustops=1) · [Request CV](mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A) · [LinkedIn](https://www.linkedin.com/in/kobrymoataz/) · [Instagram](https://www.instagram.com/kobrymoataz/) · [Email](mailto:president@mycdic.org)
 
 </div>
 
@@ -31,6 +31,24 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
 Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
+
+### V30.1 · TrustOps Studio — Free Public DNS Audit
+
+[**Open TrustOps Studio**](https://kobrymoataz.github.io/kobrymoataz/?trustops=1) · [Explore the DNS engine source](https://github.com/kobrymoataz/kobrymoataz/blob/main/docs/trustops-core.mjs)
+
+A free, **read-only, real-data** DNS diagnostic integrated into my portfolio. Visitors enter a domain and an optional DKIM selector; TrustOps retrieves live DNS answers with **Cloudflare 1.1.1.1 or Google Public DNS-over-HTTPS**, then provides explainable findings and evidence files.
+
+- SPF: single/duplicate policies, unsafe `+all`, direct lookup terms and a **bounded advisory** on nested include/redirect lookups (not a full RFC 7208 SPF evaluation).
+- DMARC: policy validation, monitoring/enforcement state, `pct` sampling and reporting tag presence. Exact-name query only; organizational-domain inheritance is not assessed.
+- MX and NS/A: public mail routing and baseline DNS signals; handles intentional Null MX.
+- DKIM: optional selector-based key lookup and CNAME follow-up; **does not verify an actual signed message**.
+- Optional MTA-STS / TLS-RPT DNS signals; does not inspect HTTPS policy files or negotiate SMTP TLS.
+- **Evidence-first results:** source resolver, record names, timestamps, TTL, raw DNS values, uncertainty and actionable recommendations.
+- **Local exports:** JSON and standalone printable HTML reports; no account, credential handling or server-side collection of scan history.
+
+The browser sends public DNS queries to the selected resolver; if it fails, it may try the other resolver. Resolver operators may retain query logs. This tool does **not** send email, perform live SMTP or prove Inbox delivery, DKIM signatures, DMARC alignment, or complete domain security. DNS failures are marked **unverified**, never silently passed. The GitHub Pages site is static; no backend is required for its read-only DNS-over-HTTPS queries, subject to browser/network/CORS support.
+
+Implementation: [`docs/trustops-core.mjs`](docs/trustops-core.mjs), [`docs/trustops.js`](docs/trustops.js), [`docs/trustops.css`](docs/trustops.css). Regression suite: `node scripts/test_trustops_v30.mjs`.
 
 ### Engineering toolkit
 
