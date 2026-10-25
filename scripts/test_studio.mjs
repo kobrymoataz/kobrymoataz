@@ -1,0 +1,23 @@
+/* Deterministic regression test for SHA-1 Git-format objects and local workflow jobs. */
+import assert from 'node:assert/strict';
+import {createHash, webcrypto} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const code=readFileSync('docs/studio-engine.js','utf8');
+const ctx={window:{},crypto:webcrypto,indexedDB:undefined,TextEncoder,Uint8Array,DataView,JSON,Date,Math,console,setTimeout,clearTimeout};
+vm.createContext(ctx);vm.runInContext(code,ctx);
+const engine=new ctx.window.MKStudioEngine();
+engine.emit=()=>{};await engine.write('hello.txt','hello\n');
+assert.equal(engine.read('hello.txt'),'hello\n');
+assert.ok(engine.changes().some(c=>c.path==='hello.txt'));
+engine.stage(['.']);const id=await engine.commit('Initial studio test');
+assert.match(id,/^[a-f0-9]{40}$/);assert.equal(engine.changes().length,0);
+const blob=[...Object.values(engine.state.objects)].find(o=>o.type==='blob'&&o.content==='hello\n');
+assert.equal(blob.id,createHash('sha1').update('blob 6\0hello\n').digest('hex'));
+assert.equal(engine.state.objects[id].type,'commit');
+await engine.write('hello.txt','changed\n');assert.equal(engine.changes()[0].path,'hello.txt');
+engine.state.files['config.json']=JSON.stringify({...JSON.parse(engine.read('config.json')),latencyMs:30,retryLimit:1});
+await engine.runWorkflow('retry');await new Promise(r=>setTimeout(r,450));
+assert.equal(engine.state.jobs.at(-1).status,'DELIVERED');
+assert.equal(engine.state.jobs.at(-1).retries,1);
+console.log('V27 engine regression PASS | Git SHA-1 blob/tree/commit | staged changes | local retry job');

@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **interactive engineering workstation V26**: persistent editable files, local Git-style version snapshots, executable file validation, stateful workflows and a browser Python panel. macOS and Ubuntu are interface styles, not actual operating systems.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **V27 Functional Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
 ### Engineering toolkit
 
@@ -65,24 +65,36 @@ Internal records and private administrative interfaces are not published. The [p
 
 <p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>
 
-> The engineering workstation edits browser-local files and executes stateful workflows, but it does not run real shell commands, send messages, or connect to private systems. Git-style commits are local snapshots, **not actual Git objects**.
+> The Engineering Studio performs local file operations and executable JavaScript tests. V27 produces Git-format SHA-1 blob/tree/commit objects locally but does not provide a full Git CLI, working tree on your computer, or remote pushes. No private systems are connected.
 
-### V26 · Interactive engineering workstation
+### V27 · Functional Engineering Studio
 
-The [interactive workstation](https://kobrymoataz.github.io/kobrymoataz/#lab) lets visitors edit local project files, save them in IndexedDB, inspect changes, stage files and commit real local **snapshots**, and run delivery jobs with state, errors, retries, validation and audit records. The editable project includes `config.json` and `data/request.json`. Try:
+[Open the portfolio and select **Open Functional Engineering Studio**](https://kobrymoataz.github.io/kobrymoataz/#lab).
+
+**Core browser-local features** (self-hosted dependencies; no CDN required):
+
+- **xterm.js-based terminal**: file commands, staged changes, Git-format SHA-1 blob/tree/commit object creation, and real local workflow jobs. These are limited supported commands, **not** Bash, zsh, Docker, SSH, or a host operating system.
+- **CodeMirror 5 editor**: JavaScript/JSON/Python/SQL syntax highlighting, line numbers, saving and recovery from local IndexedDB.
+- **Executable JavaScript test runner**: changes to `src/handler.js` affect results of `tests/handler.test.js`; runs in a sandboxed opaque-origin iframe with a timeout and blocked network connections.
+- **Workflow engine**: normal/retry/missing/review scenarios read saved `config.json` and `data/request.json`, create job records, and calculate retries. **No external webhooks or emails are sent.**
+- **Import / export**: JSON backup, restore and reset; browser storage may be unavailable in private mode or subject to browser eviction.
+
+**On-demand runtimes** (require network to load, and are not included in the ZIP):
+
+- **SQLite** through sql.js WebAssembly: executes real SQL and saves the database in the browser after each query.
+- **Python** through Pyodide WebAssembly: executes editable Python inside a Worker, with a timeout. Download may fail if the CDN is blocked.
+
+Try in the studio terminal:
 
 ```text
-help
-ls
-cat config.json
-write notes.txt hello-world
 git status
 git add .
-git commit -m "Update notes"
+git commit -m "Initial project"
+npm test
 workflow run retry
 workflow jobs
 workflow logs
-test
+edit src/handler.js
 ```
 
-The workstation saves its data in your own browser and can export/import a JSON backup. **Git-style versioning is a local snapshot engine, not compatible Git object storage.** Terminal commands are deliberately limited; no real Bash, Docker, SSH, npm or remote servers are exposed. Python runs via an optional Pyodide WebAssembly runtime that downloads on demand if an internet connection is available. The main workstation remains functional without it.
+For repository code, see `docs/studio-engine.js`, `docs/studio.js` and `docs/studio.css`. For test limitations see `QA_REPORT.md` in the release ZIP.

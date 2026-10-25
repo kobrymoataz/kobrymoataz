@@ -6,10 +6,10 @@ from urllib.parse import urlsplit, unquote
 import re,json,sys,xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 D=R/'docs'; errors=[]
-REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp']
+REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v26.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v27.sh']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -72,8 +72,18 @@ for term in ['indexedDBOpen','workflowRun','gitAction','importWorkspace','tests'
  if term not in lab:errors.append('Missing terminal engine feature: '+term)
 workflow=(R/'.github/workflows/deploy-pages.yml').read_text(encoding='utf-8') if (R/'.github/workflows/deploy-pages.yml').exists() else ''
 if 'actions/deploy-pages' in workflow or 'pages: write' in workflow:errors.append('Workflow unexpectedly deploys; use branch publishing')
+
+# V27 functional studio structure and no fake success claims.
+studio=(D/'studio.js').read_text(encoding='utf-8') if (D/'studio.js').is_file() else ''
+core=(D/'studio-engine.js').read_text(encoding='utf-8') if (D/'studio-engine.js').is_file() else ''
+for term in ['studioLaunch','engineeringStudio','studioTestRun','studioSQLRun','studioPythonRun','studioXterm','studioCode','studioImport','studioExport']:
+ if term not in html:errors.append('Missing V27 studio UI: '+term)
+for term in ['MKStudioEngine','hashObject','sha1Fallback','indexedDB','async commit','runWorkflow','retryLimit']:
+ if term not in core:errors.append('Missing V27 studio engine: '+term)
+for term in ['runTests','runnerHTML','runSQL','runPython','window.Terminal','CodeMirror']:
+ if term not in studio:errors.append('Missing V27 runtime feature: '+term)
 if errors:
- print('V26 VALIDATION FAILED',file=sys.stderr)
+ print('V27 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V26 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V27 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

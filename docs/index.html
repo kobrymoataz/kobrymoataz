@@ -18,6 +18,8 @@
   <link rel="stylesheet" href="./styles.css">
   <title>Moataz Kobry | Executive Engineering Portfolio</title>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsLanguage":["ar","en","fr","es"],"knowsAbout":["Computing","AI Automation","Cybersecurity","Web Platforms","Workflow Engineering","JavaScript","Python","PHP","PostgreSQL","Wikidata"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
+  <link rel="stylesheet" href="./vendor/codemirror/codemirror.css">
+  <link rel="stylesheet" href="./studio.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -105,6 +107,10 @@
       <div class="lab-intro"><p class="eyebrow" data-i18n="labLabel">02 / INTERACTIVE ENGINEERING LAB</p><h2 id="labTitle"><span data-i18n="labHeading1">Follow a request</span><br><em data-i18n="labHeading2">through a system.</em></h2><p data-i18n="labIntro">An interactive browser workstation: edit files, inspect changes, commit local snapshots and run a real stateful delivery pipeline. Nothing reaches your computer or institutional systems.</p>
         <div class="lab-explainer"><span class="lab-note" data-i18n="labNote">WHY IT MATTERS</span><p data-i18n="labBenefit">Reliability depends on more than a successful form submission: traceability, recovery and clear outcomes are part of the design.</p></div>
       </div>
+      <div class="mk-studio-launch" style="grid-column:1/-1;padding:22px 0 25px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;border-top:1px solid rgba(210,178,127,.2)">
+        <button type="button" class="mk-studio-open" id="studioLaunch">OPEN FUNCTIONAL ENGINEERING STUDIO <span aria-hidden="true">↗</span></button>
+        <span class="mk-studio-inline-note">V27 · self-hosted terminal + syntax-highlighted code editor + executable JS tests + Git-format local commits + SQL/Python runtimes on demand</span>
+      </div>
       <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive local engineering workstation terminal">
         <div class="mac-titlebar">
           <span class="mac-traffic" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -117,7 +123,7 @@
           <span class="terminal-env-note">BROWSER WORKSPACE</span>
         </div>
         <div class="mac-toolbar">
-          <span class="mac-toolbar-label"><span>engineering-workstation / v26</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
+          <span class="mac-toolbar-label"><span>engineering-workstation / v26 · legacy workflow view</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
           <div class="lab-scenarios" role="group" aria-label="Choose simulator scenario" id="labScenarios">
             <button type="button" class="is-active" data-lab-scenario="normal" aria-pressed="true" data-i18n="labModeNormal">Normal</button>
             <button type="button" data-lab-scenario="retry" aria-pressed="false" data-i18n="labModeRetry">Retry</button>
@@ -279,10 +285,41 @@ print(sum([2, 3, 5]))</textarea>
     </div></section>
   </main>
   <footer class="site-footer"><div class="wrap footer-row"><div class="brand footer-brand"><img src="./assets/logo-mark.svg" alt="" width="35" height="35"><span dir="ltr"><strong>MOATAZ KOBRY</strong><small>COMPUTING / SYSTEMS</small></span></div><p data-i18n="footerNote">Built for clarity, continuity and the people behind digital systems.</p><a href="#top" data-i18n="backTop">Back to top ↑</a></div><div class="wrap footer-bottom"><span>© 2026 MOATAZ KOBRY</span><span>GITHUB PAGES · MAIN / DOCS</span></div></footer>
+
+<section id="engineeringStudio" hidden aria-label="Functional Engineering Studio V27" role="dialog" aria-modal="true" aria-labelledby="studioHeading">
+  <div class="studio-window">
+    <div class="studio-titlebar">
+      <div class="studio-identity"><span class="studio-traffic" aria-hidden="true"><i></i><i></i><i></i></span><div><div class="studio-title" id="studioHeading">FUNCTIONAL ENGINEERING STUDIO <span style="color:#d1af7d">/ V27</span></div><div class="studio-sub">LIVE LOCAL PROJECT · EXECUTABLE TESTS · NO REMOTE SHELL ACCESS</div></div></div>
+      <div class="studio-topactions"><span id="studioSaveState" class="studio-status">CONNECTING TO STORAGE</span><button type="button" id="studioExport" class="studio-btn">Export JSON</button><button type="button" id="studioImport" class="studio-btn">Import JSON</button><input type="file" id="studioImportFile" accept="application/json,.json" hidden><button type="button" id="studioClose" class="studio-btn danger">Close ✕</button></div>
+    </div>
+    <div class="studio-summary"><div><small>WORKSPACE</small><strong id="studioFileCount">0 files</strong></div><div><small>VERSION HISTORY</small><strong id="studioCommitCount">0 commits</strong></div><div><small>EXECUTABLE TESTS</small><strong id="studioTestCount">Not run</strong></div><div><small>OPERATIONS</small><strong id="studioJobCount">0 jobs</strong></div></div>
+    <div class="studio-layout">
+      <aside class="studio-sidebar" aria-label="Local project files"><div class="studio-pane-title">EXPLORER <button type="button" id="studioNew" class="studio-btn">+ New</button></div><div id="studioFiles" class="studio-filelist"></div><div class="studio-git"><strong>LOCAL GIT OBJECTS</strong><div id="studioGitInfo">No commits yet</div><small>SHA-1 Git blob/tree/commit objects · no remote access</small></div></aside>
+      <section class="studio-main" aria-label="Studio tools">
+        <div class="studio-tabs" role="tablist"><button class="studio-tab" role="tab" aria-selected="true" data-studio-tab="editor">Code editor</button><button class="studio-tab" role="tab" aria-selected="false" data-studio-tab="terminal">Terminal</button><button class="studio-tab" role="tab" aria-selected="false" data-studio-tab="test">Test runner</button><button class="studio-tab" role="tab" aria-selected="false" data-studio-tab="sql">SQLite</button><button class="studio-tab" role="tab" aria-selected="false" data-studio-tab="python">Python</button></div>
+        <div class="studio-panel" data-studio-panel="editor" data-active="true"><div class="studio-panelhead"><span id="studioEditorTitle">src/handler.js</span><span id="studioDirty">SAVED</span></div><div class="studio-cmholder"><textarea id="studioCode"></textarea></div><div class="studio-editorbar"><span class="studio-help">CodeMirror · Ctrl / ⌘ + S to save</span><div><button type="button" id="studioDelete" class="studio-btn danger">Delete</button> <button type="button" id="studioSave" class="studio-btn primary">Save file</button></div></div></div>
+        <div class="studio-panel" data-studio-panel="terminal"><div class="studio-panelhead"><span>browser@portfolio:~/workspace</span><span class="studio-help">LOCAL OPERATIONS ONLY</span></div><div class="studio-terminal" id="studioXterm" aria-label="Interactive terminal emulator"></div><div class="studio-controls"><button type="button" data-studio-run="help" class="studio-btn">help</button><button type="button" data-studio-run="git status" class="studio-btn">git status</button><button type="button" data-studio-run="git add ." class="studio-btn">stage files</button><button type="button" data-studio-run="git commit -m &quot;Save project&quot;" class="studio-btn">commit project</button><button type="button" data-studio-run="npm test" class="studio-btn">npm test</button><button type="button" data-studio-run="workflow run retry" class="studio-btn">retry workflow</button><button type="button" data-studio-run="workflow jobs" class="studio-btn">jobs</button></div></div>
+        <div class="studio-panel" data-studio-panel="test"><div class="studio-panelhead"><span>JAVASCRIPT TESTS · SANDBOXED EXECUTION</span><button type="button" id="studioTestRun" class="studio-btn primary">Run tests ↗</button></div><div class="studio-note">Tests execute code from <code>src/handler.js</code> and <code>tests/handler.test.js</code> inside a restricted, opaque-origin iframe. Change a function to make a test fail, then fix it.</div><pre id="studioTestsOutput" class="studio-results" style="max-height:none;min-height:240px">Run tests to see actual results.</pre></div>
+        <div class="studio-panel" data-studio-panel="sql"><div class="studio-panelhead"><span>REAL SQLITE ENGINE / WEBASSEMBLY</span><button type="button" id="studioSQLRun" class="studio-btn primary">Run SQL ↗</button></div><div class="studio-note">sql.js (SQLite WASM) downloads on first use from an external CDN. If unavailable, a clear error is shown; no simulated SQL results. SQL state is saved in this browser.</div><textarea id="studioSQL" class="studio-codeinput" spellcheck="false" aria-label="SQL query">SELECT sqlite_version();</textarea><pre id="studioSQLOut" class="studio-results">Not loaded · requires an internet connection.</pre></div>
+        <div class="studio-panel" data-studio-panel="python"><div class="studio-panelhead"><span>REAL PYTHON / PYODIDE WASM</span><button type="button" id="studioPythonRun" class="studio-btn primary">Run Python ↗</button></div><div class="studio-note">Python runs in a Web Worker using Pyodide downloaded on first use. Results come from code execution; network access is needed to load the runtime.</div><textarea id="studioPython" class="studio-codeinput" spellcheck="false" aria-label="Python source code">print(sum([2, 3, 5]))</textarea><pre id="studioPythonOut" class="studio-results">Not loaded · requires an internet connection.</pre></div>
+      </section>
+      <aside class="studio-inspector" aria-label="Workflow observability"><div class="studio-pane-title">REAL STATE / LOCAL OPERATIONS</div><div class="studio-statrow"><div class="studio-stat"><small>QUEUED</small><strong id="studioQueued">0</strong></div><div class="studio-stat"><small>DELIVERED</small><strong id="studioDelivered">0</strong></div><div class="studio-stat"><small>FAILED</small><strong id="studioFailed">0</strong></div><div class="studio-stat"><small>RETRIES</small><strong id="studioRetries">0</strong></div></div><div class="studio-pane-title" style="margin-top:28px">LIVE EVENTS</div><div id="studioEvents" class="studio-eventlist"><p class="studio-help">Run a workflow to inspect stages and decisions.</p></div><div class="studio-controls" style="padding-left:0"><button type="button" id="studioReset" class="studio-btn danger">Reset local studio</button></div></aside>
+    </div>
+    <div class="studio-footer"><span>GITHUB PAGES · STATIC SITE · PRIVATE BROWSER WORKSPACE</span><span>FILES / GIT OBJECTS / JOBS STORED IN INDEXEDDB · NO REMOTE EXECUTION</span></div>
+  </div>
+</section>
   <script src="./i18n.js" defer></script>
   <script src="./lab.js" defer></script>
   <script src="./app.js" defer></script>
   <script src="./globe.js" defer></script>
+  <script src="./vendor/codemirror/codemirror.js" defer></script>
+  <script src="./vendor/codemirror/javascript.js" defer></script>
+  <script src="./vendor/codemirror/python.js" defer></script>
+  <script src="./vendor/codemirror/sql.js" defer></script>
+  <script src="./vendor/codemirror/matchbrackets.js" defer></script>
+  <script src="./vendor/xterm/xterm.js" defer></script>
+  <script src="./studio-engine.js" defer></script>
+  <script src="./studio.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
 </body>

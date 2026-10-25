@@ -1,6 +1,6 @@
 # Branch publishing remains Settings -> Pages -> Deploy from a branch -> main /docs.
 # This action VALIDATES only and never performs an additional deployment.
-name: Validate V26 portfolio (branch publishing)
+name: Validate V27 portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -9,6 +9,7 @@ on:
       - 'README.md'
       - 'assets/**'
       - 'scripts/validate_site.py'
+      - 'scripts/test_studio.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
@@ -16,6 +17,7 @@ on:
       - 'README.md'
       - 'assets/**'
       - 'scripts/validate_site.py'
+      - 'scripts/test_studio.mjs'
   workflow_dispatch:
 permissions:
   contents: read
@@ -39,3 +41,7 @@ jobs:
           node --check docs/lab.js
           node --check docs/app.js
           node --check docs/globe.js
+          node --check docs/studio-engine.js
+          node --check docs/studio.js
+      - name: Run functional studio regression
+        run: node scripts/test_studio.mjs
