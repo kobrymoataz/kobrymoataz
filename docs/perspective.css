@@ -1,0 +1,67 @@
+/* V29: an editorial geographical context, not a fictitious real-time operations map. */
+.perspective-mode-bar{display:flex;align-items:center;gap:8px;padding:2px 25px 4px;position:relative;z-index:4}
+.perspective-mode-bar button{background:#0b1822;border:1px solid #4b493f;color:#bfc5c4;padding:10px 14px;font:11px var(--mono);letter-spacing:.02em;min-height:39px;cursor:pointer;transition:background .22s,border-color .22s,color .22s}
+.perspective-mode-bar button:hover,.perspective-mode-bar button:focus-visible{border-color:#d8b982;color:#f9e4bd}
+.perspective-mode-bar button.is-active{background:#d2ad79;color:#131b20;border-color:#e6ca9d}
+.perspective-mode-id{margin-inline-start:auto;color:#738b96;font:10px var(--mono);letter-spacing:.07em}
+.globe-stage{border:1px solid #8b7454;background:linear-gradient(147deg,#111d27,#071118 78%);box-shadow:0 30px 95px rgba(0,0,0,.22), inset 0 1px 0 rgba(246,218,169,.06)}
+.globe-stage:after{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(120deg,transparent,rgba(207,176,128,.055) 50%,transparent);}
+.globe-viewport{background:radial-gradient(circle at 51% 51%,rgba(214,156,91,.12),transparent 53%),radial-gradient(circle at 50% 60%,#18232c 0%,#08121b 74%)}
+.globe-viewport:before{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(#c6b08b 0.7px,transparent 1px);background-size:69px 72px;opacity:.18}
+.globe-viewport .orbit{transition:opacity .25s}
+.globe-stage.has-webgl-v21 #globeCanvas{filter:drop-shadow(0 0 33px rgba(209,161,99,.12))}
+.globe-stage[data-mode="atlas"] .globe-viewport:after,.globe-stage[data-mode="atlas"] .orbit{opacity:0}
+.globe-stage[data-mode="atlas"] .globe-fallback,.globe-stage[data-mode="atlas"] #globeCanvas{display:none}
+.atlas-view[hidden]{display:none!important}
+.atlas-view{width:calc(100% - 36px);max-width:800px;aspect-ratio:960/520;position:relative;z-index:4;overflow:hidden;border:1px solid #806a4e;border-radius:7px;box-shadow:0 25px 60px rgba(0,0,0,.4);animation:atlas-enter .35s ease-out both;direction:ltr}
+@keyframes atlas-enter{from{opacity:.3;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
+.atlas-view>img{width:100%;height:100%;object-fit:fill;display:block;filter:saturate(.93) contrast(1.07)}
+.atlas-network{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.atlas-network path{fill:none;stroke:#f4d29f;stroke-width:1.5;stroke-dasharray:6 7;stroke-linecap:round;opacity:.8;animation:atlas-flow 11s linear infinite}
+@keyframes atlas-flow{to{stroke-dashoffset:-260}}
+.atlas-pins{position:absolute;inset:0}
+.atlas-pin{position:absolute;top:var(--y);left:var(--x);transform:translate(-50%,-50%);min-width:19px;min-height:19px;border:1px solid #f6dcb0;background:#ad8856;color:#19222b;border-radius:50%;padding:0;cursor:pointer;box-shadow:0 0 0 7px #d9b87b29;z-index:3}
+.atlas-pin:before{content:'';position:absolute;inset:5px;background:#f7ead4;border-radius:50%}
+.atlas-pin:hover,.atlas-pin:focus-visible,.atlas-pin.is-active{background:#fbe4b7;box-shadow:0 0 0 9px #e7bc7850;outline:0;z-index:8}
+.atlas-pin .atlas-pin-caption{display:none;position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);white-space:nowrap;padding:6px 9px;border:1px solid #b59b70;background:#101b24;color:#efdfc4;font:11px var(--mono);pointer-events:none}
+.atlas-pin:hover .atlas-pin-caption,.atlas-pin:focus-visible .atlas-pin-caption,.atlas-pin.is-active .atlas-pin-caption{display:block}
+.atlas-pin[data-place="ciudad-real"] .atlas-pin-caption{bottom:auto;top:calc(100% + 10px)}
+.globe-panel{background:linear-gradient(180deg,rgba(13,23,32,.18),#0a131b8e)}
+.globe-panel button{transition:background .2s,color .2s,border-color .2s}
+.globe-panel button:focus-visible{outline:2px solid #f0cc96;outline-offset:2px}
+.globe-panel #globeLighting,.globe-panel #globeConnections{font:10px var(--mono);color:#e3c99f;background:#17232d}
+.globe-panel #globeLighting[aria-pressed="true"],.globe-panel #globeConnections[aria-pressed="false"]{background:#5f4e35;color:#fff4dd}
+.place-dossier{border:1px solid #765e3e;background:linear-gradient(140deg,#1c2931,#121d25);padding:23px 23px 21px;margin-top:29px;max-width:510px;position:relative;isolation:isolate;box-shadow:0 18px 40px #0001}
+.place-dossier:before{content:'';position:absolute;top:-1px;left:0;width:75px;height:2px;background:#d6b789}
+.place-dossier-eyebrow{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:#d2b27d;font:10px var(--mono);letter-spacing:.07em}
+.place-dossier-eyebrow span:last-child{color:#8e9b9e}
+.place-dossier h3{font:normal clamp(25px,2.7vw,35px)/1.1 var(--serif);margin:15px 0 10px;letter-spacing:-.025em;color:#f2efe8}
+.place-dossier p{font-size:13px!important;line-height:1.85!important;color:#c3c8c6!important;min-height:48px;margin:0 0 18px}
+.place-dossier-footer{display:flex;align-items:center;justify-content:space-between;gap:13px;border-top:1px solid #77684e72;padding-top:15px;flex-wrap:wrap}
+.place-dossier-footer span{font:9px var(--mono);letter-spacing:.07em;color:#b79b73;text-transform:uppercase}
+.place-dossier-footer a{font-size:12px;color:#f6dcba;text-decoration:underline;text-decoration-color:#927756;text-underline-offset:5px}
+.place-dossier-footer a:hover,.place-dossier-footer a:focus-visible{color:white}
+.repo-evidence{margin-top:36px;background:#142029;color:#f4efe6;border:1px solid #47505a;box-shadow:0 26px 50px #18242e11;padding:30px 30px 24px}
+.repo-evidence-heading{display:flex;gap:30px;justify-content:space-between;align-items:flex-end;padding-bottom:24px;border-bottom:1px solid #46515b}
+.repo-evidence h3{font:normal clamp(27px,3vw,39px)/1.08 var(--serif);margin:8px 0 12px;letter-spacing:-.02em}
+.repo-evidence-heading p:not(.eyebrow){font-size:13px;color:#c1c8c9;max-width:680px;line-height:1.6}
+.repo-evidence-controls{display:flex;align-items:flex-end;flex-direction:column;gap:11px;font:10px var(--mono);color:#a7b6b8;white-space:nowrap}
+.repo-evidence-controls button{border:1px solid #988065;padding:9px 13px;background:transparent;color:#dfcda9;cursor:pointer}
+.repo-evidence-controls button:disabled{opacity:.5;cursor:wait}
+.repo-evidence-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.repo-evidence-item{display:flex;flex-direction:column;position:relative;padding:22px 24px 12px 0;min-width:0;gap:10px;text-decoration:none}
+.repo-evidence-item:not(:first-child){padding-left:22px;border-left:1px solid #44535c}
+.repo-evidence-item:hover strong,.repo-evidence-item:focus-visible strong{color:#e2be89}
+.repo-id{font:10px var(--mono);letter-spacing:.06em;color:#ae9c80}
+.repo-evidence-item strong{font:normal clamp(21px,2.2vw,26px) var(--serif);overflow-wrap:anywhere;transition:color .2s}
+.repo-data{color:#9daeb6;font:11px var(--mono);line-height:1.5;min-height:19px}
+.repo-arrow{position:absolute;right:13px;top:19px;color:#bf9b65;font-size:20px}
+@media(max-width:760px){.repo-evidence{padding:25px 20px 15px}.repo-evidence-heading{display:block}.repo-evidence-controls{flex-direction:row;align-items:center;justify-content:space-between;margin-top:19px;white-space:normal}.repo-evidence-grid{grid-template-columns:1fr}.repo-evidence-item{padding:17px 0!important;border-left:0!important}.repo-evidence-item:not(:last-child){border-bottom:1px solid #374952}.repo-arrow{right:8px;top:22px}.perspective-mode-bar{padding:8px 16px}.perspective-mode-id{font-size:8px}.atlas-view{width:calc(100% - 20px)}.place-dossier{margin-top:24px}.globe-header small{width:auto}}
+@media(max-width:430px){.perspective-mode-bar{flex-wrap:wrap;gap:5px}.perspective-mode-bar button{font-size:10px;padding:8px 10px}.perspective-mode-id{display:none}.atlas-view{width:calc(100% - 10px)}.atlas-pin{min-width:15px;min-height:15px}.atlas-pin .atlas-pin-caption{font-size:9px}.globe-controls button{font-size:10px;padding:8px 9px}.place-dossier{padding:20px}}
+@media(prefers-reduced-motion:reduce){.atlas-network path{animation:none}.atlas-view{animation:none}.globe-viewport .orbit{animation:none}.repo-evidence-item strong{transition:none}}
+/* Atlas controls are contextual: do not show inert 3D-only buttons in map mode. */
+.globe-stage[data-mode="atlas"] .globe-viewport{height:auto;min-height:clamp(260px,31vw,400px);padding:20px 0}
+.globe-stage[data-mode="atlas"] .globe-controls button:not(#globeConnections){display:none}
+.globe-stage[data-mode="atlas"] .globe-detail{display:none}
+.globe-stage[data-mode="atlas"] .globe-viewport:before{opacity:.3}
+@media(max-width:430px){.globe-stage[data-mode="atlas"] .globe-viewport{min-height:255px;padding:17px 0}}

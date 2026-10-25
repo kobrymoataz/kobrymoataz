@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""V28 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V29 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import re,json,sys,xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 D=R/'docs'; errors=[]
-REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js']
+REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js','perspective.js','perspective.css','assets/img/regional-atlas.svg']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v28.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v28.sh','scripts/push_v29.sh','scripts/test_perspective_v29.mjs']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -91,8 +91,17 @@ for term in ['flowGraph','flowEditStage','flowMove','flowPosition','flowMetrics'
  if term not in flow_engine:errors.append('Missing V28 stateful workflow engine: '+term)
 for term in ['flowNodes','renderGraph','flowConfigForm','flowJobs','flowTraceExport','data-flow-i18n']:
  if term not in flow_ui and term not in html:errors.append('Missing V28 interactive graph behavior: '+term)
+# V29 geographical context must have working selector, local assets and public evidence source.
+for key in ['data-perspective-mode="earth"','data-perspective-mode="atlas"','atlasView','atlasPins','repoEvidence','placeDossier','globeLighting','globeConnections','./perspective.js']:
+ if key not in html:errors.append('Missing V29 geographic interface: '+key)
+globe29=(D/'globe.js').read_text(encoding='utf-8') if (D/'globe.js').exists() else ''
+for key in ['MKGlobeV29','setMode(mode)','setConnections(enabled)','setLighting(enabled)',"getContext('webgl'"]:
+ if key not in globe29:errors.append('Missing V29 globe feature: '+key)
+ui29=(D/'perspective.js').read_text(encoding='utf-8') if (D/'perspective.js').exists() else ''
+for key in ['createAtlas','renderDossier','chooseMode','getRepo','repoEvidenceRefresh',"fetch('https://api.github.com"]:
+ if key not in ui29:errors.append('Missing V29 atlas or public API feature: '+key)
 if errors:
- print('V28 VALIDATION FAILED',file=sys.stderr)
+ print('V29 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V28 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V29 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

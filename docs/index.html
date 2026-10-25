@@ -21,6 +21,7 @@
   <link rel="stylesheet" href="./vendor/codemirror/codemirror.css">
   <link rel="stylesheet" href="./studio.css">
   <link rel="stylesheet" href="./studio-flow.css">
+  <link rel="stylesheet" href="./perspective.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -101,6 +102,15 @@
             <div class="case-body"><p class="case-index" data-i18n="caseFlowTag">TESTING / RESILIENCE</p><h3>FlowFault</h3><p data-i18n="caseFlowText">Local-first tooling for inspecting HTML forms and performing controlled, authorized one-request failure experiments.</p><div class="case-tags"><span>Node.js</span><span>Chrome DevTools</span><span>Reports</span></div><details><summary data-i18n="caseDetail">Read the technical approach</summary><div class="case-detail"><p data-i18n="caseFlowDetail">Form checks, bounded offline or HTTP-failure simulations, and sanitized local report comparisons without sending report data to a cloud service.</p></div></details><a class="underlined-link" href="https://github.com/kobrymoataz/flowfault" target="_blank" rel="noopener noreferrer"><span data-i18n="viewCode">View source code</span> ↗</a></div>
           </article>
         </div>
+        <aside class="repo-evidence" id="repoEvidence" aria-label="Public repository evidence">
+          <div class="repo-evidence-heading"><div><p class="eyebrow" data-i18n="evidenceOverline">PUBLIC RECORD / GITHUB</p><h3 data-i18n="evidenceTitle">Work that can be verified.</h3><p data-i18n="evidenceIntro">Live public repository metadata when GitHub is reachable. Source links remain available offline.</p></div>
+          <div class="repo-evidence-controls"><span id="repoEvidenceStatus" role="status" data-i18n="evidencePending">Public data not yet loaded</span><button id="repoEvidenceRefresh" type="button" data-i18n="evidenceRefresh">Refresh ↻</button></div></div>
+          <div class="repo-evidence-grid">
+            <a href="https://github.com/kobrymoataz/repoverity" target="_blank" rel="noopener noreferrer" class="repo-evidence-item" data-repo="repoverity"><span class="repo-id">01 / GITHUB</span><strong>RepoVerity</strong><span class="repo-data" data-repo-meta data-i18n="evidenceWaiting">Inspect source ↗</span><span class="repo-arrow" aria-hidden="true">↗</span></a>
+            <a href="https://github.com/kobrymoataz/submissionledger" target="_blank" rel="noopener noreferrer" class="repo-evidence-item" data-repo="submissionledger"><span class="repo-id">02 / GITHUB</span><strong>SubmissionLedger</strong><span class="repo-data" data-repo-meta data-i18n="evidenceWaiting">Inspect source ↗</span><span class="repo-arrow" aria-hidden="true">↗</span></a>
+            <a href="https://github.com/kobrymoataz/flowfault" target="_blank" rel="noopener noreferrer" class="repo-evidence-item" data-repo="flowfault"><span class="repo-id">03 / GITHUB</span><strong>FlowFault</strong><span class="repo-data" data-repo-meta data-i18n="evidenceWaiting">Inspect source ↗</span><span class="repo-arrow" aria-hidden="true">↗</span></a>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -246,21 +256,32 @@ print(sum([2, 3, 5]))</textarea>
     </div></section>
 
     <section class="globe-section section" id="perspective" aria-labelledby="globeTitle"><div class="wrap globe-layout">
-      <div class="globe-copy"><p class="eyebrow" data-i18n="globeLabel">04 / GLOBAL PERSPECTIVE</p><h2 id="globeTitle"><span data-i18n="globeHeading1">Systems are built</span><br><em data-i18n="globeHeading2">for people and places.</em></h2><p data-i18n="globeText">My work combines technical execution with institutional cooperation and cross-border communication. The locations below describe verifiable work and academic context, not live activity.</p><a class="underlined-link pale-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer"><span data-i18n="institutionalProfile">Institutional profile</span> ↗</a><div class="globe-language-note"><span data-i18n="globeLanguage">WORKING LANGUAGES</span><strong dir="ltr">العربية / English / Français / Español</strong></div></div>
+      <div class="globe-copy"><p class="eyebrow" data-i18n="globeLabel">04 / GLOBAL PERSPECTIVE</p><h2 id="globeTitle"><span data-i18n="globeHeading1">Systems are built</span><br><em data-i18n="globeHeading2">for people and places.</em></h2><p data-i18n="globeText">My work combines technical execution with institutional cooperation and cross-border communication. The locations below describe verifiable work and academic context, not live activity.</p><a class="underlined-link pale-link" href="https://www.mycdic.org/president/" target="_blank" rel="noopener noreferrer"><span data-i18n="institutionalProfile">Institutional profile</span> ↗</a><div class="globe-language-note"><span data-i18n="globeLanguage">WORKING LANGUAGES</span><strong dir="ltr">العربية / English / Français / Español</strong></div>
+      <div class="place-dossier" id="placeDossier" aria-live="polite">
+        <div class="place-dossier-eyebrow"><span data-i18n="perspectiveContext">SELECTED CONTEXT</span><span id="placeCoordinates" dir="ltr">40.4168° N · 3.7038° W</span></div>
+        <h3 id="placeTitle">Madrid</h3><p id="placeNarrative">Institutional coordination and the public MYCDIC website.</p>
+        <div class="place-dossier-footer"><span id="placeCategory" data-context-type>Institutional work</span><a id="placeSource" href="https://www.mycdic.org/" target="_blank" rel="noopener noreferrer"><span data-i18n="perspectiveSource">Explore public context</span> ↗</a></div>
+      </div></div>
       <div class="globe-stage" aria-label="Interactive Earth globe">
         <div class="globe-header"><span class="live-pulse" aria-hidden="true"></span><span data-i18n="globeVisualization">GEOGRAPHICAL CONTEXT</span><small data-globe-status>3D INITIALIZING</small></div>
+        <div class="perspective-mode-bar" role="group" aria-label="Choose geographic presentation"><button type="button" data-perspective-mode="earth" class="is-active" aria-pressed="true" data-i18n="perspectiveEarth">3D Earth</button><button type="button" data-perspective-mode="atlas" aria-pressed="false" data-i18n="perspectiveAtlas">Regional atlas</button><span class="perspective-mode-id">39°N — 51°N</span></div>
         <div class="globe-viewport">
           <div class="orbit orbit-a" aria-hidden="true"></div><div class="orbit orbit-b" aria-hidden="true"></div>
           <img class="globe-fallback" src="./assets/img/globe-v25-fallback.webp" alt="Gold geographic Earth illustration shown if WebGL is unavailable" width="760" height="760" loading="lazy">
           <canvas id="globeCanvas" role="img" aria-label="3D globe. Drag or touch to rotate; use zoom controls." tabindex="0"></canvas>
+          <div class="atlas-view" id="atlasView" hidden aria-label="Regional map of western Europe and North Africa">
+            <img src="./assets/img/regional-atlas.svg" alt="Geographic map of the northwest African and western European region" width="960" height="520" decoding="async" loading="lazy">
+            <svg class="atlas-network" id="atlasNetwork" viewBox="0 0 960 520" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+            <div class="atlas-pins" id="atlasPins" role="group" aria-label="Choose a location on the map"></div>
+          </div>
         </div>
         <div class="globe-panel">
-          <div class="globe-controls" role="group" aria-label="Globe controls"><button id="globeMotionToggle" type="button" aria-pressed="true" data-i18n="globePause">Pause rotation Ⅱ</button><button id="globeZoomIn" type="button" aria-label="Zoom in">＋</button><button id="globeZoomOut" type="button" aria-label="Zoom out">－</button><button id="globeReset" type="button" data-i18n="globeReset">Reset ↺</button></div>
+          <div class="globe-controls" role="group" aria-label="Globe controls"><button id="globeMotionToggle" type="button" aria-pressed="true" data-i18n="globePause">Pause rotation Ⅱ</button><button id="globeZoomIn" type="button" aria-label="Zoom in">＋</button><button id="globeZoomOut" type="button" aria-label="Zoom out">－</button><button id="globeReset" type="button" data-i18n="globeReset">Reset ↺</button><button id="globeLighting" type="button" aria-pressed="false" data-i18n="perspectiveLighting">Dusk lighting</button><button id="globeConnections" type="button" aria-pressed="true" data-i18n="perspectiveConnections">Connections on</button></div>
           <p class="globe-instruction" data-i18n="globeInstruction">DRAG TO ROTATE · SCROLL TO ZOOM · SELECT A LOCATION</p>
           <div class="globe-locations" role="group" aria-label="Select a location"><button type="button" data-globe-location="madrid" aria-pressed="true">Madrid</button><button type="button" data-globe-location="rabat" aria-pressed="false">Rabat</button><button type="button" data-globe-location="brussels" aria-pressed="false">Brussels</button><button type="button" data-globe-location="ciudad-real" aria-pressed="false">Ciudad Real</button></div>
           <div class="globe-detail" aria-live="polite"><strong data-globe-place>Madrid</strong><span data-globe-context data-i18n="locationMadrid">MYCDIC headquarters</span></div>
         </div>
-        <p class="globe-disclaimer" data-i18n="globeDisclaimer">Connection arcs are conceptual. They do not represent live operations, personal tracking or travel routes.</p>
+        <p class="globe-disclaimer" data-i18n="globeDisclaimer">Connection arcs represent conceptual institutional context, not live activity, traffic or travel. Map coordinates are approximate reference locations.</p>
       </div>
     </div></section>
 
@@ -350,6 +371,7 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./lab.js" defer></script>
   <script src="./app.js" defer></script>
   <script src="./globe.js" defer></script>
+  <script src="./perspective.js" defer></script>
   <script src="./vendor/codemirror/codemirror.js" defer></script>
   <script src="./vendor/codemirror/javascript.js" defer></script>
   <script src="./vendor/codemirror/python.js" defer></script>

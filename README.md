@@ -105,3 +105,11 @@ edit src/handler.js
 ```
 
 For repository code, see `docs/studio-engine.js`, `docs/studio-flow-engine.js`, `docs/studio-flow-ui.js`, `docs/studio.js` and `docs/studio-flow.css`. For test limitations see `QA_REPORT.md` in the release ZIP.
+
+### V29 · Global Perspective & Public Evidence
+
+The [Global Perspective](https://kobrymoataz.github.io/kobrymoataz/#perspective) section now provides **two genuine interactive views**. The self-hosted **WebGL1 globe** supports drag/touch/keyboard rotation, zoom, sunlight-to-dusk shading and conceptual connections. Where WebGL is blocked or unavailable, a geographic **regional atlas remains interactive**, with selectable location pins and public reference links for Madrid, Rabat, Brussels and Ciudad Real. The location markers indicate professional and educational context, never live operations or travel.
+
+Below Selected Work, **public GitHub repository metadata** can be loaded directly from GitHub's public API, showing actual stars and the last GitHub update date when the API is available. It uses no access token and avoids substituting invented statistics if the API is unavailable.
+
+The existing V28 engineering studio, README artwork, four-language content and private **Request CV** action remain.

@@ -29,6 +29,7 @@
   const resetButton = document.getElementById('globeReset');
   const pointButtons = [...stage.querySelectorAll('[data-globe-location]')];
   let auto = !reducedMedia.matches;
+  let earthMode=true,linksVisible=true,dusk=false;
   let visible = true;
   let yaw = -.08, tilt = .25, distance = 3.45;
   let velocity = 0;
@@ -54,6 +55,7 @@
   let lineBuffer = null;
   let lineCount = 0;
   let spotsBuffer = null;
+  let pulsesBuffer = null, routeSamples=[];
   let spotCount = 0;
   let frameCount = 0;
   let pixelRatio = 1;
@@ -72,6 +74,7 @@
     if(!loc)return;
     currentPlace && (currentPlace.textContent=loc.label);
     currentContext && (currentContext.textContent=tr(contextKey[loc.id]));
+    document.dispatchEvent(new CustomEvent('mk:perspective-place',{detail:{id:loc.id}}));
     pointButtons.forEach(btn=>{
       const on=btn.dataset.globeLocation===loc.id;
       btn.classList.toggle('is-selected',on);
@@ -111,11 +114,19 @@
   zoomMinus?.addEventListener('click',()=>{distance=clamp(distance+.36,2.65,5.6);interactionUntil=performance.now()+2400;render();});
   resetButton?.addEventListener('click',()=>{yaw=-.08;tilt=.25;distance=3.45;spinTarget=null;velocity=0;choose(0,false);interactionUntil=performance.now()+1700;render();});
   pointButtons.forEach(btn=>btn.addEventListener('click',()=>{const idx=locations.findIndex(x=>x.id===btn.dataset.globeLocation);if(idx>=0)choose(idx);}));
+  window.MKGlobeV29={
+    chooseLocation(id){const i=locations.findIndex(l=>l.id===id);if(i>=0){choose(i);start();}},
+    setMode(mode){earthMode=mode==='earth';if(earthMode){render();start();}else if(raf){cancelAnimationFrame(raf);raf=0;}},
+    setConnections(enabled){linksVisible=!!enabled;render();},
+    setLighting(enabled){dusk=!!enabled;render();},
+    getState(){return {active:locations[active].id,renderer:stage.dataset.renderer||'fallback',yaw,frames:frameCount,earthMode,linksVisible,dusk};}
+  };
 
   // Leave an accessible still illustration if WebGL is unavailable.
   try {
-    gl=canvas.getContext('webgl2',{alpha:true,antialias:true,premultipliedAlpha:false,preserveDrawingBuffer:false}) ||
-      canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false,preserveDrawingBuffer:false});
+    // GLSL 1.00 shaders compile on WebGL1, not on WebGL2. Prefer WebGL1 deliberately.
+    gl=canvas.getContext('webgl',{alpha:true,antialias:true,premultipliedAlpha:false,preserveDrawingBuffer:false}) ||
+      canvas.getContext('experimental-webgl',{alpha:true,antialias:true,premultipliedAlpha:false,preserveDrawingBuffer:false});
     if(!gl)throw Error('WebGL unavailable');
     const vertex=`
       attribute vec3 aPosition;
@@ -145,13 +156,21 @@
       varying vec3 vNormal;
       varying vec3 vPos;
       uniform sampler2D uMap;
+      uniform float uDusk;
       void main(){
         vec3 tex=texture2D(uMap,vUV).rgb;
-        float light=max(.0,dot(normalize(vNormal),normalize(vec3(-.33,.51,.78))));
-        float shade=.44+.56*light;
+        vec3 lightDir=normalize(vec3(-.30,.46,.84));
+        float illumination=dot(normalize(vNormal),lightDir);
+        float day=smoothstep(-.48,.63,illumination);
+        float shade=mix(.20,1.06,day);
         vec3 color=tex*shade;
-        float rim=pow(1.0-max(0.0,dot(normalize(vNormal),vec3(0.,0.,1.))),3.2);
-        color+=vec3(.42,.30,.16)*rim*.27;
+        float ocean=1.0-smoothstep(.21,.43,tex.r);
+        color+=vec3(.06,.13,.17)*pow(max(illumination,0.0),10.0)*ocean;
+        float rim=pow(1.0-max(0.0,dot(normalize(vNormal),vec3(0.,0.,1.))),3.3);
+        color+=vec3(.35,.57,.66)*rim*.19;
+        vec3 sunset=vec3(.48,.27,.13)*rim*.26;
+        color+=sunset;
+        color=mix(color,color*vec3(.70,.76,.86)+vec3(.08,.03,.004)*rim,.52*uDusk);
         gl_FragColor=vec4(color,1.0);
       }
     `;
@@ -227,7 +246,7 @@
     const lineVertices=[];
     edges.forEach(([a,b])=>{
       const pa=point(locations[a].lat,locations[a].lng,1.013),pb=point(locations[b].lat,locations[b].lng,1.013);
-      const steps=60;
+      const steps=60, sample=[pa];
       let prev=pa;
       for(let j=1;j<=steps;j++){
         const t=j/steps;
@@ -236,8 +255,9 @@
         const alt=1.014+.14*Math.sin(Math.PI*t);
         const curr=dir.map(p=>p*alt/norm);
         lineVertices.push(...prev,0,0,...curr,0,0);
-        prev=curr;
+        sample.push(curr);prev=curr;
       }
+      routeSamples.push(sample);
     });
     lineCount=lineVertices.length/5;
     lineBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,lineBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(lineVertices),gl.STATIC_DRAW);
@@ -245,6 +265,7 @@
     locations.forEach(l=>spots.push(...point(l.lat,l.lng,1.035),0,0));
     spotCount=spots.length/5;
     spotsBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,spotsBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(spots),gl.STATIC_DRAW);
+    pulsesBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,pulsesBuffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(routeSamples.length*5),gl.DYNAMIC_DRAW);
 
     canvas.classList.add('is-active');
     canvas.tabIndex=0;
@@ -278,24 +299,33 @@
       uniforms(program);
       gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);
       gl.uniform1i(gl.getUniformLocation(program,'uMap'),0);
+      gl.uniform1f(gl.getUniformLocation(program,'uDusk'),dusk?1:0);
       gl.drawElements(gl.TRIANGLES,indexCount,gl.UNSIGNED_SHORT,0);
       gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
       gl.depthMask(false);
-      gl.bindBuffer(gl.ARRAY_BUFFER,lineBuffer);
-      uniforms(lineProgram);
-      gl.uniform4f(gl.getUniformLocation(lineProgram,'uColor'),.86,.68,.40,.58);
-      gl.drawArrays(gl.LINES,0,lineCount);
+      if(linksVisible){
+        gl.bindBuffer(gl.ARRAY_BUFFER,lineBuffer);
+        uniforms(lineProgram);
+        gl.uniform4f(gl.getUniformLocation(lineProgram,'uColor'),.90,.72,.46,.48);
+        gl.drawArrays(gl.LINES,0,lineCount);
+        if(routeSamples.length){
+          const now=(reducedMedia.matches?0:performance.now());
+          const pulses=[];routeSamples.forEach((samples,i)=>{const t=(now/5800+i*.38)%1;const j=Math.min(samples.length-1,Math.floor(t*(samples.length-1)));pulses.push(...samples[j],0,0);});
+          gl.bindBuffer(gl.ARRAY_BUFFER,pulsesBuffer);gl.bufferSubData(gl.ARRAY_BUFFER,0,new Float32Array(pulses));
+          uniforms(pointProgram,12);gl.uniform4f(gl.getUniformLocation(pointProgram,'uColor'),1.,.78,.40,.96);gl.drawArrays(gl.POINTS,0,routeSamples.length);
+        }
+      }
       gl.bindBuffer(gl.ARRAY_BUFFER,spotsBuffer);
       uniforms(pointProgram,6.5);
       gl.uniform4f(gl.getUniformLocation(pointProgram,'uColor'),.98,.79,.47,.98);
       gl.drawArrays(gl.POINTS,0,spotCount);
       gl.depthMask(true);gl.disable(gl.BLEND);
-      frameCount++;stage.dataset.frame=String(frameCount);
+      frameCount++;stage.dataset.frame=String(frameCount);stage.dataset.yaw=yaw.toFixed(4);
     }
     render = renderFrame;
     function tick(now){
       raf=0;
-      if(!visible||document.hidden)return;
+      if(!visible||document.hidden||!earthMode)return;
       const dt=Math.min(.055,(now-last)/1000||.016);last=now;
       if(spinTarget!==null){
         const delta=spinTarget-yaw;
@@ -309,7 +339,7 @@
       render();
       if(auto||spinTarget!==null||dragging||Math.abs(velocity)>.004)start();
     }
-    start = function(){if(!raf&&visible&&!document.hidden&&!failed){last=performance.now();raf=requestAnimationFrame(tick);}};
+    start = function(){if(!raf&&visible&&earthMode&&!document.hidden&&!failed){last=performance.now();raf=requestAnimationFrame(tick);}};
     function stop(){if(raf){cancelAnimationFrame(raf);raf=0;}}
     function fitAngle(x){return ((x+Math.PI)%(2*Math.PI)+2*Math.PI)%(2*Math.PI)-Math.PI;}
     const pick=(x,y)=>{
@@ -371,7 +401,7 @@
       const actions={'ArrowLeft':()=>yaw-=.17,'ArrowRight':()=>yaw+=.17,'ArrowUp':()=>tilt=clamp(tilt-.13,-1.1,1.1),'ArrowDown':()=>tilt=clamp(tilt+.13,-1.1,1.1),'+':()=>distance=clamp(distance-.2,2.65,5.6),'-':()=>distance=clamp(distance+.2,2.65,5.6)};
       if(actions[e.key]){e.preventDefault();actions[e.key]();interactionUntil=performance.now()+3800;render();}
     });
-    canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();failed=true;stop();stage.classList.remove('has-webgl-v21');stage.dataset.renderer='fallback';setStatus('WEBGL UNAVAILABLE · STATIC PREVIEW');[playButton,zoomPlus,zoomMinus,resetButton].forEach(btn=>{if(btn)btn.disabled=true;});});
+    canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();failed=true;stop();stage.classList.remove('has-webgl-v21');stage.dataset.renderer='fallback';setStatus('WEBGL UNAVAILABLE · STATIC PREVIEW');[playButton,zoomPlus,zoomMinus,resetButton].forEach(btn=>{if(btn)btn.disabled=true;});document.dispatchEvent(new Event('mk:globe-unavailable'));});
     const intersection=new IntersectionObserver(entries=>{visible=!!entries[0]?.isIntersecting;if(visible){render();start();}else stop();},{threshold:.05});intersection.observe(stage);
     document.addEventListener('visibilitychange',()=>document.hidden?stop():start());
     reducedMedia.addEventListener('change',()=>{if(reducedMedia.matches){auto=false;updateButton();stop();} });
@@ -381,6 +411,7 @@
     failed=true;stage.dataset.renderer='fallback';stage.classList.remove('has-webgl-v21');
     setStatus('STATIC VIEW · WEBGL NOT AVAILABLE');if(status)status.textContent=tr('globeStatusFallback');
     [playButton, zoomPlus, zoomMinus, resetButton].forEach(btn=>{if(btn){btn.disabled=true;btn.title='Interactive 3D requires WebGL';}});
+    document.dispatchEvent(new Event('mk:globe-unavailable'));
     console.warn('Globe fallback activated:',err.message);
   }
 })();
