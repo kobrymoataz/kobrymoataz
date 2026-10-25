@@ -30,7 +30,7 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **V27 Functional Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
 ### Engineering toolkit
 
@@ -65,18 +65,22 @@ Internal records and private administrative interfaces are not published. The [p
 
 <p align="center"><sub>Engineering work is best understood through working code, clear documentation, and the people behind the systems.</sub></p>
 
-> The Engineering Studio performs local file operations and executable JavaScript tests. V27 produces Git-format SHA-1 blob/tree/commit objects locally but does not provide a full Git CLI, working tree on your computer, or remote pushes. No private systems are connected.
+> The Engineering Studio performs local file operations and executable JavaScript tests. V28 produces Git-format SHA-1 blob/tree/commit objects locally but does not provide a full Git CLI, working tree on your computer, or remote pushes. No private systems are connected.
 
-### V27 · Functional Engineering Studio
+### V28 · Workflow & Observability Studio
 
-[Open the portfolio and select **Open Functional Engineering Studio**](https://kobrymoataz.github.io/kobrymoataz/#lab).
+The portfolio now contains a visually editable workflow with browser-local execution and measurable results. Open the **Workflow designer** tab in the full-screen studio to move stage positions, bypass optional steps, adjust retry policy and inspect individual jobs. This is a controlled engineering lab, not a connected institutional system.
+
+
+[Open the portfolio and select **Open Advanced Engineering Studio**](https://kobrymoataz.github.io/kobrymoataz/#lab).
 
 **Core browser-local features** (self-hosted dependencies; no CDN required):
 
 - **xterm.js-based terminal**: file commands, staged changes, Git-format SHA-1 blob/tree/commit object creation, and real local workflow jobs. These are limited supported commands, **not** Bash, zsh, Docker, SSH, or a host operating system.
 - **CodeMirror 5 editor**: JavaScript/JSON/Python/SQL syntax highlighting, line numbers, saving and recovery from local IndexedDB.
 - **Executable JavaScript test runner**: changes to `src/handler.js` affect results of `tests/handler.test.js`; runs in a sandboxed opaque-origin iframe with a timeout and blocked network connections.
-- **Workflow engine**: normal/retry/missing/review scenarios read saved `config.json` and `data/request.json`, create job records, and calculate retries. **No external webhooks or emails are sent.**
+- **Interactive Workflow Designer V28**: six connected stages with draggable positions, selectable stage properties, toggles for optional stages, configurable retry budget/backoff, and live execution-order links. Changes to stage order and enabled stages affect **future jobs**; jobs already queued keep their original saved snapshots.
+- **Job queue and traces**: normal, retry, invalid-input, human-review and exhausted-retry cases; pause/resume/cancel/approve/replay actions, persisted local outbox/dead-letter JSON, measured durations, live event log, per-job JSON trace export and metrics derived from the actual run state. **A successful local acknowledgement is not an external webhook or email delivery.**
 - **Import / export**: JSON backup, restore and reset; browser storage may be unavailable in private mode or subject to browser eviction.
 
 **On-demand runtimes** (require network to load, and are not included in the ZIP):
@@ -91,10 +95,13 @@ git status
 git add .
 git commit -m "Initial project"
 npm test
+flow graph
+flow config retryLimit 1
 workflow run retry
+workflow run review
 workflow jobs
-workflow logs
+workflow trace JOB-0001
 edit src/handler.js
 ```
 
-For repository code, see `docs/studio-engine.js`, `docs/studio.js` and `docs/studio.css`. For test limitations see `QA_REPORT.md` in the release ZIP.
+For repository code, see `docs/studio-engine.js`, `docs/studio-flow-engine.js`, `docs/studio-flow-ui.js`, `docs/studio.js` and `docs/studio-flow.css`. For test limitations see `QA_REPORT.md` in the release ZIP.

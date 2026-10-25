@@ -1,6 +1,6 @@
-# Branch publishing remains Settings -> Pages -> Deploy from a branch -> main /docs.
-# This action VALIDATES only and never performs an additional deployment.
-name: Validate V27 portfolio (branch publishing)
+# GitHub Pages keeps its configured branch-based publishing source main /docs.
+# This workflow validates the portfolio and never deploys a competing site.
+name: Validate V28 portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -10,14 +10,14 @@ on:
       - 'assets/**'
       - 'scripts/validate_site.py'
       - 'scripts/test_studio.mjs'
+      - 'scripts/test_flow_v28.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
       - 'docs/**'
       - 'README.md'
       - 'assets/**'
-      - 'scripts/validate_site.py'
-      - 'scripts/test_studio.mjs'
+      - 'scripts/**'
   workflow_dispatch:
 permissions:
   contents: read
@@ -26,22 +26,22 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    name: Validate static portfolio
+    name: Validate static portfolio and browser-local engineering engine
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate files, anchors, multilingual coverage and private CV request
-        run: python scripts/validate_site.py
-      - name: Verify JavaScript syntax
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate assets, links, multilingual coverage and private CV policy
+        run: python3 scripts/validate_site.py
+      - name: Validate JavaScript syntax
         run: |
-          node --check docs/i18n.js
-          node --check docs/lab.js
-          node --check docs/app.js
-          node --check docs/globe.js
-          node --check docs/studio-engine.js
-          node --check docs/studio.js
-      - name: Run functional studio regression
+          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js; do node --check "$file"; done
+      - name: Check Git-format object engine
         run: node scripts/test_studio.mjs
+      - name: Check real local workflow graph, queue and trace behavior
+        run: node scripts/test_flow_v28.mjs

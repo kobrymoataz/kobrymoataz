@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""V26 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V28 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import re,json,sys,xml.etree.ElementTree as ET
 R=Path(__file__).resolve().parents[1]
 D=R/'docs'; errors=[]
-REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js']
+REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v27.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v28.sh']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -73,17 +73,26 @@ for term in ['indexedDBOpen','workflowRun','gitAction','importWorkspace','tests'
 workflow=(R/'.github/workflows/deploy-pages.yml').read_text(encoding='utf-8') if (R/'.github/workflows/deploy-pages.yml').exists() else ''
 if 'actions/deploy-pages' in workflow or 'pages: write' in workflow:errors.append('Workflow unexpectedly deploys; use branch publishing')
 
-# V27 functional studio structure and no fake success claims.
+# V28 functional studio structure and no fake success claims.
 studio=(D/'studio.js').read_text(encoding='utf-8') if (D/'studio.js').is_file() else ''
 core=(D/'studio-engine.js').read_text(encoding='utf-8') if (D/'studio-engine.js').is_file() else ''
 for term in ['studioLaunch','engineeringStudio','studioTestRun','studioSQLRun','studioPythonRun','studioXterm','studioCode','studioImport','studioExport']:
- if term not in html:errors.append('Missing V27 studio UI: '+term)
+ if term not in html:errors.append('Missing V28 studio UI: '+term)
 for term in ['MKStudioEngine','hashObject','sha1Fallback','indexedDB','async commit','runWorkflow','retryLimit']:
- if term not in core:errors.append('Missing V27 studio engine: '+term)
+ if term not in core:errors.append('Missing V28 studio engine: '+term)
 for term in ['runTests','runnerHTML','runSQL','runPython','window.Terminal','CodeMirror']:
  if term not in studio:errors.append('Missing V27 runtime feature: '+term)
+# V28 flow editor must be wired to the actual engine, not a decorative graph.
+flow_engine=(D/'studio-flow-engine.js').read_text(encoding='utf-8') if (D/'studio-flow-engine.js').exists() else ''
+flow_ui=(D/'studio-flow-ui.js').read_text(encoding='utf-8') if (D/'studio-flow-ui.js').exists() else ''
+for term in ['flowDesigner','flowGraph','flowEnable','flowConfigForm','flowJobs','flowTrace','flowMetricQueue','flowTraceExport','data-flow-scenario','studio-flow-engine.js','studio-flow-ui.js']:
+ if term not in html:errors.append('Missing V28 workflow interface: '+term)
+for term in ['flowGraph','flowEditStage','flowMove','flowPosition','flowMetrics','flowTrace','runWorkflow','flowControl','flowDeadLetter','flowPump']:
+ if term not in flow_engine:errors.append('Missing V28 stateful workflow engine: '+term)
+for term in ['flowNodes','renderGraph','flowConfigForm','flowJobs','flowTraceExport','data-flow-i18n']:
+ if term not in flow_ui and term not in html:errors.append('Missing V28 interactive graph behavior: '+term)
 if errors:
- print('V27 VALIDATION FAILED',file=sys.stderr)
+ print('V28 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V27 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V28 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
