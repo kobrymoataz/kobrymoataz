@@ -1,6 +1,6 @@
 # GitHub Pages keeps its configured branch-based publishing source main /docs.
 # This workflow validates the portfolio and never deploys a competing site.
-name: Validate V31 Automation Engineering portfolio (branch publishing)
+name: Validate V31.1 Quality Engineering portfolio (branch publishing)
 on:
   push:
     branches: [main]
@@ -15,6 +15,7 @@ on:
       - 'scripts/test_trustops_v30.mjs'
       - 'scripts/test_repo_audit_v30_2.mjs'
       - 'scripts/test_automation_v31.mjs'
+      - 'scripts/test_quality_v31_1.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
@@ -60,3 +61,5 @@ jobs:
 
       - name: Check V31 local automation static analysis, editing and incident evidence
         run: node scripts/test_automation_v31.mjs
+      - name: Check V31.1 progressive loading and accessible workflow editing
+        run: node scripts/test_quality_v31_1.mjs

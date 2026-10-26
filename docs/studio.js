@@ -76,7 +76,31 @@ async function runSQL(){const btn=$('#studioSQLRun'),outbox=$('#studioSQLOut');b
 function createPythonWorker(){const source=`let pyodide=null;onmessage=async e=>{if(e.data.kind!=='run')return;try{if(!pyodide){postMessage({kind:'loading'});importScripts('https://cdn.jsdelivr.net/pyodide/v0.28.3/full/pyodide.js');pyodide=await loadPyodide({indexURL:'https://cdn.jsdelivr.net/pyodide/v0.28.3/full/'})}let logs=[];pyodide.setStdout({batched:s=>logs.push(s)});pyodide.setStderr({batched:s=>logs.push(s)});const val=await pyodide.runPythonAsync(e.data.code);postMessage({kind:'done',output:logs.join('\\n')+(val===undefined?'':'\\n'+String(val))})}catch(err){postMessage({kind:'error',output:String(err)})}};`;const blob=new Blob([source],{type:'text/javascript'});const url=URL.createObjectURL(blob);const w=new Worker(url);URL.revokeObjectURL(url);return w;}
 async function runPython(){const btn=$('#studioPythonRun'),target=$('#studioPythonOut'),code=$('#studioPython').value.slice(0,12000);btn.disabled=true;target.textContent='Loading / executing Pyodide...';engine.state.pythonCode=code;await engine.save();try{pythonWorker?.terminate();pythonWorker=createPythonWorker();await new Promise((ok,no)=>{const timer=setTimeout(()=>{pythonWorker.terminate();no(Error('Python timed out after 20 seconds.'))},20000);pythonWorker.onmessage=e=>{if(e.data.kind==='loading')return;clearTimeout(timer);if(e.data.kind==='error')no(Error(e.data.output));else{target.textContent=e.data.output||'(completed with no output)';ok()}};pythonWorker.onerror=e=>{clearTimeout(timer);no(Error('Python runtime download/execution failed.'))};pythonWorker.postMessage({kind:'run',code})});out('Python executed inside browser WebAssembly.','good');}
  catch(e){target.textContent='Python error: '+e.message;out(e.message,'error');}finally{btn.disabled=false;}}
-async function boot(){await engine.init();setSave(engine.isDurable?'READY · INDEXEDDB':'SESSION ONLY · STORAGE BLOCKED');render();startTerm();
+const optionalEditorScripts=[
+ './vendor/codemirror/codemirror.js',
+ './vendor/codemirror/javascript.js',
+ './vendor/codemirror/python.js',
+ './vendor/codemirror/sql.js',
+ './vendor/codemirror/matchbrackets.js',
+ './vendor/xterm/xterm.js'
+];
+let editorLibraries=null;
+function loadEditorLibraries(){
+ if(editorLibraries)return editorLibraries;
+ editorLibraries=(async()=>{
+   if(!document.querySelector('link[data-studio-editor-css]')){
+     const css=document.createElement('link');css.rel='stylesheet';css.href='./vendor/codemirror/codemirror.css';css.dataset.studioEditorCss='true';document.head.append(css);
+   }
+   for(const src of optionalEditorScripts){
+     await new Promise((resolve,reject)=>{const tag=document.createElement('script');tag.src=src;tag.async=false;tag.onload=resolve;tag.onerror=()=>reject(new Error('Optional studio library unavailable: '+src));document.head.append(tag)});
+   }
+ })();
+ return editorLibraries;
+}
+async function boot(){
+ try{setSave('LOADING EDITOR / TERMINAL…');await loadEditorLibraries();}
+ catch(error){console.warn(error);setSave('OPTIONAL EDITOR LIBRARY UNAVAILABLE · TEXTAREA MODE');}
+ await engine.init();setSave(engine.isDurable?'READY · INDEXEDDB':'SESSION ONLY · STORAGE BLOCKED');render();startTerm();
  if(window.CodeMirror){editor=window.CodeMirror.fromTextArea($('#studioCode'),{lineNumbers:true,mode:'javascript',lineWrapping:true,matchBrackets:true,indentUnit:2,tabSize:2,extraKeys:{'Ctrl-S':saveEditor,'Cmd-S':saveEditor}});editor.on('change',()=>{dirty=true;$('#studioDirty').textContent='UNSAVED';});}openFile(current);flowUI=window.MKFlowUI?.mount({engine,ui,out,selectTab,render});
  engine.on((type,data)=>{if(['file','stage','commit','reset','job','event','saved','flow','flow-settings'].includes(type))render();if(type==='storage-error')setSave('STORAGE ERROR · EXPORT YOUR WORK');});
 }

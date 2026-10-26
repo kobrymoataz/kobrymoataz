@@ -32,6 +32,11 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
+
+### V31.1 · Professional Refinement
+
+V31.1 keeps the browser-local Automation Reliability Studio and previous tools, while improving usability and initial loading performance. **Advanced Engineering Studio editor and terminal libraries are fetched on demand**, not during initial landing-page load. The n8n workflow inspector adds searchable nodes, undo/redo, safe edit-discard prompts, keyboard navigation and responsive controls. The local static inspector does not execute n8n workflows.
+
 ### V31.0 · Automation Reliability Studio
 
 **New public, browser-local tool:** [Open Automation Studio](https://kobrymoataz.github.io/kobrymoataz/?automation=1). Import a real n8n workflow JSON (up to 2 MB and 320 nodes), inspect the actual connection graph, review explainable static findings, modify supported retry/error-continuation options in a bounded local editor and rerun the analysis. Export the edited workflow JSON, a redacted JSON audit report or a printable HTML report. The original file remains untouched unless you explicitly export an edited copy.

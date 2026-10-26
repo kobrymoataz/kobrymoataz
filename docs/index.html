@@ -18,7 +18,6 @@
   <link rel="stylesheet" href="./styles.css">
   <title>Moataz Kobry | Executive Engineering Portfolio</title>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Abdelmouiz (Moataz) Kobry","alternateName":"Moataz Kobry","url":"https://kobrymoataz.github.io/kobrymoataz/","image":"https://kobrymoataz.github.io/kobrymoataz/assets/img/portrait.webp","description":"Computing, AI automation, cybersecurity-aware systems and institutional digital platforms.","knowsLanguage":["ar","en","fr","es"],"knowsAbout":["Computing","AI Automation","Cybersecurity","Web Platforms","Workflow Engineering","JavaScript","Python","PHP","PostgreSQL","Wikidata"],"sameAs":["https://github.com/kobrymoataz","https://www.linkedin.com/in/kobrymoataz/","https://www.instagram.com/kobrymoataz/","https://www.mycdic.org/president/"]}</script>
-  <link rel="stylesheet" href="./vendor/codemirror/codemirror.css">
   <link rel="stylesheet" href="./studio.css">
   <link rel="stylesheet" href="./studio-flow.css">
   <link rel="stylesheet" href="./perspective.css">
@@ -410,7 +409,7 @@ print(sum([2, 3, 5]))</textarea>
 
 <section id="automationStudio" class="auto-dialog" hidden role="dialog" aria-modal="true" aria-labelledby="automationStudioTitle">
  <div class="auto-shell">
-  <header class="auto-head"><div class="auto-heading"><span class="auto-mark" aria-hidden="true">⌘</span><div><strong data-i18n="autoWindowTitle">AUTOMATION RELIABILITY STUDIO</strong><small>V31.0 / OFFLINE N8N WORKFLOW INSPECTION</small></div></div><button type="button" id="automationClose" class="auto-close" data-i18n="autoClose">Close ×</button></header>
+  <header class="auto-head"><div class="auto-heading"><span class="auto-mark" aria-hidden="true">⌘</span><div><strong data-i18n="autoWindowTitle">AUTOMATION RELIABILITY STUDIO</strong><small>V31.1 / OFFLINE N8N WORKFLOW INSPECTION</small></div></div><button type="button" id="automationClose" class="auto-close" data-i18n="autoClose">Close ×</button></header>
   <div class="auto-body">
    <div class="auto-intro"><p class="auto-eyebrow">ENGINEERING INTELLIGENCE / LOCAL ANALYSIS</p><h2 id="automationStudioTitle" data-i18n="autoStudioTitle">From workflow JSON to actionable evidence.</h2><p data-i18n="autoStudioIntro">Inspect a genuine n8n export. The graph, findings and retry editor use the same parsed workflow. Each modification triggers a fresh analysis. Static checks cannot prove runtime behavior.</p></div>
    <div class="auto-controls">
@@ -421,10 +420,10 @@ print(sum([2, 3, 5]))</textarea>
    <p class="auto-status" id="automationStatus" role="status" aria-live="polite">Import a workflow to begin.</p>
    <div class="auto-empty" id="autoEmpty"><b aria-hidden="true">◈</b><p data-i18n="autoEmptyText">Your analysis begins with an actual workflow file, or a labeled training example.</p></div>
    <div class="auto-workspace" id="autoWorkspace" hidden>
-    <div class="auto-headline"><h3 id="autoWorkflowName">Untitled</h3><span class="auto-flag" id="autoWorkflowFlag">LOCAL / NOT EXECUTED</span></div>
+    <div class="auto-headline"><h3 id="autoWorkflowName">Untitled</h3><div class="auto-workflow-actions"><span class="auto-flag" id="autoWorkflowFlag">LOCAL / NOT EXECUTED</span><button type="button" class="auto-btn auto-history" id="automationUndo" data-i18n="autoUndo" disabled>Undo</button><button type="button" class="auto-btn auto-history" id="automationRedo" data-i18n="autoRedo" disabled>Redo</button></div></div><p class="auto-shortcuts" data-i18n="autoShortcuts">Shortcuts: / search · Ctrl/⌘ Z undo · Ctrl/⌘ Shift Z redo · Esc close</p>
     <div class="auto-stats" aria-label="Static workflow metrics"><div class="auto-stat"><small data-i18n="autoMetricNodes">NODES</small><strong id="autoStatNodes">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricEdges">EDGES</small><strong id="autoStatEdges">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricTriggers">TRIGGERS</small><strong id="autoStatTriggers">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricCritical">CRITICAL</small><strong id="autoStatCritical">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricWarnings">WARNINGS</small><strong id="autoStatWarnings">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricAdvisories">ADVISORIES</small><strong id="autoStatAdvisories">0</strong></div></div>
     <div class="auto-pane-grid">
-      <aside class="auto-panel"><div class="auto-panel-title"><span data-i18n="autoNodesLabel">01 / NODES</span><span data-i18n="autoSelectOne">SELECT ONE</span></div><div class="auto-node-list" id="autoNodeList" aria-label="Imported workflow nodes"></div></aside>
+      <aside class="auto-panel"><div class="auto-panel-title"><span data-i18n="autoNodesLabel">01 / NODES</span><span data-i18n="autoSelectOne">SELECT ONE</span></div><label class="auto-search-label"><span data-i18n="autoSearchNodes">Search nodes</span><input id="autoNodeSearch" class="auto-node-search" type="search" autocomplete="off" aria-controls="autoNodeList" placeholder="Search nodes by name or type" data-i18n-placeholder="autoSearchPlaceholder"></label><p class="auto-node-count" id="autoNodeCount" role="status" aria-live="polite"></p><div class="auto-node-list" id="autoNodeList" aria-label="Imported workflow nodes"></div></aside>
       <section class="auto-panel" id="automationGraphWrap" aria-label="Imported workflow graph"><div class="auto-panel-title"><span data-i18n="autoGraphLabel">02 / WORKFLOW GRAPH</span><span data-i18n="autoGraphHint">SELECT TO INSPECT</span></div><div class="auto-graph-wrap"><svg class="auto-svg" id="automationGraph" xmlns="http://www.w3.org/2000/svg" aria-label="Workflow connections" role="group"></svg></div><p class="auto-caveat" data-i18n="autoGraphCaveat">Connection graph rendered from imported JSON. No workflow commands or external requests are executed.</p></section>
       <aside class="auto-panel auto-inspector"><div class="auto-panel-title"><span data-i18n="autoInspectorLabel">03 / NODE INSPECTOR</span><span data-i18n="autoEditHint">EDIT & RECHECK</span></div><p data-i18n="autoSelectNode">Select a node to edit bounded reliability settings.</p><div class="auto-node-inspector" id="automationInspector" hidden><h4 id="autoNodeName"></h4><p id="autoNodeType"></p><form class="auto-node-form" id="automationNodeForm"><label class="auto-check"><input type="checkbox" id="autoRetry"> <span data-i18n="autoRetry">Retry on fail</span></label><label><span data-i18n="autoTries">Max attempts (1 to 5)</span><input id="autoMaxTries" type="number" min="1" max="5" step="1" required value="3"></label><label><span data-i18n="autoWait">Wait between attempts (ms)</span><input id="autoBackoff" type="number" min="0" max="60000" step="100" required value="1000"></label><label><span data-i18n="autoOnError">On error</span><select id="autoErrorMode"><option value="stopWorkflow" data-i18n="autoStop">Stop workflow</option><option value="continueRegularOutput" data-i18n="autoContinue">Continue regular output</option><option value="continueErrorOutput" data-i18n="autoErrorOutput">Continue error output</option></select></label><button class="auto-btn auto-primary" type="submit" data-i18n="autoApply">Apply & rerun analysis ↗</button></form><p class="auto-caveat" id="autoInspectorHint"></p></div></aside>
     </div>
@@ -502,12 +501,6 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./app.js" defer></script>
   <script src="./globe.js" defer></script>
   <script src="./perspective.js" defer></script>
-  <script src="./vendor/codemirror/codemirror.js" defer></script>
-  <script src="./vendor/codemirror/javascript.js" defer></script>
-  <script src="./vendor/codemirror/python.js" defer></script>
-  <script src="./vendor/codemirror/sql.js" defer></script>
-  <script src="./vendor/codemirror/matchbrackets.js" defer></script>
-  <script src="./vendor/xterm/xterm.js" defer></script>
   <script src="./studio-engine.js" defer></script>
   <script src="./studio-flow-engine.js" defer></script>
   <script src="./studio-flow-ui.js" defer></script>
