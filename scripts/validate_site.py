@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""V32.0 publish gate: dependency-free verification of local assets and i18n completeness."""
+"""V32.1 publish gate: dependency-free verification of local assets and i18n completeness."""
 from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
@@ -9,7 +9,7 @@ D=R/'docs'; errors=[]
 REQUIRED=['index.html','styles.css','i18n.js','lab.js','app.js','globe.js','.nojekyll','assets/logo-mark.svg','assets/img/portrait.webp','assets/img/earth-texture.webp','assets/img/globe-v25-fallback.webp','assets/img/mycdic-public-website.webp','studio.css','studio.js','studio-engine.js','studio-flow.css','studio-flow-ui.js','studio-flow-engine.js','vendor/codemirror/codemirror.js','vendor/codemirror/codemirror.css','vendor/xterm/xterm.js','perspective.js','perspective.css','assets/img/regional-atlas.svg','trustops.css','trustops.js','trustops-core.mjs','repo-audit.css','repo-audit.js','repo-audit-core.mjs','automation-core.mjs','automation.js','automation.css','security-evidence-core.mjs','experience-v32.js','experience-v32.css']
 for f in REQUIRED:
  if not (D/f).is_file():errors.append('Missing file: docs/'+f)
-for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v32.sh','scripts/test_experience_v32.mjs','scripts/push_v28.sh','scripts/push_v29.sh','scripts/test_perspective_v29.mjs','scripts/test_trustops_v30.mjs','scripts/push_v30_1.sh','scripts/push_v30_2.sh','scripts/test_repo_audit_v30_2.mjs','scripts/push_v31.sh','scripts/test_automation_v31.mjs','scripts/push_v31_1.sh','scripts/test_quality_v31_1.mjs','scripts/test_security_evidence_v31_2.mjs','scripts/qa_v31_2_browser.py','scripts/push_v31_2.sh']:
+for f in ['README.md','.github/workflows/deploy-pages.yml','assets/banners/hero.gif','scripts/push_v32.sh','scripts/test_experience_v32.mjs','scripts/push_v28.sh','scripts/push_v29.sh','scripts/test_perspective_v29.mjs','scripts/test_trustops_v30.mjs','scripts/push_v30_1.sh','scripts/push_v30_2.sh','scripts/test_repo_audit_v30_2.mjs','scripts/push_v31.sh','scripts/test_automation_v31.mjs','scripts/push_v31_1.sh','scripts/test_quality_v31_1.mjs','scripts/test_security_evidence_v31_2.mjs','scripts/qa_v31_2_browser.py','scripts/push_v31_2.sh','scripts/push_v32.sh','scripts/test_experience_v32.mjs','scripts/push_v32_1.sh','scripts/test_systems_v32_1.mjs']:
  if not (R/f).is_file():errors.append('Missing file: '+f)
 class Parser(HTMLParser):
  def __init__(self):super().__init__();self.ids=[];self.assets=[];self.anchors=[];self.images=[];self.langKeys=[]
@@ -136,4 +136,4 @@ if errors:
  print('V32 VALIDATION FAILED',file=sys.stderr)
  for e in errors:print(' - '+e,file=sys.stderr)
  sys.exit(1)
-print(f'V32 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')
+print(f'V32.1 VALIDATION PASSED | {len(p.ids)} anchors | {len(p.images)} images | {len(p.langKeys)} localized elements | 4 languages')

@@ -1,6 +1,6 @@
 # GitHub Pages keeps its configured branch-based publishing source main /docs.
 # This workflow validates the portfolio and never deploys a competing site.
-name: Validate V32 Executive Engineering Experience (branch publishing)
+name: Validate V32.1 Systems Operations (branch publishing)
 on:
   push:
     branches: [main]
@@ -18,6 +18,7 @@ on:
       - 'scripts/test_quality_v31_1.mjs'
       - 'scripts/test_security_evidence_v31_2.mjs'
       - 'scripts/test_experience_v32.mjs'
+      - 'scripts/test_systems_v32_1.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
@@ -47,7 +48,7 @@ jobs:
         run: python3 scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: |
-          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs docs/repo-audit.js docs/repo-audit-core.mjs docs/automation.js docs/automation-core.mjs docs/security-evidence-core.mjs docs/experience-v32.js; do node --check "$file"; done
+          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs docs/repo-audit.js docs/repo-audit-core.mjs docs/automation.js docs/automation-core.mjs docs/security-evidence-core.mjs docs/experience-v32.js docs/systems.js docs/systems-core.mjs; do node --check "$file"; done
       - name: Check Git-format object engine
         run: node scripts/test_studio.mjs
       - name: Check real local workflow graph, queue and trace behavior
@@ -71,3 +72,5 @@ jobs:
 
       - name: Check V32 integrated tool gateway, responsive controls, and localization
         run: node scripts/test_experience_v32.mjs
+      - name: Check V32.1 integrated Systems Operations summaries and comparison
+        run: node scripts/test_systems_v32_1.mjs

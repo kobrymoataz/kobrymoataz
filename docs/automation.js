@@ -127,7 +127,7 @@ if(shell){
    }
  }
 
- function setEvidenceButtons(enabled){$('autoEvidenceJSON').disabled=!enabled;$('autoEvidenceHTML').disabled=!enabled;}
+ function setEvidenceButtons(enabled){$('autoEvidenceJSON').disabled=!enabled;$('autoEvidenceHTML').disabled=!enabled;$('autoEvidenceSendSystems').disabled=!enabled;}
  function invalidateEvidence(){state.evidencePack=null;setEvidenceButtons(false);$('autoEvidenceStatus').textContent=t('evidenceNotBuilt');}
  function renderSecurity(){
    const host=$('autoSecurityFindings');host.replaceChildren();
@@ -156,6 +156,7 @@ if(shell){
  });
  $('autoEvidenceJSON').addEventListener('click',()=>{if(state.evidencePack)download(`${exportSlug()}-evidence-v31-2.json`,JSON.stringify(state.evidencePack,null,2),'application/json;charset=utf-8');});
  $('autoEvidenceHTML').addEventListener('click',()=>{if(state.evidencePack)download(`${exportSlug()}-evidence-v31-2.html`,evidenceHtml(state.evidencePack),'text/html;charset=utf-8');});
+ $('autoEvidenceSendSystems').addEventListener('click',()=>{if(!state.evidencePack)return;const report=state.evidencePack;if(!close())return;document.dispatchEvent(new CustomEvent('systems:import',{detail:{report}}));});
  $('automationFilter').addEventListener('change' ,e=>{state.filter=e.target.value;renderFindings()});
  function renderNodes(){
    const list=$('autoNodeList');list.replaceChildren();

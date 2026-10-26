@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="./repo-audit.css">
   <link rel="stylesheet" href="./automation.css">
   <link rel="stylesheet" href="./experience-v32.css">
+  <link rel="stylesheet" href="./systems.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -152,6 +153,10 @@
             <button type="button" id="hubStudioLaunch" class="hub-open" data-i18n="v32OpenStudio">Open the workstation ↗</button>
           </article>
         </div>
+        <aside class="systems-gateway" aria-labelledby="systemsGatewayTitle">
+          <div><p class="eyebrow" data-i18n="sysGatewayTag">04 / SYSTEMS OPERATIONS</p><h3 id="systemsGatewayTitle" data-i18n="sysGatewayTitle">Connect the evidence. Compare the changes.</h3><p data-i18n="sysGatewayDesc">Import actual reports from the three engineering tools, inspect sanitized history and compare audits. No account, backend or pretend monitoring.</p></div>
+          <button type="button" class="sys-btn sys-primary" id="systemsLaunch" data-i18n="sysOpen">Open Systems Console</button>
+        </aside>
         <p class="hub-clarity" data-i18n="v32HubBoundary">Tools operate only within their stated scope. Public checks depend on external providers; local workspaces never execute commands on your computer.</p>
       </div>
     </section>
@@ -417,7 +422,7 @@ print(sum([2, 3, 5]))</textarea>
         <p class="repo-audit-privacy">Read-only public requests to GitHub API and optionally OpenSSF Scorecard. OSV queries apply only to exact versions identified from supported dependency manifests. The website cannot verify private settings, secret scanning, hidden vulnerabilities or production security.</p>
         <p id="repoAuditStatus" class="repo-audit-status" role="status" aria-live="polite">Enter a public GitHub repository to begin. No report has been generated.</p>
         <div id="repoAuditResults" hidden>
-          <div class="repo-audit-report-header"><div><p class="trust-eyebrow">REPOSITORY EVIDENCE REPORT</p><h3 id="repoAuditTitle">—</h3><p id="repoAuditMeta"></p></div><div class="trust-export"><button id="repoExportJSON" type="button">Export JSON ↓</button><button id="repoExportHTML" type="button">Printable report ↗</button></div></div>
+          <div class="repo-audit-report-header"><div><p class="trust-eyebrow">REPOSITORY EVIDENCE REPORT</p><h3 id="repoAuditTitle">—</h3><p id="repoAuditMeta"></p></div><div class="trust-export"><button id="repoExportJSON" type="button">Export JSON ↓</button><button id="repoExportHTML" type="button">Printable report ↗</button><button id="repoSendSystems" type="button" data-i18n="sysSendHere">Add to Systems Console</button></div></div>
           <div class="repo-audit-summary" id="repoAuditSummary"></div>
           <div class="repo-audit-tabs" role="tablist" id="repoAuditTabs"><button class="active" aria-selected="true" role="tab" data-repo-tab="findings">FINDINGS</button><button aria-selected="false" role="tab" data-repo-tab="dependencies">DEPENDENCIES & OSV</button><button aria-selected="false" role="tab" data-repo-tab="evidence">RAW EVIDENCE</button></div>
           <div id="repoAuditPanelFindings" class="repo-audit-panel"></div><div id="repoAuditPanelDependencies" class="repo-audit-panel" hidden></div><div id="repoAuditPanelEvidence" class="repo-audit-panel" hidden></div>
@@ -435,7 +440,7 @@ print(sum([2, 3, 5]))</textarea>
       <div class="trust-progress" aria-live="polite" role="status"><span id="trustStatus">Ready to inspect a public domain.</span><span id="trustProgressCount">—</span></div>
       <div class="trust-empty" id="trustEmpty"><div class="trust-empty-sigil">◌</div><h3 data-i18n="trustEmptyTitle">Your audit starts with real evidence.</h3><p data-i18n="trustEmptyText">Enter a domain to retrieve current DNS responses. Results are never prefilled with invented grades or sample checks.</p></div>
       <section class="trust-results" id="trustResults" hidden aria-label="Domain audit report">
-        <div class="trust-results-head"><div><p class="trust-eyebrow" data-i18n="trustAuditReport">LIVE DNS REPORT</p><h3 id="trustResultDomain">—</h3><p class="trust-report-meta" id="trustResultMeta"></p></div><div class="trust-export"><button type="button" id="trustExportJSON" data-i18n="trustExportJSON">Export JSON ↓</button><button type="button" id="trustExportHTML" data-i18n="trustExportHTML">Printable report ↗</button></div></div>
+        <div class="trust-results-head"><div><p class="trust-eyebrow" data-i18n="trustAuditReport">LIVE DNS REPORT</p><h3 id="trustResultDomain">—</h3><p class="trust-report-meta" id="trustResultMeta"></p></div><div class="trust-export"><button type="button" id="trustExportJSON" data-i18n="trustExportJSON">Export JSON ↓</button><button type="button" id="trustExportHTML" data-i18n="trustExportHTML">Printable report ↗</button><button type="button" id="trustSendSystems" data-i18n="sysSendHere">Add to Systems Console</button></div></div>
         <div class="trust-metrics" id="trustMetrics" aria-label="Audit results by state"></div>
         <div class="trust-result-tabs" id="trustTabs" role="tablist"><button type="button" class="active" aria-selected="true" data-trust-tab="findings" role="tab" data-i18n="trustTabFindings">FINDINGS</button><button type="button" aria-selected="false" data-trust-tab="evidence" role="tab" data-i18n="trustTabEvidence">DNS EVIDENCE</button><button type="button" aria-selected="false" data-trust-tab="actions" role="tab" data-i18n="trustTabActions">NEXT ACTIONS</button></div>
         <div class="trust-panel active" id="trustPanelFindings" role="tabpanel"></div><div class="trust-panel" id="trustPanelEvidence" role="tabpanel" hidden></div><div class="trust-panel" id="trustPanelActions" role="tabpanel" hidden></div>
@@ -475,7 +480,7 @@ print(sum([2, 3, 5]))</textarea>
        <div class="auto-evidence-card"><h4 data-i18n="evidenceSecurity">Security configuration checks</h4><p class="auto-evidence-tally" id="autoEvidenceCounts" role="status" aria-live="polite">Not checked</p><div id="autoSecurityFindings" class="auto-security-findings"></div></div>
        <div class="auto-evidence-card"><h4 data-i18n="evidenceSupplement">Optional external evidence snapshot</h4><label class="auto-evidence-upload"><span data-i18n="evidenceImportLabel">Import a TrustOps or RepoVerity JSON report (max 2 MB)</span><input id="autoEvidenceImport" type="file" accept=".json,application/json"></label><p class="auto-caveat" id="autoEvidenceSupplementStatus" role="status" aria-live="polite" data-i18n="evidenceNoSupplement">No supplementary report imported.</p><button type="button" class="auto-btn" id="autoEvidenceClear" data-i18n="evidenceClear">Remove attached summary</button></div>
       </div>
-      <div class="auto-evidence-footer"><button class="auto-btn auto-primary" type="button" id="autoEvidenceBuild" data-i18n="evidenceBuild">Build private evidence pack</button><button class="auto-btn" type="button" id="autoEvidenceJSON" disabled data-i18n="evidenceJSON">Download sanitized JSON ↓</button><button class="auto-btn" type="button" id="autoEvidenceHTML" disabled data-i18n="evidenceHTML">Download printable report ↓</button></div>
+      <div class="auto-evidence-footer"><button class="auto-btn auto-primary" type="button" id="autoEvidenceBuild" data-i18n="evidenceBuild">Build private evidence pack</button><button class="auto-btn" type="button" id="autoEvidenceJSON" disabled data-i18n="evidenceJSON">Download sanitized JSON ↓</button><button class="auto-btn" type="button" id="autoEvidenceHTML" disabled data-i18n="evidenceHTML">Download printable report ↓</button><button class="auto-btn" type="button" id="autoEvidenceSendSystems" disabled data-i18n="sysSendHere">Add to Systems Console</button></div>
       <p class="auto-evidence-status" id="autoEvidenceStatus" role="status" aria-live="polite" data-i18n="evidenceNotBuilt">No evidence pack generated yet.</p><p class="auto-caveat" data-i18n="evidenceCaveat">Evidence packs omit raw JSON, credentials, URLs, payloads and third-party report details. A SHA-256 fingerprint identifies the inspected JSON, but does not certify security or authenticity.</p>
     </section>
     <div class="auto-report-head"><h3 data-i18n="autoFindings">04 / Evidence-based findings</h3><div class="auto-report-actions"><select id="automationFilter" class="auto-select" aria-label="Filter findings by severity"><option value="all" data-i18n="autoAll">All findings</option><option value="critical" data-i18n="autoCritical">Critical</option><option value="warning" data-i18n="autoWarning">Warnings</option><option value="info" data-i18n="autoInfo">Advisories</option></select><button type="button" class="auto-btn" id="automationExportWorkflow" data-i18n="autoExportWorkflow">Export edited n8n JSON ↓</button><button type="button" class="auto-btn" id="automationExportJSON" data-i18n="autoExportJSON">Audit JSON ↓</button><button type="button" class="auto-btn" id="automationExportHTML" data-i18n="autoExportHTML">Printable report ↓</button><button type="button" class="auto-btn" id="automationOpenRepo" data-i18n="autoOpenRepo">Open RepoVerity audit ↗</button></div></div>
@@ -545,6 +550,20 @@ print(sum([2, 3, 5]))</textarea>
     <div class="studio-footer"><span>GITHUB PAGES · STATIC SITE · PRIVATE BROWSER WORKSPACE</span><span>FILES / GIT OBJECTS / JOBS STORED IN INDEXEDDB · NO REMOTE EXECUTION</span></div>
   </div>
 </section>
+
+<section id="systemsPanel" class="systems-panel" role="dialog" aria-modal="true" aria-labelledby="systemsTitle" hidden>
+  <div class="systems-shell">
+    <header class="systems-top"><div><p class="eyebrow" data-i18n="sysEyebrow">SYSTEMS / EVIDENCE / CHANGE</p><h2 id="systemsTitle" data-i18n="sysTitle">Systems Operations Console</h2><p data-i18n="sysIntro">Compare real report snapshots from TrustOps DNS, RepoVerity and redacted Automation Evidence Packs. Imported evidence is not independently verified, and no production systems are accessed.</p></div><button type="button" class="sys-btn" id="systemsClose" data-i18n="sysClose">Close ×</button></header>
+    <div class="sys-actions"><label class="sys-file-label"><span data-i18n="sysImport">Import JSON reports</span><input type="file" id="systemsFiles" accept=".json,application/json" multiple></label><button type="button" class="sys-btn" id="systemsSave" data-i18n="sysSave">Save sanitized history locally</button><button type="button" class="sys-btn" id="systemsClear" data-i18n="sysClear">Clear history</button></div>
+    <p class="sys-status" id="systemsStatus" aria-live="polite" role="status" data-i18n="sysReady">Only safe report summaries are held in memory; saving to this browser is optional.</p>
+    <div class="sys-grid">
+      <section class="sys-card" aria-labelledby="sysHistoryHeading"><h3 id="sysHistoryHeading"><span data-i18n="sysHistory">Imported inspections</span> <small id="systemsHistoryCount">0/24</small></h3><p data-i18n="sysHistoryDesc">Up to 24 summaries, no raw reports or credentials. Saving is explicitly opt-in.</p><div class="sys-history-list" id="systemsHistory"></div></section>
+      <section class="sys-card" aria-labelledby="sysCompareHeading"><h3 id="sysCompareHeading" data-i18n="sysCompareTitle">Compare two inspections</h3><div class="sys-selects"><label><span data-i18n="sysBaseline">Previous snapshot</span><select id="systemsBaseline" aria-label="Previous snapshot"></select></label><label><span data-i18n="sysCurrent">Current snapshot</span><select id="systemsCurrent" aria-label="Current snapshot"></select></label></div><div class="sys-actions"><button type="button" class="sys-btn sys-primary" id="systemsCompare" data-i18n="sysCompare">Compare reports</button><button type="button" class="sys-btn" id="systemsExport" data-i18n="sysExport" disabled>Export comparison JSON</button></div><div id="systemsResult" aria-live="polite"></div></section>
+      <section class="sys-card" aria-labelledby="sysRunbookHeading"><h3 id="sysRunbookHeading" data-i18n="sysRunbookTitle">Evidence-based next steps</h3><p data-i18n="sysRunbookDesc">Actions are derived from available imported counts and known limitations; they are not automated fixes.</p><div id="systemsRunbook"></div></section>
+      <section class="sys-card"><h3 data-i18n="sysLimitsTitle">What this does not do</h3><p data-i18n="sysLimits">This tool does not continuously monitor your infrastructure, execute code, query private repositories, verify uploaded reports or infer that an issue was resolved solely because its count decreased. Re-run the source tool and inspect its evidence before making changes.</p><p class="sys-note" data-i18n="sysPrivacy">Files are parsed in your browser; raw content is discarded after extraction. Browser-saved summaries can be erased with Clear history. Exported comparison files contain normalized target identifiers and counts.</p></section>
+    </div>
+  </div>
+</section>
   <script src="./i18n.js" defer></script>
   <script src="./lab.js" defer></script>
   <script src="./app.js" defer></script>
@@ -558,6 +577,7 @@ print(sum([2, 3, 5]))</textarea>
   <script type="module" src="./trustops.js"></script>
   <script type="module" src="./repo-audit.js"></script>
   <script type="module" src="./automation.js"></script>
+  <script type="module" src="./systems.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
 </body>

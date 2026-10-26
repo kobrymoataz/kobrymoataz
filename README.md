@@ -33,6 +33,15 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **Advanced Engineering Studio**, developed across V27 and V28: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
 
+
+### V32.1 · Systems Operations Console
+
+**New local systems analysis hub:** The Systems Console imports JSON exports from TrustOps DNS Audit, RepoVerity Repository Audit and the redacted Automation Evidence Pack. It normalizes **only target identifiers, timestamps, coverage status, counts and non-sensitive finding states**. Raw report contents, node parameters, credentials, evidence payloads, URLs and descriptions are never copied to its history. Importing an export is not independent verification.
+
+Visitors can compare two DNS snapshots from the same domain, two repository snapshots from the same `owner/repo`, or two redacted Automation Evidence Packs. Automation packs have no stable workflow identity and comparisons explicitly warn when fingerprints differ. Numeric changes and state transitions are reported neutrally; a lower warning count is not proof that a system is secure. Deterministic next-step suggestions are based on observed categories, not simulated monitoring.
+
+**Direct handoff:** When a public DNS scan, repository audit, or redacted Automation Evidence Pack has been generated, a new *Add to Systems Console* action passes that report to the normalizer in browser memory. Users may also import up to 10 JSON files at a time (2 MB per file). History is capped at 24 sanitized summaries, and **persists only when the user explicitly presses Save**. Clear history removes the persisted copy. Exported comparisons contain only normalized results. This functionality is fully static and requires no API secrets.
+
 ### V32.0 · Executive Engineering Experience
 
 This release consolidates the portfolio's main tools into a single, task-oriented **Engineering Tools** gateway. It preserves TrustOps public DNS/repository research, the n8n Automation Reliability Studio and the Advanced Engineering Studio without inventing shared backends or silently changing their execution scope. The older embedded terminal and file workspace remain available in an explicitly expandable *classic practice sandbox*.
