@@ -181,3 +181,10 @@ Launch repository audit with `?trustops=repo`.
 Inside the [Automation Reliability Studio](https://kobrymoataz.github.io/kobrymoataz/?automation=1), users can inspect explicit HTTP transport/TLS/retry configuration risks, compare finding changes with the original imported workflow, and export a sanitized SHA-256-fingerprinted evidence pack. They can optionally attach summary-only JSON evidence exported from TrustOps DNS or RepoVerity public repository tools. Everything is processed locally in the browser, and imported evidence is never silently described as live verification.
 
 Source: [`docs/security-evidence-core.mjs`](./docs/security-evidence-core.mjs). Regression: `node scripts/test_security_evidence_v31_2.mjs`. **This is configuration review, not credential inspection, live execution, vulnerability assessment, or security certification.**
+
+
+### V32.2 | Systems Incident Casebook & Recovery
+
+The [Systems Console](https://kobrymoataz.github.io/kobrymoataz/?systems=1) now offers a diagnostic timeline of matching imported inspections and a browser-local follow-up casebook. Reviewers can open a case from a sanitized snapshot, manually select status and priority, then explicitly save, export or restore the versioned casebook. Old V32.1 sanitized saved history is migrated in-memory until the user chooses Save. Raw report payloads and user-written notes are not retained. This is **not** a live incident monitoring service and closing a follow-up does not establish that a security issue is resolved.
+
+Offline checks: `node scripts/test_incidents_v32_2.mjs`; optional Chromium inline QA: `python3 scripts/qa_incidents_v32_2_browser.py`.
