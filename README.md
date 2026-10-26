@@ -157,3 +157,10 @@ TrustOps now supports two read-only audit modes:
 **Coverage warning:** V30.2 does not access private settings or secrets and is not a vulnerability scan of the whole codebase. OSV analysis is intentionally capped at 20 exact dependencies from supported manifests. Rate limits, browser CORS policies, and unavailable providers are reported as unknown rather than guessed.
 
 Launch repository audit with `?trustops=repo`.
+
+
+### V31.2 · Security & Evidence Pack
+
+Inside the [Automation Reliability Studio](https://kobrymoataz.github.io/kobrymoataz/?automation=1), users can inspect explicit HTTP transport/TLS/retry configuration risks, compare finding changes with the original imported workflow, and export a sanitized SHA-256-fingerprinted evidence pack. They can optionally attach summary-only JSON evidence exported from TrustOps DNS or RepoVerity public repository tools. Everything is processed locally in the browser, and imported evidence is never silently described as live verification.
+
+Source: [`docs/security-evidence-core.mjs`](./docs/security-evidence-core.mjs). Regression: `node scripts/test_security_evidence_v31_2.mjs`. **This is configuration review, not credential inspection, live execution, vulnerability assessment, or security certification.**
