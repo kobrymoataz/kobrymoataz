@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="./trustops.css">
   <link rel="stylesheet" href="./repo-audit.css">
   <link rel="stylesheet" href="./automation.css">
+  <link rel="stylesheet" href="./experience-v32.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -33,9 +34,7 @@
       <a class="brand" href="#top" aria-label="Moataz Kobry portfolio"><img src="./assets/logo-mark.svg" width="40" height="40" alt=""><span dir="ltr"><strong>MOATAZ KOBRY</strong><small>COMPUTING / SYSTEMS</small></span></a>
       <nav class="desktop-nav" id="primaryNav" aria-label="Main navigation">
         <a href="#work" data-i18n="navWork">Selected work</a>
-        <a href="#trustops" data-i18n="trustNav">TrustOps</a>
-        <a href="#automation" data-i18n="autoNav">Automation</a>
-        <a href="#lab" data-i18n="navLab">Engineering lab</a>
+        <a href="#tools" data-i18n="v32NavTools">Engineering tools</a>
         <a href="#stack" data-i18n="navStack">Toolkit</a>
         <a href="#perspective" data-i18n="navGlobe">Perspective</a>
         <a href="#profile" data-i18n="navProfile">Profile</a>
@@ -65,7 +64,7 @@
           <p class="hero-secondary" data-i18n="heroSecond">Since 2016, I have worked on websites, developer tools and institutional platforms, including initiatives led with teams at MYCDIC and Trendad.</p>
           <div class="hero-ctas">
             <a class="button button-primary" href="#work"><span data-i18n="exploreWork">Explore selected work</span><span aria-hidden="true">↗</span></a>
-            <a class="button button-secondary" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A"><span data-i18n="downloadCV">Request CV</span><span aria-hidden="true">↗</span></a>
+            <a class="button button-secondary" href="#tools"><span data-i18n="v32HeroTools">Explore working tools</span><span aria-hidden="true">↗</span></a>
           </div>
         </div>
         <div class="portrait-composition">
@@ -107,7 +106,7 @@
           </article>
         </div>
         <aside class="repo-evidence" id="repoEvidence" aria-label="Public repository evidence">
-          <div class="repo-evidence-heading"><div><p class="eyebrow" data-i18n="evidenceOverline">PUBLIC RECORD / GITHUB</p><h3 data-i18n="evidenceTitle">Work that can be verified.</h3><p data-i18n="evidenceIntro">Live public repository metadata when GitHub is reachable. Source links remain available offline.</p></div>
+          <div class="repo-evidence-heading"><div><p class="eyebrow" data-i18n="v32RepoOverline">PUBLIC RECORD / GITHUB</p><h3 data-i18n="v32RepoTitle">Work that can be verified.</h3><p data-i18n="v32RepoIntro">Live public repository metadata when GitHub is reachable. Source links remain available offline.</p></div>
           <div class="repo-evidence-controls"><span id="repoEvidenceStatus" role="status" data-i18n="evidencePending">Public data not yet loaded</span><button id="repoEvidenceRefresh" type="button" data-i18n="evidenceRefresh">Refresh ↻</button></div></div>
           <div class="repo-evidence-grid">
             <a href="https://github.com/kobrymoataz/repoverity" target="_blank" rel="noopener noreferrer" class="repo-evidence-item" data-repo="repoverity"><span class="repo-id">01 / GITHUB</span><strong>RepoVerity</strong><span class="repo-data" data-repo-meta data-i18n="evidenceWaiting">Inspect source ↗</span><span class="repo-arrow" aria-hidden="true">↗</span></a>
@@ -118,6 +117,44 @@
       </div>
     </section>
 
+
+
+    <section class="experience-hub section" id="tools" aria-labelledby="toolsHubTitle">
+      <div class="wrap">
+        <div class="hub-head">
+          <div><p class="eyebrow" data-i18n="v32HubEyebrow">02 / OPEN ENGINEERING TOOLS</p>
+          <h2 id="toolsHubTitle"><span data-i18n="v32HubTitle1">Explore the work.</span> <em data-i18n="v32HubTitle2">Try the systems.</em></h2></div>
+          <p data-i18n="v32HubIntro">Three purpose-built tools, each with inspectable behavior and explicit limits. Start with a task, not a sales pitch.</p>
+        </div>
+        <div class="hub-grid">
+          <article class="hub-card hub-card-primary">
+            <div class="hub-card-top"><span class="hub-index" data-i18n="v32TrustTag">01 / TRUST &amp; SECURITY</span><span class="hub-chip" data-i18n="v32Public">PUBLIC DATA</span></div>
+            <div class="hub-symbol" aria-hidden="true">◈</div>
+            <h3>TrustOps</h3>
+            <p data-i18n="v32TrustDesc">Check published DNS records and inspect public GitHub repositories. Every finding links back to its available evidence.</p>
+            <div class="hub-specs"><span>SPF / DMARC / DKIM</span><span>GITHUB API</span></div>
+            <button type="button" id="hubTrustLaunch" class="hub-open" data-i18n="v32OpenTrust">Run a public audit ↗</button>
+          </article>
+          <article class="hub-card">
+            <div class="hub-card-top"><span class="hub-index" data-i18n="v32AutoTag">02 / WORKFLOW RELIABILITY</span><span class="hub-chip" data-i18n="v32Local">BROWSER-LOCAL</span></div>
+            <div class="hub-symbol" aria-hidden="true">⌘</div>
+            <h3 data-i18n="v32AutoTitle">Automation Studio</h3>
+            <p data-i18n="v32AutoDesc">Import an n8n workflow, inspect its graph and security settings, make local edits, and export a redacted evidence pack.</p>
+            <div class="hub-specs"><span>N8N JSON</span><span>STATIC INSPECTION</span></div>
+            <button type="button" id="hubAutoLaunch" class="hub-open" data-i18n="v32OpenAuto">Inspect a workflow ↗</button>
+          </article>
+          <article class="hub-card">
+            <div class="hub-card-top"><span class="hub-index" data-i18n="v32StudioTag">03 / BUILD &amp; VERIFY</span><span class="hub-chip" data-i18n="v32Local">BROWSER-LOCAL</span></div>
+            <div class="hub-symbol" aria-hidden="true">{ }</div>
+            <h3 data-i18n="v32StudioTitle">Engineering Studio</h3>
+            <p data-i18n="v32StudioDesc">Edit local files, run JavaScript checks, inspect workflow execution, and create local Git-format commits in a browser sandbox.</p>
+            <div class="hub-specs"><span>CODE EDITOR</span><span>LOCAL TESTS</span></div>
+            <button type="button" id="hubStudioLaunch" class="hub-open" data-i18n="v32OpenStudio">Open the workstation ↗</button>
+          </article>
+        </div>
+        <p class="hub-clarity" data-i18n="v32HubBoundary">Tools operate only within their stated scope. Public checks depend on external providers; local workspaces never execute commands on your computer.</p>
+      </div>
+    </section>
 
     <section class="trust-section section" id="trustops" aria-labelledby="trustTitle">
       <div class="wrap trust-landing">
@@ -130,7 +167,7 @@
           <p class="trust-mini-note" data-i18n="trustFree">Free · public DNS and repository data · no account · read-only</p>
         </div>
         <div class="trust-feature-visual" aria-hidden="true">
-          <div class="trust-fv-top"><span>TRUSTOPS / DIAGNOSTICS</span><span>v30.2</span></div>
+          <div class="trust-fv-top"><span>TRUSTOPS / DIAGNOSTICS</span><span>PUBLIC / LIVE</span></div>
           <div class="trust-fv-radar"><div class="trust-fv-ring"><svg viewBox="0 0 220 220" width="100%" height="100%"><circle cx="110" cy="110" r="78" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".3"/><circle cx="110" cy="110" r="52" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".22"/><circle cx="110" cy="110" r="26" stroke="#c6a06b" stroke-width="1" fill="none" opacity=".2"/><path d="M24 110H196M110 24V196" stroke="#c6a06b" stroke-width="1" opacity=".17"/><path d="M110 110 L161 58" stroke="#eed0a1" stroke-width="2.5"/><circle cx="161" cy="58" r="4" fill="#eed0a1"/></svg></div><div class="trust-fv-core">DNS</div></div>
           <div class="trust-fv-rows"><div><span>01 / DOMAIN TRUST</span><b>SPF + DMARC</b></div><div><span>02 / REPOSITORY</span><b>CI + POLICY</b></div><div><span>03 / OPEN SOURCE</span><b>SCORECARD + OSV</b></div></div>
           <div class="trust-fv-foot"><span>PUBLIC DATA / EXPLAINABLE EVIDENCE</span><span>↗</span></div>
@@ -150,7 +187,7 @@
           <p class="automation-privacy" data-i18n="autoPrivacy">Free and entirely browser-local. Imported workflows are not uploaded or executed. Remove credentials before sharing exports.</p>
         </div>
         <div class="automation-visual" aria-hidden="true">
-          <div class="automation-visual-head"><span>RELIABILITY / INSPECTOR</span><span>v31.0 · LOCAL</span></div>
+          <div class="automation-visual-head"><span>RELIABILITY / INSPECTOR</span><span>BROWSER / LOCAL</span></div>
           <svg class="automation-demo-graph" viewBox="0 0 460 240" role="presentation"><defs><marker id="demo-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path fill="#d8b57f" d="M0 0 10 5 0 10Z"/></marker></defs><path d="M110 80H178M282 80H348" stroke="#d8b57f" stroke-width="2" stroke-dasharray="4 6" marker-end="url(#demo-arrow)"/><path d="M230 111V164" stroke="#d8b57f" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#demo-arrow)"/><rect x="8" y="50" rx="8" width="102" height="60" fill="#26373d" stroke="#be9664"/><rect x="179" y="50" rx="8" width="104" height="60" fill="#293137" stroke="#ddbd86"/><rect x="348" y="50" rx="8" width="104" height="60" fill="#26373d" stroke="#be9664"/><rect x="168" y="165" rx="8" width="124" height="50" fill="#342d26" stroke="#b18d5b"/><g font-family="monospace" font-size="11" text-anchor="middle" fill="#eee3cf"><text x="59" y="84">WEBHOOK</text><text x="231" y="84">HTTP REQUEST</text><text x="400" y="84">VERIFY</text><text x="230" y="192">RETRY POLICY</text></g><circle cx="263" cy="58" r="5" fill="#dfb57a"/></svg>
           <div class="automation-visual-bottom"><span>GRAPH → FINDINGS → FIX → RECHECK</span><strong>PRIVATE / BROWSER</strong></div>
         </div>
@@ -165,6 +202,9 @@
         <button type="button" class="mk-studio-open" id="studioLaunch">OPEN ADVANCED ENGINEERING STUDIO <span aria-hidden="true">↗</span></button>
         <span class="mk-studio-inline-note">BROWSER-LOCAL · terminal + syntax-highlighted code editor + executable JS tests + Git-format local commits + SQL/Python runtimes on demand</span>
       </div>
+    </div>
+    <details class="legacy-lab-details wrap" id="legacyLab">
+      <summary><span><b data-i18n="v32PracticeTitle">Open the classic practice sandbox</b><small data-i18n="v32PracticeDesc">Optional: inspect the original terminal, sample workflows and local file workspace.</small></span><span class="legacy-toggle-icon" aria-hidden="true">+</span></summary>
       <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive local engineering workstation terminal">
         <div class="mac-titlebar">
           <span class="mac-traffic" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -177,7 +217,7 @@
           <span class="terminal-env-note">BROWSER WORKSPACE</span>
         </div>
         <div class="mac-toolbar">
-          <span class="mac-toolbar-label"><span>engineering-workstation / v26 · legacy workflow view</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
+          <span class="mac-toolbar-label"><span>CLASSIC PRACTICE SANDBOX / BROWSER-LOCAL</span><span class="terminal-mode-label" data-i18n="terminalScenarios">SCENARIOS</span></span>
           <div class="lab-scenarios" role="group" aria-label="Choose simulator scenario" id="labScenarios">
             <button type="button" class="is-active" data-lab-scenario="normal" aria-pressed="true" data-i18n="labModeNormal">Normal</button>
             <button type="button" data-lab-scenario="retry" aria-pressed="false" data-i18n="labModeRetry">Retry</button>
@@ -227,8 +267,7 @@
         </div>
         <p class="terminal-disclaimer" data-i18n="terminalPrivacy">Your workspace and run history are stored in this browser. Git-style commits are local snapshots, not real Git objects; no shell commands run on your device.</p>
       </div>
-    </div>
-    <div class="wrap ws-shell" id="workstation" aria-label="Interactive browser development workspace">
+    <div class="ws-shell" id="workstation" aria-label="Interactive browser development workspace">
       <div class="ws-header">
         <div><span class="eyebrow">WORKSPACE / ENGINEERING PRACTICE</span><h3>Build, test, inspect.</h3><p>Write to a persistent local project. Check real file changes, run scenario-based workflows, and export the session.</p></div>
         <div class="ws-actions"><span id="wsStorageState" class="ws-storage">CONNECTING STORAGE</span><button id="wsExport" type="button">Export workspace ↓</button><button id="wsImport" type="button">Import JSON ↑</button><input type="file" id="wsImportFile" accept="application/json,.json" hidden><button id="wsReset" type="button">Reset workspace</button></div>
@@ -258,7 +297,7 @@
 print(sum([2, 3, 5]))</textarea>
         <div><button type="button" id="wsRunPython">Run Python</button><span id="wsPythonStatus">Not loaded</span><pre id="wsPythonOutput" aria-live="polite">Python results will appear here.</pre></div>
       </div>
-    </div></section>
+    </div></details></section>
 
     <section class="toolkit-section section light-section" id="stack" aria-labelledby="stackTitle"><div class="wrap">
       <div class="section-heading toolkit-heading"><p class="eyebrow" data-i18n="stackLabel">03 / ENGINEERING TOOLKIT</p><h2 id="stackTitle"><span data-i18n="stackHeading1">A working toolkit,</span><br><em data-i18n="stackHeading2">not a wall of logos.</em></h2><p data-i18n="stackIntro">Select a technology to see what it contributes to a real development or operations workflow.</p></div>
@@ -290,6 +329,7 @@ print(sum([2, 3, 5]))</textarea>
         <button class="skill" type="button" data-skill="docker" data-category="ops" aria-pressed="false"><img src="./assets/logos/docker.svg" alt="" loading="lazy"><span>Docker</span></button>
         <button class="skill" type="button" data-skill="cybersecurity" data-category="ops" aria-pressed="false"><img src="./assets/logos/cybersecurity.svg" alt="" loading="lazy"><span>Security &amp; Email</span></button>
       </div>
+      <div class="toolkit-more"><button type="button" id="toolkitExpand" aria-expanded="false" data-i18n="v32MoreTools">View all 18 technologies ↓</button></div>
       <div class="tool-spotlight" aria-live="polite">
         <div class="spot-art"><span class="spot-code" data-i18n="spotCode">// selected toolkit</span><div class="spot-logo-frame"><img id="spotVisual" src="./assets/logos/javascript.svg" width="92" height="92" alt="JavaScript logo" /></div></div>
         <div class="spot-information"><p class="spot-label" data-i18n="spotLabel">TECHNOLOGY IN PRACTICE</p><h3 id="spotTitle">JavaScript</h3><p id="spotDescription" data-i18n="skillJavascript">Interfaces, validation, client-side behavior and connected web applications.</p>
@@ -337,7 +377,7 @@ print(sum([2, 3, 5]))</textarea>
       </div>
     </div></section>
 
-    <section class="contact-section section" id="contact" aria-labelledby="contactTitle"><div class="wrap contact-layout"><div><p class="eyebrow" data-i18n="contactLabel">06 / CONTACT</p><h2 id="contactTitle"><span data-i18n="contactHeading1">Let's discuss</span><br><em data-i18n="contactHeading2">the work ahead.</em></h2><p data-i18n="contactIntro">For engineering collaboration, digital platforms, institutional projects and practical automation.</p><a class="contact-mail" href="mailto:president@mycdic.org">president@mycdic.org ↗</a><div class="contact-cv"><a class="button button-primary" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A"><span data-i18n="downloadCV">Request CV</span> ↗</a></div><div class="social-row"><a href="https://github.com/kobrymoataz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
+    <section class="contact-section section" id="contact" aria-labelledby="contactTitle"><div class="wrap contact-layout"><div><p class="eyebrow" data-i18n="contactLabel">06 / CONTACT</p><h2 id="contactTitle"><span data-i18n="contactHeading1">Let's discuss</span><br><em data-i18n="contactHeading2">the work ahead.</em></h2><p data-i18n="contactIntro">For engineering collaboration, digital platforms, institutional projects and practical automation.</p><div class="contact-address"><a class="contact-mail" href="mailto:president@mycdic.org">president@mycdic.org ↗</a><button type="button" id="copyContactEmail" data-i18n="v32CopyEmail">Copy email</button></div><p id="copyContactStatus" class="contact-copy-status" role="status" aria-live="polite"></p><div class="contact-cv"><a class="button button-primary" href="mailto:president@mycdic.org?subject=CV%20Request%20-%20Moataz%20Kobry&body=Hello%20Moataz%2C%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AName%3A%0AOrganization%3A%0APurpose%3A%0A"><span data-i18n="downloadCV">Request CV</span> ↗</a></div><div class="social-row"><a href="https://github.com/kobrymoataz" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://www.linkedin.com/in/kobrymoataz/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://www.instagram.com/kobrymoataz/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div>
       <form id="contactForm" class="contact-form" novalidate>
         <h3 data-i18n="formHeading">Prepare a message</h3>
         <div class="form-split"><label><span data-i18n="formName">Your name</span><input type="text" id="contactName" name="name" autocomplete="name" required maxlength="100" placeholder="Full name" data-i18n-placeholder="formNamePlaceholder"></label><label><span data-i18n="formEmail">Reply email</span><input type="email" id="contactEmail" name="email" autocomplete="email" required maxlength="160" placeholder="you@example.com"></label></div>
@@ -508,6 +548,7 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./i18n.js" defer></script>
   <script src="./lab.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./experience-v32.js" defer></script>
   <script src="./globe.js" defer></script>
   <script src="./perspective.js" defer></script>
   <script src="./studio-engine.js" defer></script>

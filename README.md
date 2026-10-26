@@ -30,8 +30,16 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 [MYCDIC public website](https://www.mycdic.org/) · [Institutional profile](https://www.mycdic.org/president/)
 
-Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
+Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and an **Advanced Engineering Studio**, developed across V27 and V28: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
+
+### V32.0 · Executive Engineering Experience
+
+This release consolidates the portfolio's main tools into a single, task-oriented **Engineering Tools** gateway. It preserves TrustOps public DNS/repository research, the n8n Automation Reliability Studio and the Advanced Engineering Studio without inventing shared backends or silently changing their execution scope. The older embedded terminal and file workspace remain available in an explicitly expandable *classic practice sandbox*.
+
+The desktop and mobile experience uses refined black/bronze typography, lower visual density, a simplified five-link navigation, clearly labeled studio entry points, a six-item featured toolkit with access to all 18 technologies, and a copy-email option. The public GitHub evidence panel is now localized separately from the workflow security evidence inspector; their headings no longer overwrite one another. The full portfolio still supports EN / FR / ES / AR including Arabic RTL.
+
+**Integrity:** All prior tests and public source links are retained. GitHub Pages stays on `main /docs`. Browser-local operations do not execute commands on the visitor's computer. The contact form still opens the visitor's email app and does not silently send messages. V32 does not introduce a server or claim private repository access.
 
 ### V31.1 · Professional Refinement
 

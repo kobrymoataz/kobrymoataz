@@ -1,0 +1,115 @@
+/* V32 Executive Engineering Experience: additive design layer; prior tools remain operational. */
+:root{--v32-paper:#f4f0e9;--v32-dark:#0a1218;--v32-gold:#d2b07f;--v32-ink:#19272e}
+html{scroll-padding-top:84px}
+body{background:var(--v32-dark)}
+.wrap{width:min(1180px,calc(100% - 64px))}
+.section{padding-block:clamp(65px,7vw,94px)}
+.site-header{border-bottom-color:#bca47a45;box-shadow:0 2px 22px #0002}
+.header-row{min-height:72px;gap:25px}
+.desktop-nav{gap:clamp(15px,1.9vw,29px)}
+.desktop-nav a{font-size:12px;font-weight:550}
+.header-contact{display:inline-flex;justify-content:center;align-items:center;min-height:38px;background:#caa97b;color:#141b20;border-color:#caa97b;font-weight:700}
+.header-contact:hover{background:#e4c599;color:#0e151b}
+.brand img{width:41px;height:41px}
+.hero{background:radial-gradient(ellipse 50% 70% at 75% 38%,#59472c25,transparent 68%),linear-gradient(130deg,#091116 10%,#111c21 100%)}
+.hero-grid{min-height:650px;gap:clamp(42px,8vw,120px);padding-block:58px}
+.hero h1{font-size:clamp(74px,8.4vw,132px);letter-spacing:-.075em;line-height:.93;margin:23px 0 34px}
+.hero h1 em{font-weight:400;letter-spacing:-.072em}
+.hero-discipline{font-size:11px;letter-spacing:.075em}
+.hero-lead{max-width:540px;font-size:clamp(19px,1.8vw,22px);line-height:1.5}
+.hero-secondary{color:#cad0ce;font-size:14px}
+.hero-ctas{margin-top:24px}
+.hero-ctas a{min-height:49px}
+.portrait-composition{max-width:400px;height:470px}
+.portrait-outline-back{opacity:.34}
+.portrait-picture{box-shadow:0 24px 55px #0006}
+.hero-baseline{font-size:9px}
+.proof-strip{background:#172024}
+.proof-grid>div{padding-block:22px}
+.proof-grid strong{font-size:clamp(23px,2.6vw,34px)}
+.light-section{background:var(--v32-paper)}
+.work-section{padding-top:85px}
+.section-heading h2,.lab-intro h2,.globe-copy h2,.profile-section h2,.contact-section h2{font-size:clamp(46px,5vw,70px);line-height:1.1}
+.section-heading{margin-bottom:34px}
+.section-heading>p:last-child{max-width:640px;font-size:15px;line-height:1.65}
+.case-card{border-color:#d8cfc1;background:#fcfaf6}
+.case-card:hover{transform:translateY(-2px);box-shadow:0 15px 34px #38261314}
+.case-photo img{transition:transform .65s cubic-bezier(.16,1,.3,1)}
+.case-card:hover .case-photo img{transform:scale(1.025)}
+.case-card .case-body p{line-height:1.65}
+.repo-evidence{margin-top:34px}
+/* Gateway. Three truly different engineering applications with their original launch controls. */
+.experience-hub{background:linear-gradient(130deg,#101b22,#111b22 55%,#172329);color:#f4efe6;position:relative}
+.experience-hub:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 34%,#d2ad7520 34.06%,transparent 34.16%,transparent 75%,#d2ad751b 75.06%,transparent 75.16%);pointer-events:none}
+.experience-hub .wrap{position:relative}
+.hub-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(240px,.68fr);gap:clamp(30px,6vw,94px);align-items:end;margin-bottom:38px}
+.hub-head h2{font:400 clamp(42px,4.5vw,66px)/1.11 Georgia,serif;letter-spacing:-.054em;margin:0}
+.hub-head h2 em{display:block;color:#cdaa7b;font-weight:400}
+.hub-head>p{font-size:15px;line-height:1.75;color:#bec9c8;margin:0 0 7px}
+.hub-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.hub-card{display:flex;flex-direction:column;align-items:stretch;min-width:0;min-height:360px;padding:25px 23px;background:#14222b;border:1px solid #4e5b5d;position:relative;transition:background .25s,border-color .25s,transform .25s}
+.hub-card-primary{background:#1c2d33;border-color:#c2a3728e}
+.hub-card:hover,.hub-card:focus-within{border-color:#d2b07f;background:#1e3037;transform:translateY(-2px)}
+.hub-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.hub-index,.hub-chip,.hub-specs{font:600 10px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.065em}
+.hub-index{color:#d6b688}.hub-chip{color:#b9c9c9;border:1px solid #81939856;padding:6px 8px}
+.hub-symbol{height:53px;display:flex;align-items:center;color:#dfba85;font:400 45px Georgia,serif;margin:18px 0 4px}
+.hub-card h3{font:400 clamp(27px,3vw,37px)/1.14 Georgia,serif;margin:0 0 12px;letter-spacing:-.035em}
+.hub-card p{font-size:13px;color:#bec9ca;line-height:1.7;margin-bottom:20px;max-width:36ch;flex:1}
+.hub-specs{display:flex;gap:8px;flex-wrap:wrap;color:#dfb980;margin-bottom:18px}
+.hub-specs span{border:1px solid #66737870;padding:5px 7px}
+.hub-open{width:100%;border:1px solid #d6b689;background:#d6b689;color:#151b1f;padding:12px 14px;min-height:47px;font-weight:700;font-size:13px;text-align:start;transition:background .2s}
+.hub-open:hover{background:#f0d7b2}
+.hub-open:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.hub-clarity{color:#abb9ba;font-size:12px;max-width:830px;margin:22px 0 0;line-height:1.65}
+/* Existing feature previews are kept as contextual editorial slices, not full-height landing pages. */
+.trust-section.section,.automation-section.section{padding-block:60px}
+.trust-landing{gap:clamp(25px,4vw,54px)!important}
+.trust-landing-copy h2,.automation-intro h2{font-size:clamp(39px,4vw,58px)!important;line-height:1.09!important;margin-bottom:17px!important}
+.trust-landing-copy>p:not(.eyebrow),.automation-intro>p:not(.eyebrow){font-size:14px!important;line-height:1.65!important}
+.trust-landing-badges,.automation-tags{margin-block:15px!important}
+.trust-landing-badges span,.automation-tags span{font-size:9px!important;padding:6px 8px!important}
+.trust-feature-visual{max-width:440px;margin-inline:auto;width:100%}
+.automation-visual{max-width:440px;margin-inline:auto;width:100%}
+/* Legacy environment remains usable on explicit request; advanced studio is the main path. */
+.lab-section.section{padding-block:68px}
+.lab-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(320px,.85fr);align-items:center;gap:clamp(25px,5vw,76px)}
+.lab-intro{max-width:590px}
+.lab-intro h2{font-size:clamp(41px,4.1vw,59px)}
+.lab-intro:after{display:none}
+.mk-studio-launch{grid-column:auto!important;display:flex!important;align-items:flex-start!important;justify-content:center;flex-direction:column;gap:15px!important;border:1px solid #7f765e70!important;padding:28px!important;background:#1b272f}
+.mk-studio-open{min-height:48px}
+.mk-studio-inline-note{line-height:1.75;font-size:12px}
+.legacy-lab-details{margin-top:28px;border:1px solid #715e4675;background:#101a22}
+.legacy-lab-details>summary{display:flex;align-items:center;justify-content:space-between;gap:18px;cursor:pointer;padding:22px 25px;list-style:none;color:#f3e7d2;transition:background .2s}
+.legacy-lab-details>summary::-webkit-details-marker{display:none}
+.legacy-lab-details>summary:hover{background:#29313a}
+.legacy-lab-details>summary span:first-child{display:flex;flex-direction:column;gap:5px}
+.legacy-lab-details>summary b{font:400 23px Georgia,serif}
+.legacy-lab-details>summary small{font-size:12px;line-height:1.6;color:#bac5c8}
+.legacy-toggle-icon{font-size:26px;color:#c5a77a;line-height:1}
+.legacy-lab-details[open] .legacy-toggle-icon{transform:rotate(45deg)}
+.legacy-lab-details>.lab-console{margin:18px 18px 0}
+.legacy-lab-details>.ws-shell{margin:18px}
+/* Selected technologies: 6 instantly visible with a real expand/filter interaction. */
+.toolkit-grid{gap:11px}
+.toolkit-grid .skill{min-height:118px}
+.toolkit-more{display:flex;justify-content:center;margin-top:21px}
+.toolkit-more button{border:1px solid #ad8c63;background:transparent;color:#1b2b34;padding:12px 22px;min-height:44px;font-size:13px;font-weight:700}
+.toolkit-more button:hover{background:#e7d9c7}
+.tool-spotlight{margin-top:30px}
+/* A legible contact address with copy as a secondary convenience. */
+.contact-address{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.contact-address .contact-mail{word-break:break-word}
+.contact-address button{color:#ead2af;background:#1a252d;border:1px solid #887051;padding:10px 12px;min-height:40px;font-size:12px}
+.contact-address button:hover{background:#28343a}
+.contact-copy-status{font-size:12px;color:#dec496;min-height:18px;margin:6px 0 0}
+/* Consistent readable microtypography and contrast throughout the main narrative. */
+.eyebrow,.micro{font-size:11px;letter-spacing:.115em}
+:where(.work-section,.toolkit-section,.profile-section) p{max-width:78ch}
+:where(.hub-card,.legacy-lab-details,.experience-hub) :focus-visible{outline:2px solid #f1d3a9;outline-offset:3px}
+@media(max-width:1160px){.header-contact{display:none}.desktop-nav{gap:17px}.hero h1{font-size:clamp(68px,8.3vw,105px)}}
+@media(max-width:1050px){.header-row{min-height:70px}.hub-head{grid-template-columns:1fr;gap:13px}.hub-head>p{max-width:640px}.hub-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hub-card:last-child{grid-column:1/-1;min-height:300px}.lab-layout{grid-template-columns:1fr}.mk-studio-launch{max-width:650px}.hero-grid{gap:26px}}
+@media(max-width:760px){.wrap{width:calc(100% - 32px)}.section{padding-block:60px}.hero-grid{padding-block:45px}.hero h1{font-size:clamp(57px,13vw,91px)}.portrait-composition{max-width:335px;height:370px}.hero-baseline{font-size:8px}.proof-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.proof-grid>div{padding:20px 12px}.proof-grid>div:nth-child(3){border-inline-start:0;padding-inline-start:0}.proof-grid strong{font-size:27px}.hub-grid{grid-template-columns:1fr}.hub-card:last-child{grid-column:auto}.hub-card{min-height:310px}.hub-head h2{font-size:clamp(39px,10vw,60px)}.trust-section.section,.automation-section.section{padding-block:52px}.trust-landing,.automation-landing{gap:26px!important}.trust-feature-visual,.automation-visual{max-width:370px}.lab-section.section{padding-block:57px}.legacy-lab-details>.lab-console,.legacy-lab-details>.ws-shell{margin:8px}.legacy-lab-details>summary{padding:17px}.legacy-lab-details>summary b{font-size:19px}.toolkit-more button{width:100%}}
+@media(max-width:430px){.wrap{width:calc(100% - 28px)}.hero h1{font-size:clamp(57px,14.5vw,74px)}.hub-card{padding:20px}.hub-head h2{font-size:39px}.hub-symbol{font-size:38px}.hub-card h3{font-size:30px}.section-heading h2,.lab-intro h2,.globe-copy h2,.profile-section h2,.contact-section h2{font-size:clamp(39px,10vw,53px)}.toolkit-grid .skill{min-height:105px}.legacy-lab-details>summary small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.hub-card,.hub-open,.legacy-lab-details>summary,.case-photo img{transition:none!important}.hub-card:hover,.case-card:hover{transform:none!important}}
