@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="./perspective.css">
   <link rel="stylesheet" href="./trustops.css">
   <link rel="stylesheet" href="./repo-audit.css">
+  <link rel="stylesheet" href="./automation.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -34,6 +35,7 @@
       <nav class="desktop-nav" id="primaryNav" aria-label="Main navigation">
         <a href="#work" data-i18n="navWork">Selected work</a>
         <a href="#trustops" data-i18n="trustNav">TrustOps</a>
+        <a href="#automation" data-i18n="autoNav">Automation</a>
         <a href="#lab" data-i18n="navLab">Engineering lab</a>
         <a href="#stack" data-i18n="navStack">Toolkit</a>
         <a href="#perspective" data-i18n="navGlobe">Perspective</a>
@@ -137,13 +139,32 @@
       </div>
     </section>
 
+
+    <section class="automation-section section" id="automation" aria-labelledby="automationTitle">
+      <div class="wrap automation-landing">
+        <div class="automation-intro">
+          <p class="eyebrow" data-i18n="autoOverline">03 / FUNCTIONAL ENGINEERING TOOL</p>
+          <h2 id="automationTitle"><span data-i18n="autoHead1">Build with evidence.</span><br><em data-i18n="autoHead2">Harden your workflows.</em></h2>
+          <p data-i18n="autoIntro">Import a real n8n workflow JSON export, explore its graph, inspect configuration risks, make bounded reliability edits, and rerun the analysis. No server, account or invented results.</p>
+          <div class="automation-tags"><span>N8N JSON</span><span>STATIC ANALYSIS</span><span>LOCAL EDITOR</span><span>RETRY POLICIES</span><span>EXPORTABLE REPORTS</span></div>
+          <button id="automationLaunch" class="automation-launch" type="button" data-i18n="autoLaunch">OPEN AUTOMATION RELIABILITY STUDIO ↗</button>
+          <p class="automation-privacy" data-i18n="autoPrivacy">Free and entirely browser-local. Imported workflows are not uploaded or executed. Remove credentials before sharing exports.</p>
+        </div>
+        <div class="automation-visual" aria-hidden="true">
+          <div class="automation-visual-head"><span>RELIABILITY / INSPECTOR</span><span>v31.0 · LOCAL</span></div>
+          <svg class="automation-demo-graph" viewBox="0 0 460 240" role="presentation"><defs><marker id="demo-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path fill="#d8b57f" d="M0 0 10 5 0 10Z"/></marker></defs><path d="M110 80H178M282 80H348" stroke="#d8b57f" stroke-width="2" stroke-dasharray="4 6" marker-end="url(#demo-arrow)"/><path d="M230 111V164" stroke="#d8b57f" stroke-width="2" stroke-dasharray="4 5" marker-end="url(#demo-arrow)"/><rect x="8" y="50" rx="8" width="102" height="60" fill="#26373d" stroke="#be9664"/><rect x="179" y="50" rx="8" width="104" height="60" fill="#293137" stroke="#ddbd86"/><rect x="348" y="50" rx="8" width="104" height="60" fill="#26373d" stroke="#be9664"/><rect x="168" y="165" rx="8" width="124" height="50" fill="#342d26" stroke="#b18d5b"/><g font-family="monospace" font-size="11" text-anchor="middle" fill="#eee3cf"><text x="59" y="84">WEBHOOK</text><text x="231" y="84">HTTP REQUEST</text><text x="400" y="84">VERIFY</text><text x="230" y="192">RETRY POLICY</text></g><circle cx="263" cy="58" r="5" fill="#dfb57a"/></svg>
+          <div class="automation-visual-bottom"><span>GRAPH → FINDINGS → FIX → RECHECK</span><strong>PRIVATE / BROWSER</strong></div>
+        </div>
+      </div>
+    </section>
+
     <section class="lab-section section" id="lab" aria-labelledby="labTitle"><div class="wrap lab-layout">
       <div class="lab-intro"><p class="eyebrow" data-i18n="labLabel">02 / INTERACTIVE ENGINEERING LAB</p><h2 id="labTitle"><span data-i18n="labHeading1">Follow a request</span><br><em data-i18n="labHeading2">through a system.</em></h2><p data-i18n="labIntro">An interactive browser workstation: edit files, inspect changes, commit local snapshots and run a real stateful delivery pipeline. Nothing reaches your computer or institutional systems.</p>
         <div class="lab-explainer"><span class="lab-note" data-i18n="labNote">WHY IT MATTERS</span><p data-i18n="labBenefit">Reliability depends on more than a successful form submission: traceability, recovery and clear outcomes are part of the design.</p></div>
       </div>
       <div class="mk-studio-launch" style="grid-column:1/-1;padding:22px 0 25px;display:flex;align-items:center;gap:22px;flex-wrap:wrap;border-top:1px solid rgba(210,178,127,.2)">
         <button type="button" class="mk-studio-open" id="studioLaunch">OPEN ADVANCED ENGINEERING STUDIO <span aria-hidden="true">↗</span></button>
-        <span class="mk-studio-inline-note">V27 · self-hosted terminal + syntax-highlighted code editor + executable JS tests + Git-format local commits + SQL/Python runtimes on demand</span>
+        <span class="mk-studio-inline-note">BROWSER-LOCAL · terminal + syntax-highlighted code editor + executable JS tests + Git-format local commits + SQL/Python runtimes on demand</span>
       </div>
       <div class="lab-console mac-terminal" id="engineeringLab" aria-label="Interactive local engineering workstation terminal">
         <div class="mac-titlebar">
@@ -386,6 +407,37 @@ print(sum([2, 3, 5]))</textarea>
   </div>
 </section>
 
+
+<section id="automationStudio" class="auto-dialog" hidden role="dialog" aria-modal="true" aria-labelledby="automationStudioTitle">
+ <div class="auto-shell">
+  <header class="auto-head"><div class="auto-heading"><span class="auto-mark" aria-hidden="true">⌘</span><div><strong data-i18n="autoWindowTitle">AUTOMATION RELIABILITY STUDIO</strong><small>V31.0 / OFFLINE N8N WORKFLOW INSPECTION</small></div></div><button type="button" id="automationClose" class="auto-close" data-i18n="autoClose">Close ×</button></header>
+  <div class="auto-body">
+   <div class="auto-intro"><p class="auto-eyebrow">ENGINEERING INTELLIGENCE / LOCAL ANALYSIS</p><h2 id="automationStudioTitle" data-i18n="autoStudioTitle">From workflow JSON to actionable evidence.</h2><p data-i18n="autoStudioIntro">Inspect a genuine n8n export. The graph, findings and retry editor use the same parsed workflow. Each modification triggers a fresh analysis. Static checks cannot prove runtime behavior.</p></div>
+   <div class="auto-controls">
+    <div class="auto-drop" id="automationDrop"><input id="automationImport" type="file" accept=".json,application/json" aria-label="Import n8n workflow JSON"><span data-i18n="autoDrop">Drop your n8n workflow JSON here · Max 2 MB · processed only in your browser</span></div>
+    <div class="auto-control-actions"><button type="button" class="auto-btn" id="automationSample" data-i18n="autoSample">Load sample exercise</button><button type="button" class="auto-btn auto-primary" id="automationAnalyze" data-i18n="autoAnalyze">Analyze pasted JSON ↗</button></div>
+   </div>
+   <textarea id="automationPaste" class="auto-paste" aria-label="Paste n8n workflow JSON" spellcheck="false" placeholder="Paste an n8n workflow JSON export here instead of importing a file..." data-i18n-placeholder="autoPaste"></textarea>
+   <p class="auto-status" id="automationStatus" role="status" aria-live="polite">Import a workflow to begin.</p>
+   <div class="auto-empty" id="autoEmpty"><b aria-hidden="true">◈</b><p data-i18n="autoEmptyText">Your analysis begins with an actual workflow file, or a labeled training example.</p></div>
+   <div class="auto-workspace" id="autoWorkspace" hidden>
+    <div class="auto-headline"><h3 id="autoWorkflowName">Untitled</h3><span class="auto-flag" id="autoWorkflowFlag">LOCAL / NOT EXECUTED</span></div>
+    <div class="auto-stats" aria-label="Static workflow metrics"><div class="auto-stat"><small data-i18n="autoMetricNodes">NODES</small><strong id="autoStatNodes">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricEdges">EDGES</small><strong id="autoStatEdges">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricTriggers">TRIGGERS</small><strong id="autoStatTriggers">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricCritical">CRITICAL</small><strong id="autoStatCritical">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricWarnings">WARNINGS</small><strong id="autoStatWarnings">0</strong></div><div class="auto-stat"><small data-i18n="autoMetricAdvisories">ADVISORIES</small><strong id="autoStatAdvisories">0</strong></div></div>
+    <div class="auto-pane-grid">
+      <aside class="auto-panel"><div class="auto-panel-title"><span data-i18n="autoNodesLabel">01 / NODES</span><span data-i18n="autoSelectOne">SELECT ONE</span></div><div class="auto-node-list" id="autoNodeList" aria-label="Imported workflow nodes"></div></aside>
+      <section class="auto-panel" id="automationGraphWrap" aria-label="Imported workflow graph"><div class="auto-panel-title"><span data-i18n="autoGraphLabel">02 / WORKFLOW GRAPH</span><span data-i18n="autoGraphHint">SELECT TO INSPECT</span></div><div class="auto-graph-wrap"><svg class="auto-svg" id="automationGraph" xmlns="http://www.w3.org/2000/svg" aria-label="Workflow connections" role="group"></svg></div><p class="auto-caveat" data-i18n="autoGraphCaveat">Connection graph rendered from imported JSON. No workflow commands or external requests are executed.</p></section>
+      <aside class="auto-panel auto-inspector"><div class="auto-panel-title"><span data-i18n="autoInspectorLabel">03 / NODE INSPECTOR</span><span data-i18n="autoEditHint">EDIT & RECHECK</span></div><p data-i18n="autoSelectNode">Select a node to edit bounded reliability settings.</p><div class="auto-node-inspector" id="automationInspector" hidden><h4 id="autoNodeName"></h4><p id="autoNodeType"></p><form class="auto-node-form" id="automationNodeForm"><label class="auto-check"><input type="checkbox" id="autoRetry"> <span data-i18n="autoRetry">Retry on fail</span></label><label><span data-i18n="autoTries">Max attempts (1 to 5)</span><input id="autoMaxTries" type="number" min="1" max="5" step="1" required value="3"></label><label><span data-i18n="autoWait">Wait between attempts (ms)</span><input id="autoBackoff" type="number" min="0" max="60000" step="100" required value="1000"></label><label><span data-i18n="autoOnError">On error</span><select id="autoErrorMode"><option value="stopWorkflow" data-i18n="autoStop">Stop workflow</option><option value="continueRegularOutput" data-i18n="autoContinue">Continue regular output</option><option value="continueErrorOutput" data-i18n="autoErrorOutput">Continue error output</option></select></label><button class="auto-btn auto-primary" type="submit" data-i18n="autoApply">Apply & rerun analysis ↗</button></form><p class="auto-caveat" id="autoInspectorHint"></p></div></aside>
+    </div>
+    <p class="auto-comparison" id="autoComparison" aria-live="polite"></p>
+    <section class="auto-execution" aria-labelledby="autoExecutionTitle"><div><p class="auto-eyebrow" data-i18n="autoExecutionOverline">OPTIONAL / INCIDENT EVIDENCE</p><h3 id="autoExecutionTitle" data-i18n="autoExecutionTitle">Inspect an actual execution snapshot.</h3><p data-i18n="autoExecutionIntro">Import a separately exported n8n execution JSON containing resultData.runData. We only display node names, timing and error categories; payloads and stack traces stay hidden. No execution or network connection.</p></div><div class="auto-execution-upload"><input type="file" id="autoExecutionImport" accept=".json,application/json" aria-label="Import n8n execution JSON"><small data-i18n="autoExecutionLimit">Local · max 2 MB · optional</small></div><div id="autoExecutionStatus" class="auto-execution-status" role="status" aria-live="polite"></div><div class="auto-execution-results" id="autoExecutionResults" hidden></div></section>
+    <div class="auto-report-head"><h3 data-i18n="autoFindings">04 / Evidence-based findings</h3><div class="auto-report-actions"><select id="automationFilter" class="auto-select" aria-label="Filter findings by severity"><option value="all" data-i18n="autoAll">All findings</option><option value="critical" data-i18n="autoCritical">Critical</option><option value="warning" data-i18n="autoWarning">Warnings</option><option value="info" data-i18n="autoInfo">Advisories</option></select><button type="button" class="auto-btn" id="automationExportWorkflow" data-i18n="autoExportWorkflow">Export edited n8n JSON ↓</button><button type="button" class="auto-btn" id="automationExportJSON" data-i18n="autoExportJSON">Audit JSON ↓</button><button type="button" class="auto-btn" id="automationExportHTML" data-i18n="autoExportHTML">Printable report ↓</button><button type="button" class="auto-btn" id="automationOpenRepo" data-i18n="autoOpenRepo">Open RepoVerity audit ↗</button></div></div>
+    <div class="auto-findings" id="automationFindings"></div>
+   </div>
+   <p class="auto-footnote" data-i18n="autoCaveat">Privacy & limitations: This static inspector reads JSON in your browser only. It does not validate n8n credentials, run nodes, trace production incidents or certify security. Imported exports may contain sensitive settings; do not share the exported file before reviewing it. A sample is explicitly identified.</p>
+  </div>
+ </div>
+</section>
+
 <section id="engineeringStudio" hidden aria-label="Advanced Engineering Studio V28" role="dialog" aria-modal="true" aria-labelledby="studioHeading">
   <div class="studio-window">
     <div class="studio-titlebar">
@@ -462,6 +514,7 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./studio.js" defer></script>
   <script type="module" src="./trustops.js"></script>
   <script type="module" src="./repo-audit.js"></script>
+  <script type="module" src="./automation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer crossorigin="anonymous"></script>
 </body>

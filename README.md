@@ -32,6 +32,16 @@ Working with MYCDIC and Trendad colleagues, I help lead delivery of official web
 
 Internal records and private administrative interfaces are not published. The [portfolio website](https://kobrymoataz.github.io/kobrymoataz/) includes distinct, responsibly labeled technical illustrations and a **V28 Advanced Engineering Studio**: self-hosted terminal and code editor, runnable sandboxed JavaScript tests, SHA-1-addressed local Git objects, saved files, and stateful workflows. Python and SQLite WebAssembly panels load on demand. macOS and Ubuntu are interface styles, not actual operating systems.
 
+### V31.0 · Automation Reliability Studio
+
+**New public, browser-local tool:** [Open Automation Studio](https://kobrymoataz.github.io/kobrymoataz/?automation=1). Import a real n8n workflow JSON (up to 2 MB and 320 nodes), inspect the actual connection graph, review explainable static findings, modify supported retry/error-continuation options in a bounded local editor and rerun the analysis. Export the edited workflow JSON, a redacted JSON audit report or a printable HTML report. The original file remains untouched unless you explicitly export an edited copy.
+
+**Incident evidence:** An optional separate n8n execution JSON containing `resultData.runData` can be inspected for node timings and explicit error categories. Raw workflow run inputs/outputs and stack traces are intentionally excluded from the summary. No workflow is executed, replayed, scheduled, sent to n8n, or connected to a production system.
+
+**Related tools:** TrustOps DNS audit (V30.1), RepoVerity public repository evidence (V30.2), the Functional Engineering Studio (V27), interactive workflow/observability (V28), and geographic perspective (V29) are all retained. The Automation Studio can open the repository audit directly. It runs on static GitHub Pages without secrets or backend credentials.
+
+**Boundaries:** Static inspections are heuristics, not complete security scans. Custom nodes, downstream access controls, credentials, actual retry safety, private state and operational reliability cannot be verified from workflow JSON alone. Imported/exported workflow files may contain confidential values; users must review them before sharing. The included sample is labeled clearly and is never presented as live evidence.
+
 ### V30.2 · TrustOps Studio — Free Public DNS Audit
 
 [**Open TrustOps Studio**](https://kobrymoataz.github.io/kobrymoataz/?trustops=1) · [Explore the DNS engine source](https://github.com/kobrymoataz/kobrymoataz/blob/main/docs/trustops-core.mjs)
