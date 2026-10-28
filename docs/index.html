@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="./automation.css">
   <link rel="stylesheet" href="./experience-v32.css">
   <link rel="stylesheet" href="./systems.css">
+  <link rel="stylesheet" href="./design-v32-3.css">
 </head>
 <body>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -41,6 +42,7 @@
         <a href="#profile" data-i18n="navProfile">Profile</a>
       </nav>
       <div class="header-actions">
+        <button type="button" class="quicknav-trigger" id="quicknavOpen" aria-haspopup="dialog" aria-controls="quicknavDialog" aria-label="Open quick navigation"><span class="cmd-label" data-i18n="v323Quick">Quick jump</span><kbd aria-hidden="true">⌘ K</kbd><span class="cmd-mobile-icon" aria-hidden="true">⌕</span></button>
         <div class="language-switch" role="group" aria-label="Choose language" id="languageSwitch">
           <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
           <button type="button" data-lang="fr" aria-pressed="false" lang="fr">FR</button>
@@ -52,6 +54,16 @@
       </div>
     </div>
   </header>
+
+
+  <div class="cmd-overlay" id="quicknavDialog" role="dialog" aria-modal="true" aria-labelledby="quicknavTitle" hidden>
+    <div class="cmd-panel">
+      <div class="cmd-top"><strong id="quicknavTitle" data-i18n="v323PaletteTitle">NAVIGATE PORTFOLIO</strong><button type="button" class="cmd-close" id="quicknavClose" data-i18n="v323PaletteClose" aria-label="Close quick navigation">Close</button></div>
+      <div class="cmd-search-wrap"><input class="cmd-search" id="quicknavSearch" type="search" autocomplete="off" spellcheck="false" data-i18n-placeholder="v323PalettePlaceholder" aria-label="Search sections or tools" placeholder="Find a section or tool"></div>
+      <div class="cmd-results" id="quicknavResults" role="listbox" aria-label="Available navigation destinations"></div>
+      <div class="cmd-foot" data-i18n="v323PaletteHelp">↑ ↓ select · Enter open · Esc close</div>
+    </div>
+  </div>
 
   <main id="main">
     <section class="hero" id="top">
@@ -67,12 +79,18 @@
             <a class="button button-primary" href="#work"><span data-i18n="exploreWork">Explore selected work</span><span aria-hidden="true">↗</span></a>
             <a class="button button-secondary" href="#tools"><span data-i18n="v32HeroTools">Explore working tools</span><span aria-hidden="true">↗</span></a>
           </div>
+          <div class="hero-proof" aria-label="How to explore this portfolio">
+            <span data-i18n="v323ProofCode">Inspect public code</span>
+            <span data-i18n="v323ProofTools">Use working tools</span>
+            <span data-i18n="v323ProofReports">Review evidence</span>
+          </div>
         </div>
         <div class="portrait-composition">
           <div class="portrait-outline portrait-outline-back" aria-hidden="true"></div>
           <div class="portrait-outline portrait-outline-front" aria-hidden="true"></div>
           <div class="portrait-picture"><img src="./assets/img/portrait.webp" width="1000" height="1000" alt="Portrait of Moataz Kobry" fetchpriority="high"><div class="portrait-shade"></div><p class="micro" dir="ltr">ENGINEERING / 2016—2026</p></div>
           <div class="portrait-seal" aria-hidden="true"><img src="./assets/logo-mark.svg" alt="" width="72" height="72"></div>
+          <div class="portrait-note"><strong>BUILD / VERIFY</strong><span data-i18n="v323Portrait">ENGINEERING PRACTICE</span></div>
         </div>
       </div>
       <div class="wrap hero-baseline"><span data-i18n="heroBaseline">SOFTWARE · AUTOMATION · INFRASTRUCTURE</span><span data-i18n="scroll">SCROLL TO EXPLORE ↓</span></div>
@@ -133,6 +151,7 @@
             <div class="hub-symbol" aria-hidden="true">◈</div>
             <h3>TrustOps</h3>
             <p data-i18n="v32TrustDesc">Check published DNS records and inspect public GitHub repositories. Every finding links back to its available evidence.</p>
+            <div class="hub-process" aria-label="Tool workflow"><span data-i18n="v323FlowDns">DNS</span><span data-i18n="v323FlowPolicy">POLICY</span><span data-i18n="v323FlowReport">REPORT</span></div>
             <div class="hub-specs"><span>SPF / DMARC / DKIM</span><span>GITHUB API</span></div>
             <button type="button" id="hubTrustLaunch" class="hub-open" data-i18n="v32OpenTrust">Run a public audit ↗</button>
           </article>
@@ -141,6 +160,7 @@
             <div class="hub-symbol" aria-hidden="true">⌘</div>
             <h3 data-i18n="v32AutoTitle">Automation Studio</h3>
             <p data-i18n="v32AutoDesc">Import an n8n workflow, inspect its graph and security settings, make local edits, and export a redacted evidence pack.</p>
+            <div class="hub-process" aria-label="Tool workflow"><span data-i18n="v323FlowImport">IMPORT</span><span data-i18n="v323FlowGraph">GRAPH</span><span data-i18n="v323FlowFindings">FINDINGS</span></div>
             <div class="hub-specs"><span>N8N JSON</span><span>STATIC INSPECTION</span></div>
             <button type="button" id="hubAutoLaunch" class="hub-open" data-i18n="v32OpenAuto">Inspect a workflow ↗</button>
           </article>
@@ -149,6 +169,7 @@
             <div class="hub-symbol" aria-hidden="true">{ }</div>
             <h3 data-i18n="v32StudioTitle">Engineering Studio</h3>
             <p data-i18n="v32StudioDesc">Edit local files, run JavaScript checks, inspect workflow execution, and create local Git-format commits in a browser sandbox.</p>
+            <div class="hub-process" aria-label="Tool workflow"><span data-i18n="v323FlowEdit">EDIT</span><span data-i18n="v323FlowTest">TEST</span><span data-i18n="v323FlowCommit">COMMIT</span></div>
             <div class="hub-specs"><span>CODE EDITOR</span><span>LOCAL TESTS</span></div>
             <button type="button" id="hubStudioLaunch" class="hub-open" data-i18n="v32OpenStudio">Open the workstation ↗</button>
           </article>
@@ -570,6 +591,7 @@ print(sum([2, 3, 5]))</textarea>
   <script src="./lab.js" defer></script>
   <script src="./app.js" defer></script>
   <script src="./experience-v32.js" defer></script>
+  <script src="./design-v32-3.js" defer></script>
   <script src="./globe.js" defer></script>
   <script src="./perspective.js" defer></script>
   <script src="./studio-engine.js" defer></script>

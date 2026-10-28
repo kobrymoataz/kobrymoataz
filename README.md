@@ -50,6 +50,14 @@ The desktop and mobile experience uses refined black/bronze typography, lower vi
 
 **Integrity:** All prior tests and public source links are retained. GitHub Pages stays on `main /docs`. Browser-local operations do not execute commands on the visitor's computer. The contact form still opens the visitor's email app and does not silently send messages. V32 does not introduce a server or claim private repository access.
 
+### V32.3 · Executive Interface Refinement
+
+The landing page has a refined offline-capable visual layer while retaining the same source-backed engineering tools. Changes include improved navigation, typography, hero hierarchy, portrait framing, project cards, tool process descriptions, and responsive English, French, Spanish, and Arabic layouts. No artificial numbers, live telemetry, or new backend services were introduced.
+
+**Keyboard navigation:** use `Cmd+K` on macOS or `Ctrl+K` on Windows/Linux, or activate the navigation icon in the header. Search pages and open existing TrustOps, Automation Studio, Engineering Studio, and Systems Console controls. The dialog supports arrow keys, Enter, Escape, and managed keyboard focus. It uses no external search service and stores no searches.
+
+**Limits:** this is a design and navigation upgrade, not proof that all tool APIs, WebGL, or cross-browser behavior are operational in production. The existing scope and privacy limitations of each tool still apply.
+
 ### V31.1 · Professional Refinement
 
 V31.1 keeps the browser-local Automation Reliability Studio and previous tools, while improving usability and initial loading performance. **Advanced Engineering Studio editor and terminal libraries are fetched on demand**, not during initial landing-page load. The n8n workflow inspector adds searchable nodes, undo/redo, safe edit-discard prompts, keyboard navigation and responsive controls. The local static inspector does not execute n8n workflows.

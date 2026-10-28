@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const text=p=>readFileSync(p,'utf8');
+const html=text('docs/index.html'), css=text('docs/design-v32-3.css'),js=text('docs/design-v32-3.js'),i18n=text('docs/i18n.js');
+const m=i18n.match(/const messages\s*=\s*(\{[\s\S]*?\});\s*const available=/);
+assert.ok(m,'JSON-compatible translation source');const locales=JSON.parse(m[1]);
+for(const id of ['quicknavOpen','quicknavDialog','quicknavClose','quicknavSearch','quicknavResults','tools','work','stack','contact','hubTrustLaunch','hubAutoLaunch','hubStudioLaunch','systemsLaunch','trustopsStudio','automationStudio'])assert.ok(html.includes(`id="${id}"`),`missing ${id}`);
+for(const f of ['./design-v32-3.css','./design-v32-3.js'])assert.ok(html.includes(f),`missing asset ${f}`);
+for(const key of ['v323Quick','v323PaletteTitle','v323PaletteClose','v323PaletteEmpty','v323NavSystems','v323FlowCommit'])for(const locale of ['en','fr','es','ar'])assert.ok(locales[locale][key],`${locale} ${key}`);
+for(const token of ['aria-modal="true"','aria-haspopup="dialog"','role="listbox"','data-i18n-placeholder="v323PalettePlaceholder"'])assert.ok(html.includes(token),`missing accessibility hook ${token}`);
+assert.equal((html.match(/class="hub-process"/g)||[]).length,3,'three honest tool workflows');
+assert.ok(js.includes('scrollIntoView')&&js.includes('Escape')&&js.includes('prefers-reduced-motion')&&js.includes('replaceChildren'),'functional, keyboard-aware navigation');
+assert.ok(!js.includes('fetch(')&&!js.includes('innerHTML')&&!js.includes('localStorage')&&!js.includes('eval('),'no new network, unsafe HTML or saved state');
+assert.ok(css.includes('prefers-reduced-motion')&&css.includes('max-width:440px')&&css.includes('html[dir="rtl"]'),'responsive, RTL and motion alternatives');
+assert.ok(html.includes('class="hero-proof"')&&html.includes('class="portrait-note"'),'hero design enriched without another portrait');
+console.log('V32.3 DESIGN PASS | accessible palette | tool flows | visual system | EN FR ES AR | preserved engines');

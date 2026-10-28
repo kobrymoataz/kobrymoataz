@@ -1,6 +1,6 @@
 # GitHub Pages keeps its configured branch-based publishing source main /docs.
 # This workflow validates the portfolio and never deploys a competing site.
-name: Validate V32.2 Systems Operations (branch publishing)
+name: Validate V32.3 Executive Design (branch publishing)
 on:
   push:
     branches: [main]
@@ -20,6 +20,7 @@ on:
       - 'scripts/test_experience_v32.mjs'
       - 'scripts/test_systems_v32_1.mjs'
       - 'scripts/test_incidents_v32_2.mjs'
+      - 'scripts/test_design_v32_3.mjs'
       - '.github/workflows/deploy-pages.yml'
   pull_request:
     paths:
@@ -49,7 +50,7 @@ jobs:
         run: python3 scripts/validate_site.py
       - name: Validate JavaScript syntax
         run: |
-          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs docs/repo-audit.js docs/repo-audit-core.mjs docs/automation.js docs/automation-core.mjs docs/security-evidence-core.mjs docs/experience-v32.js docs/systems.js docs/systems-core.mjs docs/systems-incidents-core.mjs; do node --check "$file"; done
+          for file in docs/i18n.js docs/lab.js docs/app.js docs/globe.js docs/perspective.js docs/studio-engine.js docs/studio-flow-engine.js docs/studio-flow-ui.js docs/studio.js docs/trustops.js docs/trustops-core.mjs docs/repo-audit.js docs/repo-audit-core.mjs docs/automation.js docs/automation-core.mjs docs/security-evidence-core.mjs docs/experience-v32.js docs/design-v32-3.js docs/systems.js docs/systems-core.mjs docs/systems-incidents-core.mjs; do node --check "$file"; done
       - name: Check Git-format object engine
         run: node scripts/test_studio.mjs
       - name: Check real local workflow graph, queue and trace behavior
@@ -77,3 +78,6 @@ jobs:
         run: node scripts/test_systems_v32_1.mjs
       - name: Validate V32.2 incident casebook and recovery
         run: node scripts/test_incidents_v32_2.mjs
+
+      - name: Validate V32.3 design integration and four locales
+        run: node scripts/test_design_v32_3.mjs
